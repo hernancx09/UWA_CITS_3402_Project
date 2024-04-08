@@ -1,5 +1,7 @@
 Welcome to our group project for Agile Web Dev!!!
 
+Group Discord: https://discord.gg/rbRMMWwj
+
 Agile Sprint Outline:
 
 Planning -> Basics -> Functionality -> Testing -> Cleaning -> Pretty-ing -> done/submit!
@@ -18,3 +20,4 @@ Will update later
 4. instructions for how to launch the application.
 
 5.instructions for how to run the tests for the application.
+

@@ -1,0 +1,16 @@
+<!--- 
+    - EACH TEMPLATE MUST INCLUDE "extends base html"
+    - PAGE TITLE DEFINED IN "block title"
+    - PAGE CONTENT DEFINED IN "block content"
+-->
+
+{% extends "base.html" %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block title %}
+    TEST PAGE
+{% endblock %}
+{% block content%}
+    WELCOME!
+{% endblock %}

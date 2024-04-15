@@ -1,8 +1,9 @@
 from flask import Flask
+from config import Config
 
 app = Flask(__name__, 
             static_url_path='',
             static_folder='static')
-app.secret_key = "secretKey"
+app.config.from_object(Config)
 
 from app import routes

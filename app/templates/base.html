@@ -6,9 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{%block title%}{% endblock %} - CITS3403 WebApp</title>
     <!--- Stylesheet Links-->
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
     {% endblock %}
 </head>
 <body>
+  <nav>
+    Group Project:
+    <a href="{{url_for('test')}}">Test Page</a> <!--url_for generates urls-->
+    <a href="{{url_for('login')}}">Login</a>
+  </nav>
   <div id="content">
     {% block content %}
       <!--- Page specific content block-->

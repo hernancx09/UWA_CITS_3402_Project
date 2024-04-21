@@ -1,11 +1,16 @@
 {% extends "base.html" %}
 {% block title %}Login Page{% endblock %}
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+
+{% endblock %}
 
 {% block content %}
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-6 m-auto">
-      <div class="login-form">
+      <div class="login-form bg-white p-4 shadow rounded">
         <h2 class="text-center mb-4">Login</h2>
         <form id="login-form">
           <div class="form-group">
@@ -14,14 +19,7 @@
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <div class="eye-icon-container input-group">
-              <input type="password" class="form-control" id="password" placeholder="Password">
-              <div class="input-group-append">
-                <div class="eye-icon-background">
-                  <i class="fa fa-eye eye-icon" id="showPassword"></i> <!-- Eye icon -->
-                </div>
-              </div>
-            </div>
+            <input type="password" class="form-control" id="password" placeholder="Password">
           </div>
           <button type="submit" class="btn btn-primary btn-block">Login</button>
         </form>
@@ -40,10 +38,4 @@
     </div>
   </div>
 </div>
-{% endblock %}
-
-{% block head %}
-{{ super() }}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-
 {% endblock %}

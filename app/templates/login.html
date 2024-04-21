@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 
+{%block extraheaders%}
+<link rel="stylesheet" href="{{ url_for('static', filename='style_login.css') }}">
+{% endblock %}
+
 {% block content %}
 <h2>Login Page</h2>
-<link rel="stylesheet" href="{{ url_for('static', filename='style_login.css') }}">
-
 
 <form action="" method="post">
   {{ form.hidden_tag() }}

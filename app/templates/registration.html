@@ -1,32 +1,36 @@
 {% extends "base.html" %}
 
+{%block extraheaders%}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style_reg.css') }}">
+{% endblock %}
+
 {% block content %}
-<h2>Registration Page</h2>
-<link rel="stylesheet" href="{{ url_for('static', filename='style_reg.css') }}">
+  <header>Registration Page</header>
+  <div id="formwrapper">
+    <form action="" method="post">
+      {{ form.hidden_tag() }}
 
+      <p>
+        {{form.username.label}} <br>
+        {{form.username(size=30)}}
+      </p>
+      
+      <p>
+        {{form.password.label}} <br>
+        {{form.password(size=30)}}
+      </p>
 
-<form action="" method="post">
-  {{ form.hidden_tag() }}
+      <p>
+        {{form.passwordCheck.label}} <br>
+        {{form.passwordCheck(size=30)}}
+      </p>
 
-  <p>
-    {{form.username.label}} <br>
-    {{form.username(size=30)}}
-  </p>
-  
-  <p>
-    {{form.password.label}} <br>
-    {{form.password(size=30)}}
-  </p>
+      <p>
+        {{form.submit()}}
+      </p>
 
-  <p>
-    {{form.passwordCheck.label}} <br>
-    {{form.passwordCheck(size=30)}}
-  </p>
-
-  <p>
-    {{form.submit()}}
-  </p>
-
-</form>
+    </form>
+  </div>
+    
 {% endblock %}
 

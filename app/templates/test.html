@@ -12,5 +12,15 @@
     TEST PAGE
 {% endblock %}
 {% block content%}
-    WELCOME!
+    WELCOME to our UserPage!
+    {% if result %}
+        <table border="1">
+            {% for key,value in result.items() %}
+            <tr>
+                <th>{{key}}</th>
+                <td>{{value}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
 {% endblock %}

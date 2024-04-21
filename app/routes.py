@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, request,redirect
 from app import app
 from app.forms import LoginForm, RegisterForm
 
@@ -18,8 +18,12 @@ def login():
     form = LoginForm()
     return render_template('login.html', form=form)
 
-@app.route('/registration')
+@app.route('/registration', methods = ['GET','POST'])
 def registration():
     Regform = RegisterForm()
+    if Regform.is_submitted():
+        result = request.form
+        return render_template('test.html', result = result)
+
     return render_template('registration.html', form = Regform)
 

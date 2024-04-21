@@ -1,5 +1,4 @@
 import os
-import sqlalchemy as sa
 from config import Config
 from flask_migrate import upgrade
 

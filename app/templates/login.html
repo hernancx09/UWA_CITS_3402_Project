@@ -1,22 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form action="", method="post">
+<h2>Login Page</h2>
+<link rel="stylesheet" href="{{ url_for('static', filename='style_login.css') }}">
 
-    <p>
-      {{form.username.label}} <br>
-      {{form.username(size=30)}}
-    </p>
-    
-    <p>
-      {{form.password.label}} <br>
-      {{form.password(size=30)}}
-    </p>
 
-    <p>
-      {{form.submit()}}
-    </p>
+<form action="" method="post">
+  {{ form.hidden_tag() }}
 
-  </form>
+  <p>
+    {{form.username.label}} <br>
+    {{form.username(size=30)}}
+  </p>
+  
+  <p>
+    {{form.password.label}} <br>
+    {{form.password(size=30)}}
+  </p>
+
+  <p>
+    {{form.submit()}}
+  </p>
+
+</form>
 {% endblock %}
 

@@ -1,0 +1,231 @@
+<!--- 
+    - EACH TEMPLATE MUST INCLUDE "extends base html"
+    - PAGE TITLE DEFINED IN "block title"
+    - PAGE CONTENT DEFINED IN "block content"
+-->
+
+{% extends "base.html" %}
+{% block head %}
+  {{ super() }}
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      background-color: rgba(34,47,125,255);
+      background-image: url('https://studyqa.com/storage/media/upload/univers/940/66/uni_profile_94066.jpg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 100vh;
+    }
+    
+    .registration-form {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0,0,0,1);
+    }
+
+    .error-message {
+      color: #721c24;
+      background-color: #f8d7da;
+      border-color: #f5c6cb;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 15px;
+    }
+
+    .eye-icon-background {
+      background-color: rgba(255, 255, 255, 0.8); /* Match the background color used in the second page */
+      padding: 6px;
+      border-radius: 0 5px 5px 0;
+    }
+    </style>
+{% endblock %}
+{% block title %}
+    TEST PAGE
+{% endblock %}
+{% block content %}
+<body>
+  
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-6 m-auto">
+          <div class="registration-form">
+            <h2 class="text-center mb-4">Account Registration</h2>
+            <form id="registration-form">
+              <!-- Error message -->
+              <div id="error-message" class="error-message d-none">Please fill in all fields.</div>
+              <!-- Username -->
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Enter username">
+                <div id="username-error" class="invalid-feedback">Username is already taken.</div>
+              </div>
+              <!-- Password -->
+              <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-group">
+                  <input type="password" class="form-control" id="password" placeholder="Password">
+                  <div class="input-group-append">
+                    <span class="input-group-text">
+                      <i class="fa fa-eye" id="showPassword"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <!-- Confirm Password -->
+              <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <div class="input-group">
+                  <input type="password" class="form-control" id="confirm-password" placeholder="Confirm password">
+                  <div class="input-group-append">
+                    <span class="input-group-text">
+                      <i class="fa fa-eye" id="showConfirmPassword"></i>
+                    </span>
+                  </div>
+                </div>
+                <div id="password-error" class="invalid-feedback">Passwords do not match.</div>
+                <div id="password-length-error" class="invalid-feedback">Password must be at least 5 characters long.</div>
+              </div>
+              <!-- Security Question 1 -->
+              <div class="form-group">
+                <label for="security-question1">Security Question 1</label>
+                <select class="form-control" id="security-question1">
+                  <option value="">Select a question</option>
+                  <option value="What is your fathers's middle name?">What is your fathers's middle name?</option>
+                  <option value="What is the name of your best friend?">What is the name of your best friend?</option>
+                  <option value="What was the first club you joined?">What was the first club you joined?</option>
+                </select>
+              </div>
+              <!-- Security Question 1 Answer -->
+              <div class="form-group">
+                <label for="security-question1-answer">Answer for Question 1</label>
+                <input type="text" class="form-control" id="security-question1-answer" placeholder="Enter answer">
+              </div>
+              <!-- Security Question 2 -->
+              <div class="form-group">
+                <label for="security-question2">Security Question 2</label>
+                <select class="form-control" id="security-question2">
+                  <option value="">Select a question</option>
+                  <option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
+                  <option value="What is the name of your first pet?">What is the name of your first pet?</option>
+                  <option value="What city were you born in?">What city were you born in?</option>
+                </select>
+              </div>
+              <!-- Security Question 2 Answer -->
+              <div class="form-group">
+                <label for="security-question2-answer">Answer for Question 2</label>
+                <input type="text" class="form-control" id="security-question2-answer" placeholder="Enter answer">
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Register</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<script>
+  $(document).ready(function() {
+    // Show/hide password
+    $('#showPassword').click(function() {
+      var passwordInput = $('#password');
+      var icon = $(this).find('i');
+
+      if (passwordInput.attr('type') === 'password') {
+        passwordInput.attr('type', 'text');
+        icon.removeClass('fa-eye').addClass('fa-eye-slash');
+      } else {
+        passwordInput.attr('type', 'password');
+        icon.removeClass('fa-eye-slash').addClass('fa-eye');
+      }
+    });
+
+    // Show/hide confirm password
+    $('#showConfirmPassword').click(function() {
+      var confirmPasswordInput = $('#confirm-password');
+      var icon = $(this).find('i');
+
+      if (confirmPasswordInput.attr('type') === 'password') {
+        confirmPasswordInput.attr('type', 'text');
+        icon.removeClass('fa-eye').addClass('fa-eye-slash');
+      } else {
+        confirmPasswordInput.attr('type', 'password');
+        icon.removeClass('fa-eye-slash').addClass('fa-eye');
+      }
+    });
+
+    $('#registration-form').submit(function(event) {
+      event.preventDefault();
+      var username = $('#username').val();
+      var password = $('#password').val();
+      var confirmPassword = $('#confirm-password').val();
+      var securityQuestion1 = $('#security-question1').val();
+      var securityQuestion1Answer = $('#security-question1-answer').val();
+      var securityQuestion2 = $('#security-question2').val();
+      var securityQuestion2Answer = $('#security-question2-answer').val();
+
+      // Check if all fields are filled
+      var isAllFieldsFilled = username && password && confirmPassword && securityQuestion1 && securityQuestion1Answer && securityQuestion2 && securityQuestion2Answer;
+
+      if (!isAllFieldsFilled) {
+        $('#error-message').removeClass('d-none');
+        return;
+      }
+
+      // Check if username is taken (for demonstration, assume it's not taken)
+      var isUsernameAvailable = true;
+
+      // Check if password matches confirm password
+      var isPasswordMatch = (password === confirmPassword);
+
+      // Check if password is at least 5 characters long
+      var isPasswordValid = (password.length >= 5);
+
+      // Perform checks and display appropriate error messages
+      if (!isUsernameAvailable) {
+        $('#username').addClass('is-invalid');
+        $('#username-error').show();
+      } else {
+        $('#username').removeClass('is-invalid');
+        $('#username-error').hide();
+      }
+
+      if (!isPasswordMatch) {
+        $('#password').addClass('is-invalid');
+        $('#confirm-password').addClass('is-invalid');
+        $('#password-error').show();
+      } else {
+        $('#password').removeClass('is-invalid');
+        $('#confirm-password').removeClass('is-invalid');
+        $('#password-error').hide();
+      }
+
+      if (!isPasswordValid) {
+        $('#password').addClass('is-invalid');
+        $('#password-length-error').show();
+      } else {
+        $('#password').removeClass('is-invalid');
+        $('#password-length-error').hide();
+      }
+
+      // Here you would proceed with the account registration process if all checks pass
+      if (isUsernameAvailable && isPasswordMatch && isPasswordValid) {
+        // Perform account registration
+        alert('Account registered successfully!');
+      }
+    });
+  });
+</script>
+{% endblock %}

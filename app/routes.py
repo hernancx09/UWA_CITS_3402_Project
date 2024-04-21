@@ -1,5 +1,6 @@
 from flask import render_template, url_for
 from app import app
+from forms import LoginForm
 
 ##Usage
 # URLs need to be mapped to a function that will decide what happens on that page
@@ -7,15 +8,16 @@ from app import app
 # next a function is defined beneath the route that decides what happens at that URL
 
 @app.route('/')
+
 @app.route('/test')
 def test():
     return render_template('test.html')
 
-@app.route('/')
 @app.route('/login')
 def login():
-    return render_template('login.html')
-@app.route('/')
+    form = LoginForm()
+    return render_template('login.html', form=form)
+
 @app.route('/registration')
 def registration():
     return render_template('registration.html')

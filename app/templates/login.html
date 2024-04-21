@@ -1,151 +1,49 @@
 {% extends "base.html" %}
-
-{% block title %}
-    Login Page
-{% endblock %}
-
-{% block head %}
-    {{ super() }}
-    <style>
-        .login-form {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,1);
-        }
-
-        .eye-icon-container {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .eye-icon-background {
-            background-color: rgba(123, 118, 118, 0.8);
-            padding: 6px;
-            border-radius: 0 5px 5px 0;
-        }
-
-        .eye-icon {
-            cursor: pointer;
-            position: relative;
-            z-index: 1;
-        }
-
-        #password {
-            border-radius: 5px;
-        }
-        
-    </style>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-
-    
-{% endblock %}
+{% block title %}Login Page{% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-      <div class="col-md-6 m-auto">
-        <div class="login-form">
-          <h2 class="text-center mb-4">Login</h2>
-          <form id="login-form">
-            <div class="form-group">
-              <label for="username">Username</label>
-              <input type="text" class="form-control" id="username" placeholder="Enter username">
-            </div>
-            <div class="form-group">
-              <label for="password">Password</label>
-              <div class="eye-icon-container input-group">
-                <input type="password" class="form-control" id="password" placeholder="Password">
-                <div class="input-group-append">
-                  <div class="eye-icon-background">
-                    <i class="fa fa-eye eye-icon" id="showPassword"></i> <!-- Eye icon -->
-                  </div>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6 m-auto">
+      <div class="login-form">
+        <h2 class="text-center mb-4">Login</h2>
+        <form id="login-form">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="Enter username">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="eye-icon-container input-group">
+              <input type="password" class="form-control" id="password" placeholder="Password">
+              <div class="input-group-append">
+                <div class="eye-icon-background">
+                  <i class="fa fa-eye eye-icon" id="showPassword"></i> <!-- Eye icon -->
                 </div>
               </div>
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Login</button>
-          </form>
-          <div class="mt-3 text-center">
-            <a href="#">Reset Password</a> | <a href="#">Register Here</a>
           </div>
-          <!-- Alert for incorrect username/password -->
-          <div id="alert" class="alert alert-danger mt-3 d-none" role="alert">
-            Incorrect username or password. Please try again.
-          </div>
-          <!-- Alert for empty fields -->
-          <div id="empty-alert" class="alert alert-danger mt-3 d-none" role="alert">
-            Please fill in all fields.
+          <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </form>
+        <div class="mt-3 text-center">
+          <a href="#">Reset Password</a> | <a href="#">Register Here</a>
         </div>
-        <div id="success-alert" class="alert alert-success mt-3 d-none" role="alert">
-            Login successful! Redirecting...
+        <!-- Alert for incorrect username/password -->
+        <div id="alert" class="alert alert-danger mt-3 d-none" role="alert">
+          Incorrect username or password. Please try again.
         </div>
-          </div>
+        <!-- Alert for empty fields -->
+        <div id="empty-alert" class="alert alert-danger mt-3 d-none" role="alert">
+          Please fill in all fields.
         </div>
       </div>
     </div>
   </div>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  
-  <script>
-   $(document).ready(function() {
-  // Show/hide password
-  $('#showPassword').click(function() {
-    var passwordInput = $('#password');
-    var icon = $(this).find('i');
-
-    if (passwordInput.attr('type') === 'password') {
-      passwordInput.attr('type', 'text');
-      icon.removeClass('fa-eye').addClass('fa-eye-slash');
-    } else {
-      passwordInput.attr('type', 'password');
-      icon.removeClass('fa-eye-slash').addClass('fa-eye');
-    }
-  });
-
-  $('#login-form').submit(function(event) {
-    event.preventDefault();
-    var username = $('#username').val();
-    var password = $('#password').val();
-
-    // Check if username or password is empty
-    if (!username || !password) {
-      $('#empty-alert').removeClass('d-none');
-      $('#alert').addClass('d-none'); // Hide incorrect username/password alert
-      return; // Prevent form submission
-    }
-
-    // Check if username and password are correct
-    if (username === 'cits3402' && password === 'password123') {
-      // Show success alert
-      $('#success-alert').removeClass('d-none');
-      
-      // Hide success alert after 3 seconds (3000 milliseconds)
-      setTimeout(function() {
-        $('#success-alert').addClass('d-none');
-        
-        // Redirect to the home page upon successful login
-        window.location.href = '/'; // upon successful login return to mainpage. 
-      }, 3000); // Adjust the time interval as needed
-    } else {
-      // Show alert for incorrect username/password
-      $('#alert').removeClass('d-none');
-      $('#empty-alert').addClass('d-none');
-    }
-  });
-});
-///note alot of AI assistance was used in this. might need some touching up. apologies. 
-  </script>
-{% endblock %}
-{% block footer %}
-    {{ super() }}
+</div>
 {% endblock %}
 
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+{% endblock %}

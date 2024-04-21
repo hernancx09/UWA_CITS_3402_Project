@@ -1,0 +1,44 @@
+body {
+    background-color: rgba(158, 92, 92, 0.2);
+    background-image: url('https://studyqa.com/storage/media/upload/univers/940/66/uni_profile_94066.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+  }
+  
+  .login-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,1);
+  }
+  
+  /* Eye icon container */
+  .eye-icon-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Background behind the eye icon */
+  .eye-icon-background {
+    background-color: rgba(123, 118, 118, 0.8); 
+    padding: 6px;
+    border-radius: 0 5px 5px 0;
+  }
+  
+  /* Eye icon style */
+  .eye-icon {
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Password input field */
+  #password {
+    border-radius: 5px;
+  }
+  

@@ -39,12 +39,13 @@ def registration():
         '''
         When registration form submitted, if passes validation run the function below to add user
         '''
-        if(create_user(Regform)):
-            #success, sending to test.html as a placeholder
-            return render_template('test.html', result = result)
-        else:
-            #return the registration form with error message perhaps?
-            return render_template('registration.html', form = Regform)  
+        if(Regform.validate_on_submit()):
+            if(create_user(Regform)):
+                #success, sending to test.html as a placeholder
+                return render_template('test.html', result = result)
+            else:
+                #return the registration form with error message perhaps?
+                return render_template('registration.html', form = Regform)  
 
     return render_template('registration.html', form = Regform)
 

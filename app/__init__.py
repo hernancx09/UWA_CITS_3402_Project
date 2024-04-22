@@ -13,8 +13,9 @@ def create_app(config_class):
     app.config.from_object(config_class)
     db.init_app(app)
     migrate.init_app(app, db)
-    create_db(config_class)
+
     with app.app_context():
+        create_db(config_class)
         init_db(config_class)
         from app import routes, models
     return app

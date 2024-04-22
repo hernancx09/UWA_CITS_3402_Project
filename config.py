@@ -9,7 +9,7 @@ class Config:
     MIGRATIONS = os.path.join(basedir, 'migrations')
 
 class Testing:
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'potatoe'
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'GroupProject'
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
         'sqlite://'
     MIGRATIONS = os.path.join(basedir, 'migrations')

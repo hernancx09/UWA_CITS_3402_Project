@@ -7,6 +7,7 @@
     <title>{%block title%}{% endblock %} - CITS3403 WebApp</title>
     <!--- Stylesheet Links-->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
     {% endblock %}
     
 </head>
@@ -22,6 +23,10 @@
     <!---Javascript and AJAX links-->
 </body>
 <footer>
-  <!-- Attributions-->
+  <footer class="footer bg-dark text-white text-center py-3">
+    <div class="container">
+      UNWACTIVITIES.COM<br>From Casual Simple Chores, to Long Term Employment, We Got it ALL!!!
+    </div>
+  </footer>
 </footer>
 </html>

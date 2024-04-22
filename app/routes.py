@@ -20,3 +20,8 @@ def login():
 def registration():
     return render_template('registration.html')
 
+@app.route('/main')
+def main():
+    return render_template('main.html')
+    
+

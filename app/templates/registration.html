@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{%block extraheaders%}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style_forms.css') }}">
+{% endblock %}
+
+{% block content %}
+  <div class="centered-container">
+    <div id="header">Registration Page</div>
+    <div id="formwrapper">
+      <form action="" method="post">
+        {{ form.hidden_tag() }}
+
+        <p>
+          {{form.username.label}} <br>
+          {{form.username(size=30)}}
+        </p>
+        
+        <p>
+          {{form.password.label}} <br>
+          {{form.password(size=30)}}
+        </p>
+
+        <p>
+          {{form.passwordCheck.label}} <br>
+          {{form.passwordCheck(size=30)}}
+        </p>
+
+        <p>
+          {{form.submit()}}
+        </p>
+
+      </form>
+    </div>
+  </div>
+    
+{% endblock %}
+

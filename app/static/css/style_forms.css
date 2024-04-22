@@ -1,0 +1,36 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.centered-container {
+    background-color: rgba(0, 0, 0, 0.5); /* Gray background with 50% opacity */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; /* Aligns children (header and formwrapper) in a column */
+}
+
+#header {
+    color: white; /* White text color for visibility */
+    font-size: 24px; /* Larger font size for header */
+    margin-bottom: 20px; /* Space between header and form */
+}
+
+#formwrapper {
+    background-color: rgba(255,255,255,0.5);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+
+form p {
+    margin: 10px 0;
+}
+
+label {
+    font-weight: bold;
+}

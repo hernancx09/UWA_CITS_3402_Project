@@ -16,8 +16,8 @@ def create_app(config_class):
     create_db(config_class)
     with app.app_context():
         init_db(config_class)
-    
+        from app import routes, models
     return app
 
-    from app import routes, models
+
 

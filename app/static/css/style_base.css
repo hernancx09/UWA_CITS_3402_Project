@@ -37,8 +37,8 @@ header.bg-dark {
 /*above is header stuff below is body */
 
 body {
-    background-color: rgba(34,47,125,255);
-    background-image: url('https://studyqa.com/storage/media/upload/univers/940/66/uni_profile_94066.jpg');
+    background-color: rgb(34,47,125);
+    background-image: url("../img/UWA_LOGO.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;

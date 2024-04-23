@@ -1,15 +1,8 @@
-body, html {
-    height: 100%;
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
 
 .centered-container {
-    background-color: rgba(0, 0, 0, 0.5); /* Gray background with 50% opacity */
-    height: 100%;
     display: flex;
+    margin-top: 11%; 
     align-items: center;
-    justify-content: center;
     flex-direction: column; /* Aligns children (header and formwrapper) in a column */
 }
 

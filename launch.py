@@ -1,5 +1,4 @@
-from app import app
+from app import create_app
+from config import Config
 
-
-if __name__ in '__main__':
-    app.run()
+app = create_app(config_class=Config)

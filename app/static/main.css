@@ -40,7 +40,7 @@
 /* Table header custom style */
 .table thead th {
     background-color: #17387b;
-    color: white;
+    color: rgba(227, 238, 17, 0.8);
 
 }
 
@@ -51,7 +51,7 @@
 
 /* Title Section with translucent white background */
 .title-section h1 {
-    background-color: rgba(191, 175, 175, 0.884);
+    background-color: rgba(227, 238, 17, 0.8);
     padding: 10px;
     display: inline-block;
     margin-top: 20px;

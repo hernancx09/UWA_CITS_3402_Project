@@ -1,107 +1,6 @@
 {% extends "base.html" %}
-<<<<<<< HEAD
-{% block head %}
-  {{ super() }}
-<link rel="stylesheet" href="{{ url_for('static', filename='regis.css') }}">
-{% endblock %}
-{% block title %}
-    TEST PAGE
-{% endblock %}
-{% block content %}
-<body>
- <header class="bg-dark py-2">
-  <div class="container">
-    <nav class="d-flex justify-content-between">
-      <div class="nav">
-        <a class="nav-link text-white" href="#">Job Search</a>
-        <a class="nav-link text-white" href="#">About Us</a>
-        <a class="nav-link text-white" href="#">My Profile</a>
-        <a class="nav-link text-white" href="#">Inbox</a>
-      </div>
-      <button class="btn btn-outline-light">Login</button>
-    </nav> 
-  
-    <div class="container mt-5">
-      <div class="row">
-        <div class="col-md-6 m-auto">
-          <div class="registration-form">
-            <h2 class="text-center mb-4">Account Registration</h2>
-            <form id="registration-form">
-              <!-- Error message -->
-              <div id="error-message" class="error-message d-none">Please fill in all fields.</div>
-              <!-- Username -->
-              <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="Enter username">
-                <div id="username-error" class="invalid-feedback">Username is already taken.</div>
-              </div>
-              <!-- Password -->
-              <div class="form-group">
-                <label for="password">Password</label>
-                <div class="input-group">
-                  <input type="password" class="form-control" id="password" placeholder="Password">
-                  <div class="input-group-append">
-                    <span class="input-group-text">
-                      <i class="fa fa-eye" id="showPassword"></i>
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <!-- Confirm Password -->
-              <div class="form-group">
-                <label for="confirm-password">Confirm Password</label>
-                <div class="input-group">
-                  <input type="password" class="form-control" id="confirm-password" placeholder="Confirm password">
-                  <div class="input-group-append">
-                    <span class="input-group-text">
-                      <i class="fa fa-eye" id="showConfirmPassword"></i>
-                    </span>
-                  </div>
-                </div>
-                <div id="password-error" class="invalid-feedback">Passwords do not match.</div>
-                <div id="password-length-error" class="invalid-feedback">Password must be at least 5 characters long.</div>
-              </div>
-              <!-- Security Question 1 -->
- <!--            <div class="form-group">
-                <label for="security-question1">Security Question 1</label>
-                <select class="form-control" id="security-question1">
-                  <option value="">Select a question</option>
-                  <option value="What is your fathers's middle name?">What is your fathers's middle name?</option>
-                  <option value="What is the name of your best friend?">What is the name of your best friend?</option>
-                  <option value="What was the first club you joined?">What was the first club you joined?</option>
-                </select>
-              </div>
-              <!-- Security Question 1 Answer -->
-<!--               <div class="form-group">
-                <label for="security-question1-answer">Answer for Question 1</label>
-                <input type="text" class="form-control" id="security-question1-answer" placeholder="Enter answer">
-              </div>
-              <!-- Security Question 2 -->
- <!--              <div class="form-group">
-                <label for="security-question2">Security Question 2</label>
-                <select class="form-control" id="security-question2">
-                  <option value="">Select a question</option>
-                  <option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
-                  <option value="What is the name of your first pet?">What is the name of your first pet?</option>
-                  <option value="What city were you born in?">What city were you born in?</option>
-                </select>
-              </div>
-              <!-- Security Question 2 Answer -->
-  <!--             <div class="form-group">
-                <label for="security-question2-answer">Answer for Question 2</label>
-                <input type="text" class="form-control" id="security-question2-answer" placeholder="Enter answer">
-              </div> -->
-              <button type="submit" class="btn btn-primary btn-block">Register</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-</body>
 
-=======
-
-{%block extraheaders%}
+{% block extraheaders %}
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style_forms.css') }}">
 {% endblock %}
 
@@ -135,6 +34,5 @@
     </div>
   </div>
     
->>>>>>> main
 {% endblock %}
 

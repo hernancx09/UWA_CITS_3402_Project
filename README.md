@@ -40,3 +40,5 @@ Environment Prep:
 
 5.instructions for how to run the tests for the application.
 
+DB setup:
+* Install dependancies via pip install -r requirements

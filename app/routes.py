@@ -12,6 +12,10 @@ from app.forms import LoginForm, RegisterForm
 def test():
     return render_template('test.html')
 
+@current_app.route('/main')
+def main():
+    return render_template('main.html')
+
 @current_app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -19,11 +23,11 @@ def login():
     if form.validate_on_submit():
         run code below to check for error
     '''
-    user = get_username(form)
-    if user is None or not user.check_password(form.password.data):
-        #some error message, not sure how we want to do that yet, flash is an easy way
-        print('Error')
-        return redirect(url_for('login'))
+    #user = get_username(form)
+    #if user is None or not user.check_password(form.password.data):
+    #    #some error message, not sure how we want to do that yet, flash is an easy way
+    #    print('Error')
+    #    return redirect(url_for('login'))
     '''
     else we just run the following using flask_login
         login_user(user)

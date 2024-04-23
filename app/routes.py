@@ -12,16 +12,6 @@ from app.forms import LoginForm, RegisterForm
 def test():
     return render_template('test.html')
 
-<<<<<<< HEAD
-
-@app.route('/login')
-def login():
-    return render_template('login.html')
-
-@app.route('/registration')
-def registration():
-    return render_template('registration.html')
-=======
 @current_app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -58,9 +48,8 @@ def registration():
                 return render_template('registration.html', form = Regform)  
 
     return render_template('registration.html', form = Regform)
->>>>>>> main
 
-@app.route('/main')
+@current_app.route('/main')
 def main():
     return render_template('main.html')
     

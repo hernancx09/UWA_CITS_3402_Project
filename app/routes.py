@@ -8,9 +8,9 @@ from app.forms import LoginForm, RegisterForm
 # define the url using the @app.route decorator i.e '/test' = http://127.0.0.1:5000/test
 # next a function is defined beneath the route that decides what happens at that URL
 @current_app.route('/')
-@current_app.route('/test')
+@current_app.route('/base')
 def test():
-    return render_template('test.html')
+    return render_template('base.html')
 
 @current_app.route('/main')
 def main():

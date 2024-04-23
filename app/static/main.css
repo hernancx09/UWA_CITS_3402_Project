@@ -59,7 +59,7 @@
 }
 
 /* Custom styles for the "Make a Post" button */
-.results-section .btn2 {
+.btn2 {
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 10px 15px;
@@ -81,4 +81,7 @@
     background-color: rgb(220, 223, 19);
     color: #343a40;
     border-color: rgb(14, 2, 2);
+}
+.results-section {
+    padding-bottom: 65px;
 }

@@ -1,4 +1,4 @@
-from flask import render_template, request,redirect, url_for
+from flask import render_template, request, flash
 from flask import current_app
 from app.db_helpers import create_user, get_username
 from app.forms import LoginForm, RegisterForm
@@ -46,9 +46,11 @@ def registration():
         if(Regform.validate_on_submit()):
             if(create_user(Regform)):
                 #success, sending to test.html as a placeholder
+                flash('Success Registering', 'Success')
                 return render_template('test.html', result = result)
             else:
                 #return the registration form with error message perhaps?
+                flash('Error Registering', 'Failure')
                 return render_template('registration.html', form = Regform)  
 
     return render_template('registration.html', form = Regform)

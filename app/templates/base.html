@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% block head %}
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{%block title%}{% endblock %} - CITS3403 WebApp</title>
     <!--- Stylesheet Links-->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-    
-      body {
-        background-color: rgba(34,47,125,255);
-        background-image: url('https://studyqa.com/storage/media/upload/univers/940/66/uni_profile_94066.jpg');
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        height: 100vh;
-      }
-  </style>
-    {% endblock %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_base.css') }}">   
     {% block extraheaders %} {% endblock%}
 </head>
 
-
-    {% block content %}
+<body>
+  <header class="bg-dark py-2">
+    <div class="container">
+        <nav class="d-flex justify-content-between">
+            <div class="nav">
+            <a class="nav-link text-white" href="#">Job Search</a>
+            <a class="nav-link text-white" href="#">About Us</a>
+            <a class="nav-link text-white" href="#">My Profile</a>
+            <a class="nav-link text-white" href="#">Inbox</a>
+            </div>
+            <button class="btn btn-outline-light">Login</button>
+            <button class="btn btn-outline-light">Register</button>
+        </nav>
+    </div>
+  {% block content %}
       <!--- Page specific content block-->
-    {% endblock %}
-  </div>
+  {% endblock %}
 
     <!---Javascript and AJAX links-->
 </body>

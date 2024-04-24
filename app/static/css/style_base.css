@@ -1,0 +1,46 @@
+/* footer stuff */
+footer.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+    background-color: #212529;
+}
+/* below is stuff for the header */
+header.bg-dark {
+    width: 100%;
+    height: 60px;
+    top:   0px;
+    position: absolute;
+    background-color: #111544 !important;
+    
+}
+.nav-link {
+    font-weight: bold;
+    transition: all 0.5s ease-in-out;
+}
+.nav-link:hover {
+    background-color: rgb(224,180,12);
+    color: #343a40;
+}
+
+.btn-outline-light {
+    border-color: rgb(224,180,12);
+    color:rgb(224,180,12)
+}
+
+.btn-outline-light:hover {
+    background-color: rgb(224,180,12);
+    color: #343a40;
+    transition: all 0.5s ease-in-out;
+}
+/*above is header stuff below is body */
+
+body {
+    background-color: rgb(34,47,125);
+    background-image: url("../img/UWA_LOGO.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+}

@@ -13,7 +13,7 @@ from flask_login import current_user, login_required, login_user, logout_user
 def test():
     return render_template('base.html')
 
-@current_app.route('/main')
+@current_app.route('/main', methods=['GET'])
 def main():
     return render_template('main.html')
 

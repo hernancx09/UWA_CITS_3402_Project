@@ -47,11 +47,11 @@ def registration():
             if(create_user(Regform)):
                 #success, sending to test.html as a placeholder
                 flash('Success Registering', 'Success')
-                return render_template('test.html', result = result) # should return to login page to login
+                return redirect(url_for('login')) # should return to login page to login
             else:
                 #return the registration form with error message perhaps?
                 flash('Error Registering', 'Failure')
-                return render_template('registration.html', form = Regform)  
+                return redirect(url_for('registration'))  
 
     return render_template('registration.html', form = Regform)
 

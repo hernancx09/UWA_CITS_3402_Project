@@ -9,6 +9,13 @@
   <div class="centered-container">
     <div id="header">Registration Page</div>
     <div id="formwrapper">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-warning">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
       <form action="" method="post">
         {{ form.hidden_tag() }}
 

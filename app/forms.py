@@ -17,7 +17,7 @@ class PostForm(FlaskForm):
     pay = IntegerField('Pay Rate p/hr')
     location = StringField('Location')
     job_type = SelectField(u'Job Type', choices=[('One Time'), ('Short Term'), ('Long Term')])
-    start_date = DateField('Start Date')
+    start_from_date = DateField('Start Date')
     status = SelectField(u'Status', choices=[('Open'), ('Partially Filled'), ('Filled')])
     description = TextAreaField('Description')
     submit   = SubmitField('Post Job')

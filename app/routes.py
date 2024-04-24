@@ -2,6 +2,7 @@ from flask import flash, render_template, request,redirect, url_for
 from flask import current_app
 from app.db_helpers import create_user, get_username
 from app.forms import LoginForm, PostForm, RegisterForm
+from flask_login import current_user, login_required, login_user, logout_user
 
 ##Usage
 # URLs need to be mapped to a function that will decide what happens on that page
@@ -51,6 +52,7 @@ def registration():
     return render_template('registration.html', form = Regform)
 
 @current_app.route('/post', methods = ['GET','POST'])
+#@login_required
 def post():
     form = PostForm()
     return render_template('post.html', form = form)

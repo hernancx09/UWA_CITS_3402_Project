@@ -5,25 +5,50 @@
 {% endblock %}
 
 {% block content %}
+
   <div class="centered-container">
     <div id="header">Registration Page</div>
     <div id="formwrapper">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-warning">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
       <form action="" method="post">
         {{ form.hidden_tag() }}
 
         <p>
           {{form.username.label}} <br>
           {{form.username(size=30)}}
+          {% for error in form.username.errors %}
+          <span style="color: red;">[{{ error }}]</span>
+          {% endfor %}
+        </p>
+        
+        <p>
+          {{form.display_name.label}} <br>
+          {{form.display_name(size=30)}}
+          {% for error in form.display_name.errors %}
+          <span style="color: red;">[{{ error }}]</span>
+          {% endfor %}
         </p>
         
         <p>
           {{form.password.label}} <br>
           {{form.password(size=30)}}
+          {% for error in form.password.errors %}
+          <span style="color: red;">[{{ error }}]</span>
+          {% endfor %}
         </p>
 
         <p>
           {{form.passwordCheck.label}} <br>
           {{form.passwordCheck(size=30)}}
+          {% for error in form.passwordCheck.errors %}
+          <span style="color: red;">[{{ error }}]</span>
+          {% endfor %}
         </p>
 
         <p>

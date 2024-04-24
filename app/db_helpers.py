@@ -12,8 +12,10 @@ def get_username(form):
 #add user to db
 def create_user(form):
         user = get_username(form)
+        print(user)
         if user is None:
                 user = Users(username = form.username.data)
+                user.set_display_name(form.display_name.data)
                 user.set_password(form.password.data)
                 db.session.add(user)
                 db.session.commit()

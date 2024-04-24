@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{%block extraheaders%}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style_forms.css') }}">
+{% endblock %}
+
+{% block content %}
+  <div class="centered-container">
+    <div id="header">Create Job</div>
+    <div id="formwrapper">
+      <form action="" method="post">
+        {{ form.hidden_tag() }}
+
+        <p>
+          {{form.job_name.label}} <br>
+          {{form.job_name(size=30)}}
+        </p>
+        
+        <p>
+          {{form.pay.label}} <br>
+          {{form.pay(size=30)}}
+        </p>
+
+        <p>
+            {{form.location.label}} <br>
+            {{form.location(size=30)}}
+        </p>
+
+          <p>
+            {{form.job_type.label}} <br>
+            {{form.job_type}}
+          </p>
+
+          <p>
+            {{form.start_date.label}} <br>
+            {{form.start_date}}
+          </p>
+
+          <p>
+            {{form.status.label}} <br>
+            {{form.status}}
+          </p>
+
+          <p>
+            {{form.description.label}} <br>
+            {{form.description(size=30, cols='40', rows='4')}}
+          </p>
+        <p>
+          {{form.submit()}}
+        </p>
+
+      </form>
+    </div>
+  </div>
+{% endblock %}
+

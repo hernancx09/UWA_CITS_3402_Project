@@ -1,7 +1,7 @@
-from flask import render_template, request,redirect, url_for
+from flask import flash, render_template, request,redirect, url_for
 from flask import current_app
 from app.db_helpers import create_user, get_username
-from app.forms import LoginForm, RegisterForm
+from app.forms import LoginForm, PostForm, RegisterForm
 
 ##Usage
 # URLs need to be mapped to a function that will decide what happens on that page
@@ -41,7 +41,8 @@ def registration():
         '''
         if(Regform.validate_on_submit()):
             if(create_user(Regform)):
-                #success, sending to test.html as a placeholder
+                #success, sending to test.html as a placeholde
+                flash("success")
                 return render_template('test.html', result = result)
             else:
                 #return the registration form with error message perhaps?
@@ -49,3 +50,7 @@ def registration():
 
     return render_template('registration.html', form = Regform)
 
+@current_app.route('/post', methods = ['GET','POST'])
+def post():
+    form = PostForm()
+    return render_template('post.html', form = form)

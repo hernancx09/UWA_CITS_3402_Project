@@ -7,13 +7,12 @@ from config import Testing
 @pytest.fixture(scope="session")
 def app():
     app = create_app(config_class=Testing)
-    
+    app.config['WTF_CSRF_ENABLED'] = False
     yield app
 
-@pytest.fixture(scope="session")
+@pytest.fixture()
 def client(app):
-    with app.test_client() as test_client:
-        yield test_client
+    return app.test_client()
 
 @pytest.fixture(scope="session")
 def new_user():

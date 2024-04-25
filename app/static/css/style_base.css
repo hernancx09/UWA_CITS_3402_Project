@@ -13,6 +13,11 @@ footer.footer {
     justify-content: flex-start; /* Aligns items to the start of the navbar */
 }
 
+.navbar-toggler {
+    justify-content: flex-start;
+    margin-left: auto;
+}
+
 /* Specific styling for logo and title container */
 .logo-and-title {
     display: flex;

@@ -1,7 +1,10 @@
-from flask import render_template, request, redirect, url_for, flash
+
+from flask import flash, render_template, request, redirect, url_for, flash
+
 from flask import current_app
-from app.db_helpers import create_user, get_username
-from app.forms import LoginForm, RegisterForm
+from app.db_helpers import create_user
+from app.forms import LoginForm, PostForm, RegisterForm
+from flask_login import current_user, login_required, login_user, logout_user
 
 ##Usage
 # URLs need to be mapped to a function that will decide what happens on that page
@@ -12,7 +15,9 @@ from app.forms import LoginForm, RegisterForm
 def test():
     return render_template('base.html')
 
-@current_app.route('/main')
+
+@current_app.route('/main', methods=['GET'])
+
 def main():
     return render_template('main.html')
 
@@ -38,20 +43,21 @@ def login():
 @current_app.route('/registration', methods = ['GET','POST'])
 def registration():
     Regform = RegisterForm()
-    if Regform.is_submitted():
-        result = request.form
-        '''
-        When registration form submitted, if passes validation run the function below to add user
-        '''
-        if(Regform.validate_on_submit()):
-            if(create_user(Regform)):
-                #success, sending to test.html as a placeholder
-                flash('Success Registering', 'Success')
-                return redirect(url_for('login')) # should return to login page to login
-            else:
-                #return the registration form with error message perhaps?
-                flash('Error Registering', 'Failure')
-                return redirect(url_for('registration'))  
+
+    if(Regform.validate_on_submit()):
+        if(create_user(Regform)):
+            #success, sending to test.html as a placeholder
+            flash('Success Registering', 'Success')
+            return redirect(url_for('login')) # should return to login page to login
+        else:
+            #return the registration form with error message perhaps?
+            flash('Error Registering', 'Failure')
+            return redirect(url_for('registration'))  
 
     return render_template('registration.html', form = Regform)
 
+@current_app.route('/post', methods = ['GET','POST'])
+#@login_required
+def post():
+    form = PostForm()
+    return render_template('post.html', form = form)

@@ -1,4 +1,3 @@
-
 .centered-container {
     display: flex;
     margin-top: 11%; 
@@ -7,23 +6,26 @@
 }
 
 #header {
-    color: white; /* White text color for visibility */
+    color: #27cdea; /* cyan for text color for visibility */
     font-size: 24px; /* Larger font size for header */
     margin-bottom: 20px; /* Space between header and form */
 }
 
 #formwrapper {
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255,255,255,0.3); /* subtle white transparency for form background */
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow for better depth */
     width: 400px;
+    border: 1px solid #096080; /* deep sea blue border for more definition */
 }
 
 form p {
     margin: 10px 0;
+    color: #e2ece2; /* light greenish-grey for text */
 }
 
 label {
     font-weight: bold;
+    color: #aaf145; /* bright lime green for labels to stand out */
 }

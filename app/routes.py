@@ -15,6 +15,10 @@ from flask_login import current_user, login_required, login_user, logout_user
 def test():
     return render_template('base.html')
 
+@current_app.route('/about')
+def about():
+    return render_template('about.html')
+
 @current_app.route('/main', methods=['GET', 'POST'])
 def main():
     searchForm = SearchForm()

@@ -49,7 +49,7 @@ def fetch_all_posts(keyword, job_type):
                                 Posts.location,
                                 sa.text('STRFTIME("%d/%m/%Y",Posts.start_from_date)'),
                                 Posts.status,
-                                Posts.job_type).filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword)), 
+                                Posts.job_type).filter(Users.id == Posts.user_id).filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword)), 
                                                      Posts.status != 'Filled').all()
         else:
                 #query on keyword and job_type
@@ -59,7 +59,7 @@ def fetch_all_posts(keyword, job_type):
                                 Posts.location,
                                 sa.text('STRFTIME("%d/%m/%Y",Posts.start_from_date)'),
                                 Posts.status,
-                                Posts.job_type).filter( Users.id == Posts.user_id).filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword)),
+                                Posts.job_type).filter(Users.id == Posts.user_id).filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword)),
                                                      Posts.job_type == job_type, 
                                                      Posts.status != 'Filled').all()
         return data

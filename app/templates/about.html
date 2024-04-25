@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{%block extraheaders%}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style_about.css') }}">
+{% endblock %}
+
+{% block title %} About Us {% endblock %}
+
+{% block content%}
+<body>
+    <div class="header">
+        <h1>About Us</h1>
+        <p>Learn more about our mission and the people behind our company.</p>
+    </div>
+    <div class="content container">
+        <div class="section">
+            <h2>Who We Are</h2>
+            <p>We are a leading job recruitment agency dedicated to connecting top talent with prestigious companies. Our expertise lies in understanding the needs of both job seekers and employers to create perfect matches that lead to successful employment.</p>
+        </div>
+        <div class="section">
+            <h2>Our Mission</h2>
+            <p>Our mission is to empower employment. We strive to help people find jobs and further their careers while enabling employers to find the best talent for their teams.</p>
+        </div>
+        <div class="section">
+            <h2>Our Values</h2>
+            <ul>
+                <li>Integrity and Honesty</li>
+                <li>Dedication to Success</li>
+                <li>Commitment to Innovation and Excellence</li>
+                <li>Respect and Inclusion</li>
+            </ul>
+        </div>
+        <div class="section">
+            <h2>Meet Our Team</h2>
+            <div class="row">
+                <div class="col-md-4 team-member">
+                    <h3>Jane Doe</h3>
+                    <p>CEO & Founder</p>
+                    <p>Jane founded our company with a vision to revolutionize the recruitment industry. She has over 20 years of experience in HR and recruitment.</p>
+                </div>
+                <div class="col-md-4 team-member">
+                    <h3>John Smith</h3>
+                    <p>CTO</p>
+                    <p>John is responsible for the technical innovation at our company. He has a deep understanding of tech trends and uses this to keep us ahead.</p>
+                </div>
+                <div class="col-md-4 team-member">
+                    <h3>Emily White</h3>
+                    <p>Head of Recruitment</p>
+                    <p>Emily leads our recruitment team with a focus on building strong relationships with candidates and companies alike.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

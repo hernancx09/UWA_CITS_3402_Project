@@ -1,19 +1,18 @@
-
 /* Specific styles for the search section */
 .search-section {
-    background-color: rgb(224,180,12,0.7);
+    background-color: #e2ece2; /* light greenish-grey */
 }
 .search-section .form-control::placeholder {
-    color: #050101; 
+    color: #042d44; /* dark blue */
     width: 100%; 
-    height:38px;
+    height: 38px;
 }
 
 .search-section .form-select {
     width: 100%; 
-    height:38px;
-    
+    height: 38px;
 }
+
 /* Spacing and styles for the table */
 .table {
     margin-top: 0;
@@ -21,37 +20,37 @@
     border-collapse: collapse;
 }
 
-/*table stripes and hoverhighlights*/
-.table-striped tbody tr:nth-of-type(odd),
-.table-striped tbody tr:nth-of-type(even) {
-    background-color: rgba(249, 249, 249, 0.8);
+/* Table stripes and hover highlights */
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #e2ece2; /* light greenish-grey for odd rows */
 }
-.table-striped tbody tr:nth-of-type(odd):hover,
-.table-striped tbody tr:nth-of-type(even):hover{
-    background-color: rgba(227, 238, 17, 0.8);
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: #f9f9f9; /* kept as light grey for even rows */
+}
+.table-striped tbody tr:hover {
+    background-color: #aaf145; /* bright lime green on hover */
 }
 
 /* Borders for table, rows, and cells */
 .table-bordered th,
 .table-bordered td {
-    border: 1px solid #03070c;
+    border: 1px solid #465968; /* greyish blue for border */
 }
 
 /* Table header custom style */
 .table thead th {
-    
-    color: rgba(227, 238, 17, 0.8);
-
+    background-color: #042d44; /* dark blue */
+    color: #e2ece2; /* light greenish-grey text color */
 }
 
 /* Borders around the table */
 .table-bordered {
-    border: 1px solid #050709;
+    border: 1px solid #042d44; /* dark blue for outer border */
 }
 
 /* Title Section with translucent white background */
 .title-section h1 {
-    background-color: rgba(227, 238, 17, 0.8);
+    background-color: #27cdea; /* cyan */
     padding: 10px;
     display: inline-block;
     margin-top: 20px;
@@ -64,23 +63,23 @@
     margin-bottom: 20px;
     padding: 10px 15px;
     width: auto;
-    background-color: rgb(224,180,12);
-    border-color: rgba(14, 2, 2, 0.8);
+    background-color: #096080; /* deep sea blue */
+    border-color: #042d44; /* dark blue */
 }
 .btn2:hover {
-    background-color: rgb(220, 223, 19);
-    color: #343a40;
-    border-color: rgb(14, 2, 2);
+    background-color: #5aba1e; /* bright green */
+    color: #e2ece2; /* light greenish-grey */
+    border-color: #0b3a19; /* dark green */
 }
 .btn-primary:hover {
-    background-color: rgb(91, 181, 31);
-    color: #343a40;
-    border-color: rgb(14, 2, 2);
+    background-color: #5aba1e; /* bright green */
+    color: #e2ece2; /* light greenish-grey */
+    border-color: #0b3a19; /* dark green */
 }
-.btn-primary{
-    background-color: rgb(220, 223, 19);
-    color: #343a40;
-    border-color: rgb(14, 2, 2);
+.btn-primary {
+    background-color: #096080; /* deep sea blue */
+    color: #e2ece2; /* light greenish-grey */
+    border-color: #042d44; /* dark blue */
 }
 .results-section {
     padding-bottom: 65px;

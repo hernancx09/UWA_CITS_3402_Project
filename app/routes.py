@@ -1,6 +1,6 @@
 from flask import flash, render_template, request, redirect, url_for, flash
 from flask import current_app
-from app.db_helpers import create_user, get_username
+from app.db_helpers import create_user
 from app.forms import LoginForm, PostForm, RegisterForm
 from flask_login import current_user, login_required, login_user, logout_user
 

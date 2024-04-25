@@ -1,10 +1,10 @@
 from flask_wtf import FlaskForm
 from wtforms import DateField, SelectField, StringField, PasswordField, SubmitField, IntegerField, TextAreaField
-from wtforms.validators import DataRequired, Length, EqualTo, Regexp
+from wtforms.validators import DataRequired, Length, EqualTo, Regexp, Email
 
 class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[
-        DataRequired(message='Username is required.'),
+    email = StringField('Email', validators=[
+        DataRequired(message='Email is required.'),
     ])
     password = PasswordField('Password', validators=[
         DataRequired(message='Password is required.')
@@ -12,16 +12,12 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Log in')
 
 class RegisterForm(FlaskForm):
-    username = StringField('Username', validators=[
-        DataRequired(message='Username is required.'),
-        Length(min=4, max=25, message='Username must be between 4 and 25 characters long.'),
-        Regexp('^[A-Za-z0-9_]+$', message='Username must contain only letters, numbers, and underscores.')
+    name = StringField('Name', validators=[
+        DataRequired(message='Name is required.'),
+        Length(min=4, max=25, message='Name must be between 4 and 25 characters long.'),
+        Regexp('^[A-Za-z]+$', message='Name must contain only letters')
     ])
-    display_name = StringField('Display-name', validators=[
-        DataRequired(message='Display-name is required.'),
-        Length(min=4, max=25, message='Display-name must be between 4 and 25 characters long.'),
-        Regexp('^[a-zA-Z]+$', message='Display-name must contain only letters')
-    ])
+    email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[
         DataRequired(message='Password is required.'),
         Length(min=6, message='Password must be at least 6 characters long.'),

@@ -4,18 +4,18 @@ from app.models import Users, Posts
 import sqlalchemy as sa
 
 #get username from login form
-def get_username(form):
-        username = db.session.scalar(
-                sa.select(Users).where(Users.username == form.username.data))
-        return username
+def get_email(form):
+        email = db.session.scalar(
+                sa.select(Users).where(Users.email == form.email.data))
+        return email
 
 #add user to db
 def create_user(form):
-        user = get_username(form)
-        print(user)
-        if user is None:
-                user = Users(username = form.username.data)
-                user.set_display_name(form.display_name.data)
+        user_email = get_email(form)
+        print(user_email)
+        if user_email is None:
+                user = Users(name = form.name.data)
+                user.set_email(form.email.data)
                 user.set_password(form.password.data)
                 db.session.add(user)
                 db.session.commit()

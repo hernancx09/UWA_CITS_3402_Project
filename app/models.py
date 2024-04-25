@@ -8,14 +8,14 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 class Users(db.Model, UserMixin):
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
-    username: so.Mapped[str] = so.mapped_column(sa.String(32), index = True, unique=True)
-    display_name: so.Mapped[str] = so.mapped_column(sa.String(32))
+    name: so.Mapped[str] = so.mapped_column(sa.String(64))
+    email: so.Mapped[str] = so.mapped_column(sa.String(64), index=True, unique=True)
     password_hash: so.Mapped[Optional[str]] = so.mapped_column(sa.String(256))
     posts: so.WriteOnlyMapped['Posts'] = so.relationship(back_populates='author')
     def __repr__(self):
         return '<User {}>'.format(self.username)
-    def set_display_name(self, display_name):
-        self.display_name = display_name
+    def set_email(self, email):
+        self.email = email
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
     def check_password(self, password):

@@ -15,7 +15,7 @@ class RegisterForm(FlaskForm):
     name = StringField('Name', validators=[
         DataRequired(message='Name is required.'),
         Length(min=4, max=25, message='Name must be between 4 and 25 characters long.'),
-        Regexp('^[A-Za-z]+$', message='Name must contain only letters')
+        Regexp('^[A-Za-z ]+$', message='Name must contain only letters')
     ])
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[

@@ -25,8 +25,8 @@ def client(app_functional):
 
 @pytest.fixture(scope='module')
 def new_user():
-    user = Users(username="test_user")
-    user.set_display_name("test_user")
+    user = Users(name="New User")
+    user.set_email("newUser@gmail.com")
     user.set_password("Test_password!")
     return user
 

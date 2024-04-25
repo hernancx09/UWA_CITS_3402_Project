@@ -6,8 +6,8 @@ def test_registration_valid_data(client):
     THEN check that the response is valid
     """
     response = client.post('/registration', data= dict(
-        username = "newuser",
-        display_name = "newdisplay",
+        name = "Jimmy",
+        email = "jimmy@gmail.com",
         password = "Password1",
         passwordCheck = "Password1"), follow_redirects=True)
 
@@ -21,8 +21,8 @@ def test_registration_invalid_data(client):
     THEN check that the response is invalid
     """
     response = client.post('/registration', data= dict(
-        username = "newuser",
-        display_name = "newdisplay",
+        name = "Jimmy",
+        email = "jimmy@gmail",
         password = "Password1",
         passwordCheck = "Password"), follow_redirects=True)
 

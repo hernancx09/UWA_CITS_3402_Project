@@ -11,6 +11,6 @@ def test_new_user(new_user, app_unit):
         db.session.add(new_user)
         db.session.commit
         
-        assert Users.query.first().username == new_user.username
-        assert Users.query.first().display_name == new_user.display_name
-        assert Users.query.first().username == new_user.username
+        assert Users.query.first().name == new_user.name
+        assert Users.query.first().email == new_user.email
+        assert Users.query.first().password_hash != "Test_password!"

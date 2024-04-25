@@ -1,10 +1,12 @@
 from flask_wtf import FlaskForm
+
 from wtforms import DateField, SelectField, StringField, PasswordField, SubmitField, IntegerField, TextAreaField
 from wtforms.validators import DataRequired, Length, EqualTo, Regexp, Email
 
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[
         DataRequired(message='Email is required.'),
+
     ])
     password = PasswordField('Password', validators=[
         DataRequired(message='Password is required.')
@@ -12,12 +14,14 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Log in')
 
 class RegisterForm(FlaskForm):
+
     name = StringField('Name', validators=[
         DataRequired(message='Name is required.'),
         Length(min=4, max=25, message='Name must be between 4 and 25 characters long.'),
         Regexp('^[A-Za-z ]+$', message='Name must contain only letters')
     ])
     email = StringField('Email', validators=[DataRequired(), Email()])
+
     password = PasswordField('Password', validators=[
         DataRequired(message='Password is required.'),
         Length(min=6, message='Password must be at least 6 characters long.'),
@@ -28,7 +32,6 @@ class RegisterForm(FlaskForm):
         EqualTo('password', message='Passwords must match.')
     ])
     submit = SubmitField('Register')
-
     
 class PostForm(FlaskForm):
     job_name = StringField('Job Name')
@@ -39,3 +42,4 @@ class PostForm(FlaskForm):
     status = SelectField(u'Status', choices=[('Open'), ('Partially Filled'), ('Filled')])
     description = TextAreaField('Description')
     submit   = SubmitField('Post Job')
+

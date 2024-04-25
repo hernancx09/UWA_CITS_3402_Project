@@ -1,4 +1,6 @@
+
 from flask import flash, render_template, request, redirect, url_for, flash
+
 from flask import current_app
 from app.db_helpers import create_user
 from app.forms import LoginForm, PostForm, RegisterForm
@@ -13,7 +15,9 @@ from flask_login import current_user, login_required, login_user, logout_user
 def test():
     return render_template('base.html')
 
+
 @current_app.route('/main', methods=['GET'])
+
 def main():
     return render_template('main.html')
 
@@ -39,6 +43,7 @@ def login():
 @current_app.route('/registration', methods = ['GET','POST'])
 def registration():
     Regform = RegisterForm()
+
     if(Regform.validate_on_submit()):
         if(create_user(Regform)):
             #success, sending to test.html as a placeholder
@@ -48,6 +53,7 @@ def registration():
             #return the registration form with error message perhaps?
             flash('Error Registering', 'Failure')
             return redirect(url_for('registration'))  
+
     return render_template('registration.html', form = Regform)
 
 @current_app.route('/post', methods = ['GET','POST'])

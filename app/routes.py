@@ -2,8 +2,8 @@
 from flask import flash, render_template, request, redirect, url_for, flash
 
 from flask import current_app
-from app.db_helpers import create_user
-from app.forms import LoginForm, PostForm, RegisterForm
+from app.db_helpers import create_user, fetch_all_posts
+from app.forms import LoginForm, PostForm, RegisterForm, SearchForm
 from flask_login import current_user, login_required, login_user, logout_user
 
 ##Usage
@@ -15,11 +15,15 @@ from flask_login import current_user, login_required, login_user, logout_user
 def test():
     return render_template('base.html')
 
-
-@current_app.route('/main', methods=['GET'])
-
+@current_app.route('/main', methods=['GET', 'POST'])
 def main():
-    return render_template('main.html')
+    searchForm = SearchForm()
+    if(searchForm.validate_on_submit()):
+        result = fetch_all_posts(searchForm.keyword.data, searchForm.job_type.data)
+        if (result == []): # if result empty
+            result = [('-', '-', '-', '-', '-', '-')]
+        return render_template('main.html', form = searchForm, data=result)
+    return render_template('main.html', form = searchForm)
 
 @current_app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -28,7 +32,7 @@ def login():
     if form.validate_on_submit():
         run code below to check for error
     '''
-    #user = get_username(form)
+    #user = get_email(form)
     #if user is None or not user.check_password(form.password.data):
     #    #some error message, not sure how we want to do that yet, flash is an easy way
     #    print('Error')

@@ -38,7 +38,8 @@ class SearchForm(FlaskForm):
     job_type = SelectField(u'Job Type', choices=[('Any'), ('One Time'), ('Short Term'), ('Long Term')])
     submit = SubmitField('Go')
 
-class PostForm(FlaskForm):
+class PostJobForm(FlaskForm):
+    post_type = SelectField(u'Post Type', choices=[('Job request'), ('Looking for work')])
     job_name = StringField('Job Name')
     pay = IntegerField('Pay Rate p/hr')
     location = StringField('Location')
@@ -48,3 +49,10 @@ class PostForm(FlaskForm):
     description = TextAreaField('Description')
     submit   = SubmitField('Post Job')
 
+class PostLookingForm(FlaskForm):
+    post_type = SelectField(u'Post Type', choices=[('Looking for work'), ('Job request')])
+    looking_for = StringField('Looking For')
+    location = StringField('Location')
+    job_type = SelectField(u'Job Type', choices=[('One Time'), ('Short Term'), ('Long Term')])
+    description = TextAreaField('Description')
+    submit   = SubmitField('Post Job')

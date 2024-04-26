@@ -3,7 +3,7 @@ from flask import flash, render_template, request, redirect, url_for, flash
 
 from flask import current_app
 from app.db_helpers import create_user, fetch_all_posts
-from app.forms import LoginForm, PostForm, RegisterForm, SearchForm
+from app.forms import LoginForm, PostJobForm, PostLookingForm, RegisterForm, SearchForm
 from flask_login import current_user, login_required, login_user, logout_user
 
 ##Usage
@@ -12,7 +12,7 @@ from flask_login import current_user, login_required, login_user, logout_user
 # next a function is defined beneath the route that decides what happens at that URL
 @current_app.route('/')
 @current_app.route('/base')
-def test():
+def base():
     return render_template('base.html')
 
 @current_app.route('/about')
@@ -27,7 +27,8 @@ def main():
         if (result == []): # if result empty
             result = [('-', '-', '-', '-', '-', '-')]
         return render_template('main.html', form = searchForm, data=result)
-    return render_template('main.html', form = searchForm)
+    result = fetch_all_posts("", "Any")
+    return render_template('main.html', form = searchForm, data = result)
 
 @current_app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -50,10 +51,10 @@ def login():
 
 @current_app.route('/registration', methods = ['GET','POST'])
 def registration():
-    Regform = RegisterForm()
+    regform = RegisterForm()
 
-    if(Regform.validate_on_submit()):
-        if(create_user(Regform)):
+    if(regform.validate_on_submit()):
+        if(create_user(regform)):
             #success, sending to test.html as a placeholder
             flash('Success Registering', 'Success')
             return redirect(url_for('login')) # should return to login page to login
@@ -62,10 +63,16 @@ def registration():
             flash('Error Registering', 'Failure')
             return redirect(url_for('registration'))  
 
-    return render_template('registration.html', form = Regform)
+    return render_template('registration.html', form = regform)
 
 @current_app.route('/post', methods = ['GET','POST'])
 #@login_required
 def post():
-    form = PostForm()
-    return render_template('post.html', form = form)
+    postForm = PostJobForm()
+    post_type = "0"
+    if(postForm.post_type.data == 'Looking for work'):
+        postForm = PostLookingForm()
+        post_type = "1"
+        return render_template('post.html', form = postForm, post_type = post_type)
+    
+    return render_template('post.html', form = postForm, post_type = post_type)

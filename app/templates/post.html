@@ -10,7 +10,11 @@
     <div id="formwrapper">
       <form action="" method="post">
         {{ form.hidden_tag() }}
-
+        {% if post_type == "0" %}
+        <p>
+          {{form.post_type.label}} <br>
+          {{form.post_type}}
+        </p>
         <p>
           {{form.job_name.label}} <br>
           {{form.job_name(size=30)}}
@@ -45,6 +49,31 @@
             {{form.description.label}} <br>
             {{form.description(size=30, cols='40', rows='4')}}
           </p>
+        {% else %}
+        <p>
+          {{form.post_type.label}} <br>
+          {{form.post_type}}
+        </p>
+        <p>
+          {{form.looking_for.label}} <br>
+          {{form.looking_for(size=30)}}
+        </p>
+
+        <p>
+            {{form.location.label}} <br>
+            {{form.location(size=30)}}
+        </p>
+
+          <p>
+            {{form.job_type.label}} <br>
+            {{form.job_type}}
+          </p>
+
+          <p>
+            {{form.description.label}} <br>
+            {{form.description(size=30, cols='40', rows='4')}}
+          </p>
+        {% endif %}
         <p>
           {{form.submit()}}
         </p>

@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 
 from wtforms import DateField, SelectField, StringField, PasswordField, SubmitField, IntegerField, TextAreaField
-from wtforms.validators import DataRequired, Length, EqualTo, Regexp, Email
+from wtforms.validators import DataRequired, Length, EqualTo, Regexp, Email, Optional
 
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[
@@ -32,7 +32,12 @@ class RegisterForm(FlaskForm):
         EqualTo('password', message='Passwords must match.')
     ])
     submit = SubmitField('Register')
-    
+
+class SearchForm(FlaskForm):
+    keyword = StringField('Keyword', validators=[Optional()])
+    job_type = SelectField(u'Job Type', choices=[('Any'), ('One Time'), ('Short Term'), ('Long Term')])
+    submit = SubmitField('Go')
+
 class PostForm(FlaskForm):
     job_name = StringField('Job Name')
     pay = IntegerField('Pay Rate p/hr')

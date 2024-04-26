@@ -40,6 +40,26 @@ def create_job(form):
 def fetch_user_posts():
         data = db.session.query(Posts.name, sa.text('STRFTIME("%d/%m/%Y",Posts.start_from_date)'), Posts.job_type, Posts.status).filter(Posts.user_id == current_user.get_id())
         return data
-def fetch_all_posts():
-        data = db.session.query(Posts.name, Posts.pay, sa.text('STRFTIME("%d/%m/%Y",Posts.start_from_date)'), Posts.location, Posts.job_type).filter(Posts.status != 'Filled')
-        return data()
+def fetch_all_posts(keyword, job_type):
+        if(job_type == "Any"):
+                #Query on keyword alone
+                data = db.session.query(Posts.name, 
+                                Users.name, 
+                                Posts.pay,
+                                Posts.location,
+                                sa.text('STRFTIME("%d/%m/%Y",Posts.start_from_date)'),
+                                Posts.status,
+                                Posts.job_type).filter(Users.id == Posts.user_id).filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword)), 
+                                                     Posts.status != 'Filled').all()
+        else:
+                #query on keyword and job_type
+                data = db.session.query(Posts.name,
+                                Users.name, 
+                                Posts.pay,
+                                Posts.location,
+                                sa.text('STRFTIME("%d/%m/%Y",Posts.start_from_date)'),
+                                Posts.status,
+                                Posts.job_type).filter(Users.id == Posts.user_id).filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword)),
+                                                     Posts.job_type == job_type, 
+                                                     Posts.status != 'Filled').all()
+        return data

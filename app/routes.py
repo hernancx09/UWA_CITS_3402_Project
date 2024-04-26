@@ -69,3 +69,7 @@ def registration():
 def post():
     form = PostForm()
     return render_template('post.html', form = form)
+
+@current_app.route('/profile')
+def profile():
+    return render_template('profile.html')

@@ -71,6 +71,7 @@ def post():
     postForm = PostJobForm()
     post_type = "0"
     if(postForm.post_type.data == 'Looking for work'):
+        print("test")
         postForm = PostLookingForm()
         post_type = "1"
         return render_template('post.html', form = postForm, post_type = post_type)

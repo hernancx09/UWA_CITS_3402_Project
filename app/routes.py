@@ -23,16 +23,18 @@ def about():
 def main():
     searchForm1 = SearchForm()
     searchForm2 = SearchForm()
-    if(searchForm1.validate_on_submit() | searchForm2.validate_on_submit()):
+    
+    result = fetch_all_jobPosts("", "Any")
+    result2 = fetch_all_skillsPosts("", "Any")
+    
+    if(searchForm1.validate_on_submit()):
         result = fetch_all_jobPosts(searchForm1.keyword.data, searchForm1.job_type.data)
         if (result == []): # if result empty
             result = [('-', '-', '-', '-', '-', '-', '-')]
+    if(searchForm2.validate_on_submit()):   
         result2 = fetch_all_skillsPosts(searchForm2.keyword.data, searchForm2.job_type.data)
         if (result2 == []): # if result empty
             result2 = [('-', '-', '-', '-')]
-        return render_template('main.html', form = searchForm1,form2 = searchForm2, data = result, data2 = result2)
-    result = fetch_all_jobPosts("", "Any")
-    result2 = fetch_all_skillsPosts("", "Any")
     return render_template('main.html', form = searchForm1,form2 = searchForm2, data = result, data2 = result2)
 
 @current_app.route('/login', methods=['GET', 'POST'])

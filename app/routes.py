@@ -19,23 +19,31 @@ def base():
 def about():
     return render_template('about.html')
 
-@current_app.route('/main', methods=['GET', 'POST'])
-def main():
-    searchForm1 = SearchForm()
-    searchForm2 = SearchForm()
+@current_app.route('/jobs', methods=['GET', 'POST'])
+def jobs():
+    searchForm = SearchForm()
     
-    result = fetch_all_jobPosts("", "Any")
-    result2 = fetch_all_skillsPosts("", "Any")
-    
-    if(searchForm1.validate_on_submit()):
-        result = fetch_all_jobPosts(searchForm1.keyword.data, searchForm1.job_type.data)
+    if(searchForm.validate_on_submit()):
+        result = fetch_all_jobPosts(searchForm.keyword.data, searchForm.job_type.data)  
         if (result == []): # if result empty
             result = [('-', '-', '-', '-', '-', '-', '-')]
-    if(searchForm2.validate_on_submit()):   
-        result2 = fetch_all_skillsPosts(searchForm2.keyword.data, searchForm2.job_type.data)
-        if (result2 == []): # if result empty
-            result2 = [('-', '-', '-', '-')]
-    return render_template('main.html', form = searchForm1,form2 = searchForm2, data = result, data2 = result2)
+        return render_template('jobs.html', form = searchForm, data = result)
+    
+    result = fetch_all_jobPosts("", "Any")
+    return render_template('jobs.html', form = searchForm, data = result)
+
+@current_app.route('/candidates', methods=['GET', 'POST'])
+def candidates():
+    searchForm = SearchForm()
+    
+    if(searchForm.validate_on_submit()):
+        result = fetch_all_skillsPosts(searchForm.keyword.data, searchForm.job_type.data)  
+        if (result == []): # if result empty
+            result = [('-', '-', '-', '-', '-', '-', '-')]
+        return render_template('candidates.html', form = searchForm, data = result)
+    
+    result = fetch_all_skillsPosts("", "Any")
+    return render_template('candidates.html', form = searchForm, data = result)
 
 @current_app.route('/login', methods=['GET', 'POST'])
 def login():

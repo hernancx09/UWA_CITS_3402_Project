@@ -4,7 +4,7 @@ import sqlalchemy as sa
 def test_main_search(client, app_functional, new_jobPost, new_user):
     """
     GIVEN a test client, app
-    WHEN new post is created in db and the '/main' page sends a post request with search data
+    WHEN new post is created in db and the '/jobs' page sends a post request with search data
     THEN check that the response is 200 and results are correct
     """
     with app_functional.app_context():
@@ -16,7 +16,7 @@ def test_main_search(client, app_functional, new_jobPost, new_user):
         db.session.add(new_jobPost)
         db.session.commit
         
-        response = client.post('/main', data= dict(
+        response = client.post('/jobs', data= dict(
             keyword = "test",
             job_type = "Any",
             follow_redirects=True))

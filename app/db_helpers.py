@@ -3,6 +3,8 @@ from app import db
 from app.models import Users, Posts
 import sqlalchemy as sa
 
+POST_JOB = "Job request"
+
 #get username from login form
 def get_email(form):
         email = db.session.scalar(
@@ -24,23 +26,35 @@ def create_user(form):
 
 #create job post
 def create_job(form):
-        post = Posts(
-                name = form.job_name.data,
-                pay = form.pay.data,
-                location = form.location.data,
-                job_type = form.job_type.data,
-                start_from_date = form.start_from_date.data,
-                status = form.status.data,
-                description = form.description.data
-        )
+        if(form.post_type.data == POST_JOB):
+                post = Posts(
+                        user_id = 1,
+                        post_type = 0,
+                        name = form.job_name.data,
+                        pay = form.pay.data,
+                        location = form.location.data,
+                        job_type = form.job_type.data,
+                        start_from_date = form.start_from_date.data,
+                        status = form.status.data,
+                        description = form.description.data
+                )
+        else:
+                post = Posts(
+                                user_id = 1,
+                                post_type = 1,
+                                name = form.looking_for.data,
+                                location = form.location.data,
+                                job_type = form.job_type.data,
+                                description = form.description.data
+                        )
         db.session.add(post)
         db.session.commit()
 #edit job post
-# Fetches user posts and returns name, start_date, status and job type
-def fetch_user_posts():
+# Fetches user Posts and returns name, start_date, status and job type
+def fetch_user_Posts():
         data = db.session.query(Posts.name, sa.text('STRFTIME("%d/%m/%Y",Posts.start_from_date)'), Posts.job_type, Posts.status).filter(Posts.user_id == current_user.get_id())
         return data
-def fetch_all_posts(keyword, job_type):
+def fetch_all_jobPosts(keyword, job_type):
         if(job_type == "Any"):
                 #Query on keyword alone
                 data = db.session.query(Posts.name, 
@@ -49,7 +63,7 @@ def fetch_all_posts(keyword, job_type):
                                 Posts.location,
                                 sa.text('STRFTIME("%d/%m/%Y",Posts.start_from_date)'),
                                 Posts.status,
-                                Posts.job_type).filter(Users.id == Posts.user_id).filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword)), 
+                                Posts.job_type).filter(Users.id == Posts.user_id).filter(Posts.post_type == 0).filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword)), 
                                                      Posts.status != 'Filled').all()
         else:
                 #query on keyword and job_type
@@ -59,7 +73,22 @@ def fetch_all_posts(keyword, job_type):
                                 Posts.location,
                                 sa.text('STRFTIME("%d/%m/%Y",Posts.start_from_date)'),
                                 Posts.status,
-                                Posts.job_type).filter(Users.id == Posts.user_id).filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword)),
+                                Posts.job_type).filter(Users.id == Posts.user_id).filter(Posts.post_type == 0).filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword)),
                                                      Posts.job_type == job_type, 
                                                      Posts.status != 'Filled').all()
+        return data
+def fetch_all_skillsPosts(keyword, job_type):
+        if(job_type == "Any"):
+                #Query on keyword alone
+                data = db.session.query(Posts.name, 
+                                Users.name, 
+                                Posts.location,
+                                Posts.job_type).filter(Users.id == Posts.user_id).filter(Posts.post_type == 1).filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword))).all()
+        else:
+                #query on keyword and job_type
+                data = db.session.query(Posts.name,
+                                Users.name, 
+                                Posts.location,
+                                Posts.job_type).filter(Users.id == Posts.user_id).filter(Posts.post_type == 1).filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword)),
+                                                     Posts.job_type == job_type).all()
         return data

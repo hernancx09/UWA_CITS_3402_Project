@@ -2,8 +2,8 @@
 from flask import flash, render_template, request, redirect, url_for, flash
 
 from flask import current_app
-from app.db_helpers import create_user, fetch_all_posts
-from app.forms import LoginForm, PostJobForm, PostLookingForm, RegisterForm, SearchForm
+from app.db_helpers import create_job, create_user, fetch_all_jobPosts, fetch_all_skillsPosts
+from app.forms import LoginForm, PostJobForm, RegisterForm, SearchForm
 from flask_login import current_user, login_required, login_user, logout_user
 
 ##Usage
@@ -21,14 +21,19 @@ def about():
 
 @current_app.route('/main', methods=['GET', 'POST'])
 def main():
-    searchForm = SearchForm()
-    if(searchForm.validate_on_submit()):
-        result = fetch_all_posts(searchForm.keyword.data, searchForm.job_type.data)
+    searchForm1 = SearchForm()
+    searchForm2 = SearchForm()
+    if(searchForm1.validate_on_submit() | searchForm2.validate_on_submit()):
+        result = fetch_all_jobPosts(searchForm1.keyword.data, searchForm1.job_type.data)
         if (result == []): # if result empty
-            result = [('-', '-', '-', '-', '-', '-')]
-        return render_template('main.html', form = searchForm, data=result)
-    result = fetch_all_posts("", "Any")
-    return render_template('main.html', form = searchForm, data = result)
+            result = [('-', '-', '-', '-', '-', '-', '-')]
+        result2 = fetch_all_skillsPosts(searchForm2.keyword.data, searchForm2.job_type.data)
+        if (result2 == []): # if result empty
+            result2 = [('-', '-', '-', '-')]
+        return render_template('main.html', form = searchForm1,form2 = searchForm2, data = result, data2 = result2)
+    result = fetch_all_jobPosts("", "Any")
+    result2 = fetch_all_skillsPosts("", "Any")
+    return render_template('main.html', form = searchForm1,form2 = searchForm2, data = result, data2 = result2)
 
 @current_app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -69,11 +74,8 @@ def registration():
 #@login_required
 def post():
     postForm = PostJobForm()
-    post_type = "0"
-    if(postForm.post_type.data == 'Looking for work'):
-        print("test")
-        postForm = PostLookingForm()
-        post_type = "1"
-        return render_template('post.html', form = postForm, post_type = post_type)
     
-    return render_template('post.html', form = postForm, post_type = post_type)
+    if(postForm.validate_on_submit()):
+        create_job(postForm)
+        return render_template('post.html', form = PostJobForm())
+    return render_template('post.html', form = postForm)

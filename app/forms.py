@@ -40,19 +40,12 @@ class SearchForm(FlaskForm):
 
 class PostJobForm(FlaskForm):
     post_type = SelectField(u'Post Type', choices=[('Job request'), ('Looking for work')])
-    job_name = StringField('Job Name')
-    pay = IntegerField('Pay Rate p/hr')
+    job_name = StringField('Job Name', validators=[Optional()])
+    looking_for = StringField('Looking For', validators=[Optional()])
+    pay = IntegerField('Pay Rate p/hr', validators=[Optional()])
     location = StringField('Location')
     job_type = SelectField(u'Job Type', choices=[('One Time'), ('Short Term'), ('Long Term')])
-    start_from_date = DateField('Start Date')
-    status = SelectField(u'Status', choices=[('Open'), ('Partially Filled'), ('Filled')])
-    description = TextAreaField('Description')
-    submit   = SubmitField('Post Job')
-
-class PostLookingForm(FlaskForm):
-    post_type = SelectField(u'Post Type', choices=[('Looking for work'), ('Job request')])
-    looking_for = StringField('Looking For')
-    location = StringField('Location')
-    job_type = SelectField(u'Job Type', choices=[('One Time'), ('Short Term'), ('Long Term')])
-    description = TextAreaField('Description')
+    start_from_date = DateField('Start Date', validators=[Optional()])
+    status = SelectField(u'Status', choices=[('Open'), ('Partially Filled'), ('Filled')], validators=[Optional()])
+    description = TextAreaField('Additional details', validators=[Optional()])
     submit   = SubmitField('Post Job')

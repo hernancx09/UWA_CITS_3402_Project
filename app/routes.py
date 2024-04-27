@@ -73,3 +73,13 @@ def post():
 @current_app.route('/profile')
 def profile():
     return render_template('profile.html')
+
+@current_app.route('/main2', methods=['GET', 'POST'])
+def main2():
+    searchForm = SearchForm()
+    if(searchForm.validate_on_submit()):
+        result = fetch_all_posts(searchForm.keyword.data, searchForm.job_type.data)
+        if (result == []): # if result empty
+            result = [('-', '-', '-', '-', '-', '-')]
+        return render_template('main2.html', form = searchForm, data=result)
+    return render_template('main2.html', form = searchForm)

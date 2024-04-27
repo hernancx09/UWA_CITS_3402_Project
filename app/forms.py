@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 
 from wtforms import DateField, SelectField, StringField, PasswordField, SubmitField, IntegerField, TextAreaField
-from wtforms.validators import DataRequired, Length, EqualTo, Regexp, Email, Optional
+from wtforms.validators import DataRequired, Length, EqualTo, Regexp, Email, Optional, NumberRange
 
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[
@@ -49,3 +49,11 @@ class PostJobForm(FlaskForm):
     status = SelectField(u'Status', choices=[('Open'), ('Partially Filled'), ('Filled')], validators=[Optional()])
     description = TextAreaField('Additional details', validators=[Optional()])
     submit   = SubmitField('Post Job')
+
+'''
+TESTING PURPOSES ONLY
+'''
+class DataForm(FlaskForm):
+    job_count = IntegerField('Number of Job entries', validators=[DataRequired()])
+    user_count = IntegerField('Number of users', validators=[DataRequired(), NumberRange(5, 20)])
+    submit   = SubmitField('Create Data')

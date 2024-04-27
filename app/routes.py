@@ -2,8 +2,8 @@
 from flask import flash, render_template, request, redirect, url_for, flash
 
 from flask import current_app
-from app.db_helpers import create_job, create_user, fetch_all_jobPosts, fetch_all_skillsPosts
-from app.forms import LoginForm, PostJobForm, RegisterForm, SearchForm
+from app.db_helpers import create_job, create_user, fetch_all_jobPosts, fetch_all_skillsPosts, populate_db
+from app.forms import DataForm, LoginForm, PostJobForm, RegisterForm, SearchForm
 from flask_login import current_user, login_required, login_user, logout_user
 
 ##Usage
@@ -18,7 +18,17 @@ def base():
 @current_app.route('/about')
 def about():
     return render_template('about.html')
-
+'''
+TESTING PURPOSES ONLY
+'''
+@current_app.route('/populate', methods=['GET', 'POST'])
+def populate():
+    form = DataForm()
+    if(form.validate_on_submit()):
+        populate_db(form.job_count.data, form.user_count.data)
+        return redirect(url_for('jobs'))
+    return render_template('populate.html', form = form)
+''' END TESTS'''
 @current_app.route('/jobs', methods=['GET', 'POST'])
 def jobs():
     searchForm = SearchForm()

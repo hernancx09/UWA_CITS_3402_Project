@@ -1,3 +1,4 @@
+
 import os
 from config import Testing
 from flask_migrate import upgrade

@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block title %}Login Page{% endblock %}
+
+{% block extraheaders %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style_main.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- Hire Me Section -->
+<div class="container mt-4">
+    <section class="title-section text-center">
+        <h1>Hire Me!</h1>
+    </section>
+
+    <section class="results-section my-4">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Work I Am Looking For</th>
+                    <th scope="col">User</th>
+                    <th scope="col">Pay</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Time Frame</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Gardening</td>
+                    <td>Tom T</td>
+                    <td>24</td>
+                    <td>Anywhere Near UWA</td>
+                    <td>Anything</td>
+                    <td>Available</td>
+                </tr>
+                <tr>
+                    <td>Coding Related</td>
+                    <td>Terry M</td>
+                    <td>Negotiable</td>
+                    <td>Crawley/Nedlands</td>
+                    <td>Short Term</td>
+                    <td>Available Fridays 3-5</td>
+                </tr>
+                <tr>
+                    <td>Gardening</td>
+                    <td>Jerry M.</td>
+                    <td>35</td>
+                    <td>1 Aus Street</td>
+                    <td>Variable</td>
+                    <td>Available</td>
+                </tr>
+                <tr>
+                    <td>Professional Engineer</td>
+                    <td>Lily S.</td>
+                    <td>Minimum 30</td>
+                    <td>Anywhere</td>
+                    <td>Long Term</td>
+                    <td>Open</td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn btn2 my-3">Make a Post</button>
+    </section>
+</div>
+
+<!-- Popup -->
+<div class="container">
+    <div id="popup" class="popup">
+        <div id="popup-content">
+            <div class="boxL">
+                Left Box
+            </div>
+            <div class="boxR">
+                Right Box
+            </div>
+        </div>
+        <span id="closeButton">&times;</span>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    var row = document.getElementById("row");
+
+    row.addEventListener("click", function () {
+        var popup = document.getElementById("popup");
+        popup.style.display = "block";
+        popup.style.opacity = 1;
+    });
+
+    var closeButton = document.getElementById("closeButton");
+    closeButton.addEventListener('click', function () {
+        var popup = document.getElementById("popup");
+        popup.style.display = 'none';
+    });
+
+    window.addEventListener('click', function (e) {
+        var popup = document.getElementById("popup");
+        if (e.target === popup) {
+            popup.style.display = 'none';
+        }
+    });
+});
+</script>
+
+{% endblock %}

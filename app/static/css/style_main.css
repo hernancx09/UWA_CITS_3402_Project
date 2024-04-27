@@ -84,3 +84,135 @@
 .results-section {
     padding-bottom: 65px;
 }
+
+
+/* Popup Within Main*/
+
+.popup {
+    opacity: 0;
+    width: 70%;
+    height: 70%;
+  }
+
+#popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(39, 43, 248);
+    padding: 20px;
+    border: 3px solid #000000;
+    color: rgb(255, 255, 255);
+  }
+
+  .popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+  }
+  
+  /* Add animation (fade in the popup) */
+  @-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+  }
+  
+    /* Style for close button */
+    #closeButton {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    /* Boxes within the Popup*/
+        /* Style for box container */
+        .box-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Style for individual box */
+        .boxL {
+            position: absolute;
+            left: 10px; /* Adjust left position as needed */
+            top: 50%; /* Align vertically */
+            transform: translate(0, -50%);
+            border: 2px solid white;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            height: 50%;
+            width: 40%; /* Adjust box width as needed */
+            box-sizing: border-box; /* Include padding in width calculation */
+        }
+
+        /* Style for right box */
+        .boxR {
+            position: absolute;
+            right: 10px; /* Adjust right position as needed */
+            top: 50%; /* Align vertically */
+            transform: translate(0, -50%);
+            border: 2px solid white;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            height: 50%;
+            width: 40%; /* Adjust box width as needed */
+            box-sizing: border-box; /* Include padding in width calculation */
+        }
+
+/*
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+
+  .popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+  }
+  
+
+  .popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+
+  .popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+  } */

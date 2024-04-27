@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+{% block title %}Login Page{% endblock %}
+{% block extraheaders %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style_main.css') }}"!important>
+{% endblock %}
+{% block content %}
+
+<div class="container mt-5">
+  <section class="title-section text-center">
+    <h1>My Ongoing Jobs</h1>
+    <div class="job-section my-4">
+      <table class="table table-striped table-bordered" id="jobsTable">
+        <thead>
+          <tr>
+            <th scope="col">Request</th>
+            <th scope="col">User</th>
+            <th scope="col">Pay</th>
+            <th scope="col">Location</th>
+            <th scope="col">Time Frame</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Recruiting Treasurer</td>
+            <td>Billy H</td>
+            <td>24</td>
+            <td>Chess Club Room</td>
+            <td>Long Term</td>
+            <td>Open</td>
+            <td><button class="btn btn-primary edit-btn">Edit</button></td>
+          </tr>
+          <tr>
+            <td>Gardening</td>
+            <td>Tom T</td>
+            <td>24</td>
+            <td>Anywhere Near UWA</td>
+            <td>Anything</td>
+            <td>Available</td>
+            <td><button class="btn btn-primary edit-btn">Edit</button></td>
+            </tr>
+        </tbody>
+      </table>
+      <button class="btn btn2 my-3">Make a Post</button>
+    </div>
+  </section>
+
+  <section class="title-section text-center mt-5">
+    <h1>My Applications </h1>
+    <div class="hire-me-section my-4">
+      <table class="table table-striped table-bordered" id="hireMeTable">
+        <thead>
+          <tr>
+            <th scope="col">Service</th>
+            <th scope="col">Provider</th>
+            <th scope="col">Details</th>
+            <th scope="col">Experience</th>
+            <th scope="col">Availability</th>
+            <th scope="col">Contact Info</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Web Development</td>
+            <td>Alice Johnson</td>
+            <td>Full Stack</td>
+            <td>5 years</td>
+            <td>Weekdays</td>
+            <td>alice@example.com</td>
+            <td><button class="btn btn-primary edit-btn">Edit</button></td>
+          </tr>
+          <!-- Other table rows for applications -->
+        </tbody>
+      </table>
+      <button class="btn btn2 my-3">Make a Post</button>
+    </div>
+  </section>
+</div>
+
+<!-- Modals HTML -->
+<!-- Modal for Editing Job Entry -->
+<div class="modal fade" id="editJobModal" tabindex="-1" aria-labelledby="editJobModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editJobModalLabel">Edit Job Entry</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="editJobForm">
+            <div class="mb-3">
+              <label for="editRequest" class="form-label">Request</label>
+              <input type="text" class="form-control" id="editRequest" name="request">
+            </div>
+            <div class="mb-3">
+              <label for="editUser" class="form-label">User</label>
+              <input type="text" class="form-control" id="editUser" name="user">
+            </div>
+            <div class="mb-3">
+              <label for="editPay" class="form-label">Pay</label>
+              <input type="text" class="form-control" id="editPay" name="pay">
+            </div>
+            <div class="mb-3">
+              <label for="editLocation" class="form-label">Location</label>
+              <input type="text" class="form-control" id="editLocation" name="location">
+            </div>
+            <div class="mb-3">
+              <label for="editTimeFrame" class="form-label">Time Frame</label>
+              <input type="text" class="form-control" id="editTimeFrame" name="timeFrame">
+            </div>
+            <div class="mb-3">
+              <label for="editStatus" class="form-label">Status</label>
+              <input type="text" class="form-control" id="editStatus" name="status">
+            </div>
+            <div class="mb-3">
+                <label for="editDesc" class="form-label">Description</label>
+                <textarea class="form-control" id="editDesc" name="Description"></textarea>
+              </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" id="deleteJobButton">Delete Entry</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" form="editJobForm">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Modal for Editing Application Entry -->
+<div class="modal fade" id="editApplicationModal" tabindex="-1" aria-labelledby="editApplicationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editApplicationModalLabel">Edit Application Entry</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="editApplicationForm">
+            <div class="mb-3">
+              <label for="editService" class="form-label">Service</label>
+              <input type="text" class="form-control" id="editService" name="service">
+            </div>
+            <div class="mb-3">
+              <label for="editProvider" class="form-label">Provider</label>
+              <input type="text" class="form-control" id="editProvider" name="provider">
+            </div>
+            <div class="mb-3">
+              <label for="editDetails" class="form-label">Details</label>
+              <input type="text" class="form-control" id="editDetails" name="details">
+            </div>
+            <div class="mb-3">
+              <label for="editExperience" class="form-label">Experience</label>
+              <input type="text" class="form-control" id="editExperience" name="experience">
+            </div>
+            <div class="mb-3">
+              <label for="editAvailability" class="form-label">Availability</label>
+              <input type="text" class="form-control" id="editAvailability" name="availability">
+            </div>
+            <div class="mb-3">
+              <label for="editContactInfo" class="form-label">Contact Info</label>
+              <input type="text" class="form-control" id="editContactInfo" name="contactInfo">
+            </div>
+            <div class="mb-3">
+              <label for="editDesc" class="form-label">Description</label>
+              <textarea class="form-control" id="editDesc" name="Description"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" id="deleteJobButton">Delete Entry</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" form="editApplicationForm">Save changes</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+<!-- Bootstrap, Popper.js, and Main JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+<!-- Reference to external JavaScript file -->
+<script src="{{ url_for('static', filename='tempmodal.js') }}"></script> <!-- note that this is only here as a basic script so we can view the design of the modal. -->
+{% endblock %}

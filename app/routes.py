@@ -69,3 +69,15 @@ def registration():
 def post():
     form = PostForm()
     return render_template('post.html', form = form)
+
+@current_app.route('/profile')
+def profile():
+    return render_template('profile.html')
+
+@current_app.route('/hire')
+def hire():
+    return render_template('hireT.html')
+
+@current_app.route('/jobs')
+def jobs():
+    return render_template('jobsT.html')

@@ -7,90 +7,175 @@
 
 
 
-<div class="container mt-4">
-    <section class="title-section text-center">
-        <h1>Hire Me!</h1>
-    </section>
-<section class="search-section">
-    <div class="container">
-    <form action="{{ url_for('main') }}" method="post" class="row justify-content-center align-items-center">
-        {{ form.hidden_tag() }}
-        <div class="col-sm-3 my-1">
-            {{ form.keyword(size=16) }}
-            {% for error in form.keyword.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </div>
-        <div class="col-sm-3 my-1">
-            {{ form.job_type.label }}
-            {{ form.job_type }}
-            {% for error in form.job_type.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </div>
-        <div class="col-sm-3 my-1">
-            {{ form.submit() }}
-            {% for error in form.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </div>
-    </form>
-    </div>
+  <section class="title-section text-center mt-5">
+    <h1>Applicant Search </h1>
 </section>
- 
 
-   
-    <!-- Results Section -->
-    <section class="results-section my-4">
-        <table class="table table-striped table-bordered">
+<section class="search-section">
+  <div class="container">
+  <form action="{{ url_for('main') }}" method="post" class="row justify-content-center align-items-center">
+      {{ form.hidden_tag() }}
+      <div class="col-sm-3 my-1">
+          {{ form.keyword(size=16) }}
+          {% for error in form.keyword.errors %}
+          <span style="color: red;">[{{ error }}]</span>
+          {% endfor %}
+      </div>
+      <div class="col-sm-3 my-1">
+          {{ form.job_type.label }}
+          {{ form.job_type }}
+          {% for error in form.job_type.errors %}
+          <span style="color: red;">[{{ error }}]</span>
+          {% endfor %}
+      </div>
+      <div class="col-sm-3 my-1">
+          {{ form.submit() }}
+          {% for error in form.errors %}
+          <span style="color: red;">[{{ error }}]</span>
+          {% endfor %}
+      </div>
+  </form>
+  </div>
+</section>
+    <div class="hire-me-section my-4">
+      <table class="table table-striped table-bordered" id="hireMeTable">
         <thead>
-            <tr>
-            <th scope="col">Work I Am Looking For</th>
-            <th scope="col">User</th>
-            <th scope="col">Pay</th>
-            <th scope="col">Location</th>
-            <th scope="col">Time Frame</th>
-            <th scope="col">Status</th>
-            </tr>
+          <tr>
+            <th scope="col">Service</th>
+            <th scope="col">Provider</th>
+            <th scope="col">Details</th>
+            <th scope="col">Experience</th>
+            <th scope="col">Availability</th>
+            <th scope="col">Contact Info</th>
+            <th scope="col">Actions</th>
+          </tr>
         </thead>
         <tbody>
-            <tr>
-            <td>Gardening</td>
-            <td>Tom T</td>
-            <td>24</td>
-            <td>Anywhere Near UWA</td>
-            <td>Anything</td>
-            <td>Available</td>
-            </tr>
-            <tr>
-            <td>Coding Related</td>
-            <td>Terry M</td>
-            <td>Negotiable</td>
-            <td>Crawley/Nedlands</td>
-            <td>Short Term</td>
-            <td>Available Fridays 3-5</td>
-            </tr>
-            <tr>
-            <td>Gardening</td>
-            <td>Jerry M.</td>
-            <td>35</td>
-            <td>1 Aus Street</td>
-            <td>Variable</td>
-            <td>Available</td>
-            </tr>
-            <tr>
-            <td>Professional Engineer</td>
-            <td>Lily S.</td>
-            <td>Minimum 30</td>
-            <td>Anywhere</td>
-            <td>Long Term</td>
-            <td>Open</td>
-            </tr>
+          <tr>
+            <td>Web Development</td>
+            <td>Alice Johnson</td>
+            <td>Full Stack</td>
+            <td>5 years</td>
+            <td>Weekdays</td>
+            <td>alice@example.com</td>
+            <td><button class="btn btn-primary view-btn">View</button></td>
+          </tr>
+          <tr>
+            <td>Web Development</td>
+            <td>Alice Johnson</td>
+            <td>Full Stack</td>
+            <td>5 years</td>
+            <td>Weekdays</td>
+            <td>alice@example.com</td>
+            <td><button class="btn btn-primary view-btn">View</button></td>
+          </tr>
+          <tr>
+            <td>Web Development</td>
+            <td>Alice Johnson</td>
+            <td>Full Stack</td>
+            <td>5 years</td>
+            <td>Weekdays</td>
+            <td>alice@example.com</td>
+            <td><button class="btn btn-primary view-btn">View</button></td>
+          </tr>
+          <tr>
+            <td>Web Development</td>
+            <td>Alice Johnson</td>
+            <td>Full Stack</td>
+            <td>5 years</td>
+            <td>Weekdays</td>
+            <td>alice@example.com</td>
+            <td><button class="btn btn-primary view-btn">View</button></td>
+          </tr>
+          <tr>
+            <td>Web Development</td>
+            <td>Alice Johnson</td>
+            <td>Full Stack</td>
+            <td>5 years</td>
+            <td>Weekdays</td>
+            <td>alice@example.com</td>
+            <td><button class="btn btn-primary view-btn">View</button></td>
+          </tr>
+          <tr>
+            <td>Web Development</td>
+            <td>Alice Johnson</td>
+            <td>Full Stack</td>
+            <td>5 years</td>
+            <td>Weekdays</td>
+            <td>alice@example.com</td>
+            <td><button class="btn btn-primary view-btn">View</button></td>
+          </tr>
+          <tr>
+            <td>Web Development</td>
+            <td>Alice Johnson</td>
+            <td>Full Stack</td>
+            <td>5 years</td>
+            <td>Weekdays</td>
+            <td>alice@example.com</td>
+            <td><button class="btn btn-primary view-btn">View</button></td>
+          </tr>
+          <!-- Other table rows for applications -->
         </tbody>
-        </table>
-        <button class="btn btn2 my-3">Make a Post</button>
-    </section>
+      </table>
+      <button class="btn btn2 my-3">Make a Post</button>
     </div>
+  </section>
+</div>
 
-    <!--<script type="text/javascript" src="/js/js_functions.js"></script>-->
+
+<!-- Modal for Viewing Application Entry -->
+<div class="modal fade" id="viewApplicationModal" tabindex="-1" aria-labelledby="viewApplicationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="viewApplicationModalLabel">View Application Entry</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="viewApplicationForm">
+            <div class="mb-3">
+              <label for="viewService" class="form-label">Service</label>
+              <input type="text" class="form-control" id="viewService" name="service" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewProvider" class="form-label">Provider</label>
+              <input type="text" class="form-control" id="viewProvider" name="provider" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewDetails" class="form-label">Details</label>
+              <input type="text" class="form-control" id="viewDetails" name="details" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewExperience" class="form-label">Experience</label>
+              <input type="text" class="form-control" id="viewExperience" name="experience" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewAvailability" class="form-label">Availability</label>
+              <input type="text" class="form-control" id="viewAvailability" name="availability" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewContactInfo" class="form-label">Contact Info</label>
+              <input type="text" class="form-control" id="viewContactInfo" name="contactInfo" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewDesc" class="form-label">Description</label>
+              <textarea class="form-control" id="viewDesc" name="Description" readonly></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" form="applyJobForm">Contact Applicant</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+<!-- Bootstrap, Popper.js, and Main JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+<!-- Reference to external JavaScript file -->
+<script src="{{ url_for('static', filename='tempmodal.js') }}"></script> <!-- note that this is only here as a basic script so we can view the design of the modal. -->
 {% endblock %}

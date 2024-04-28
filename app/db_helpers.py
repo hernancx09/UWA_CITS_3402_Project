@@ -175,7 +175,7 @@ def populate_db(job_count, user_count):
                 job_type = random.choice(job_type),
                 status = "Open"
         )
-        id = get_random_user(random.randint(0, user_count))
+        id = get_random_user(random.randint(1, user_count))
         post = Posts(
                         user_id = id,
                         post_type = 0,

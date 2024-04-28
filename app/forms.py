@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 
 from wtforms import DateField, SelectField, StringField, PasswordField, SubmitField, IntegerField, TextAreaField
-from wtforms.validators import DataRequired, Length, EqualTo, Regexp, Email, Optional
+from wtforms.validators import DataRequired, Length, EqualTo, Regexp, Email, Optional, NumberRange
 
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[
@@ -38,13 +38,22 @@ class SearchForm(FlaskForm):
     job_type = SelectField(u'Job Type', choices=[('Any'), ('One Time'), ('Short Term'), ('Long Term')])
     submit = SubmitField('Go')
 
-class PostForm(FlaskForm):
-    job_name = StringField('Job Name')
-    pay = IntegerField('Pay Rate p/hr')
+class PostJobForm(FlaskForm):
+    post_type = SelectField(u'Post Type', choices=[('Job request'), ('Looking for work')])
+    job_name = StringField('Job Name', validators=[Optional()])
+    looking_for = StringField('Looking For', validators=[Optional()])
+    pay = IntegerField('Pay Rate p/hr', validators=[Optional()])
     location = StringField('Location')
     job_type = SelectField(u'Job Type', choices=[('One Time'), ('Short Term'), ('Long Term')])
-    start_from_date = DateField('Start Date')
-    status = SelectField(u'Status', choices=[('Open'), ('Partially Filled'), ('Filled')])
-    description = TextAreaField('Description')
+    start_from_date = DateField('Start Date', validators=[Optional()])
+    status = SelectField(u'Status', choices=[('Open'), ('Partially Filled'), ('Filled')], validators=[Optional()])
+    description = TextAreaField('Additional details', validators=[Optional()])
     submit   = SubmitField('Post Job')
 
+'''
+TESTING PURPOSES ONLY
+'''
+class DataForm(FlaskForm):
+    job_count = IntegerField('Number of Job entries', validators=[DataRequired()])
+    user_count = IntegerField('Number of users', validators=[DataRequired(), NumberRange(5, 20)])
+    submit   = SubmitField('Create Data')

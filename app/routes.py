@@ -2,8 +2,8 @@
 from flask import flash, render_template, request, redirect, url_for, flash
 
 from flask import current_app
-from app.db_helpers import create_user, fetch_all_posts
-from app.forms import LoginForm, PostForm, RegisterForm, SearchForm
+from app.db_helpers import create_job, create_user, fetch_all_jobPosts, fetch_all_skillsPosts, populate_db
+from app.forms import DataForm, LoginForm, PostJobForm, RegisterForm, SearchForm
 from flask_login import current_user, login_required, login_user, logout_user
 
 ##Usage
@@ -12,22 +12,48 @@ from flask_login import current_user, login_required, login_user, logout_user
 # next a function is defined beneath the route that decides what happens at that URL
 @current_app.route('/')
 @current_app.route('/base')
-def test():
+def base():
     return render_template('base.html')
 
 @current_app.route('/about')
 def about():
     return render_template('about.html')
-
-@current_app.route('/main', methods=['GET', 'POST'])
-def main():
+'''
+TESTING PURPOSES ONLY
+'''
+@current_app.route('/populate', methods=['GET', 'POST'])
+def populate():
+    form = DataForm()
+    if(form.validate_on_submit()):
+        populate_db(form.job_count.data, form.user_count.data)
+        return redirect(url_for('jobs'))
+    return render_template('populate.html', form = form)
+''' END TESTS'''
+@current_app.route('/jobs', methods=['GET', 'POST'])
+def jobs():
     searchForm = SearchForm()
+    
     if(searchForm.validate_on_submit()):
-        result = fetch_all_posts(searchForm.keyword.data, searchForm.job_type.data)
+        result = fetch_all_jobPosts(searchForm.keyword.data, searchForm.job_type.data)  
         if (result == []): # if result empty
-            result = [('-', '-', '-', '-', '-', '-')]
-        return render_template('main.html', form = searchForm, data=result)
-    return render_template('main.html', form = searchForm)
+            result = [('-', '-', '-', '-', '-', '-', '-')]
+        return render_template('jobs.html', form = searchForm, data = result)
+    
+    result = fetch_all_jobPosts("", "Any")
+    return render_template('jobs.html', form = searchForm, data = result)
+
+@current_app.route('/candidates', methods=['GET', 'POST'])
+def candidates():
+    searchForm = SearchForm()
+    
+    if(searchForm.validate_on_submit()):
+        result = fetch_all_skillsPosts(searchForm.keyword.data, searchForm.job_type.data)  
+        if (result == []): # if result empty
+            result = [('-', '-', '-', '-', '-', '-', '-')]
+        return render_template('candidates.html', form = searchForm, data = result)
+    
+    result = fetch_all_skillsPosts("", "Any")
+    return render_template('candidates.html', form = searchForm, data = result)
 
 @current_app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -50,10 +76,10 @@ def login():
 
 @current_app.route('/registration', methods = ['GET','POST'])
 def registration():
-    Regform = RegisterForm()
+    regform = RegisterForm()
 
-    if(Regform.validate_on_submit()):
-        if(create_user(Regform)):
+    if(regform.validate_on_submit()):
+        if(create_user(regform)):
             #success, sending to test.html as a placeholder
             flash('Success Registering', 'Success')
             return redirect(url_for('login')) # should return to login page to login
@@ -62,10 +88,14 @@ def registration():
             flash('Error Registering', 'Failure')
             return redirect(url_for('registration'))  
 
-    return render_template('registration.html', form = Regform)
+    return render_template('registration.html', form = regform)
 
 @current_app.route('/post', methods = ['GET','POST'])
 #@login_required
 def post():
-    form = PostForm()
-    return render_template('post.html', form = form)
+    postForm = PostJobForm()
+    
+    if(postForm.validate_on_submit()):
+        create_job(postForm)
+        return render_template('post.html', form = PostJobForm())
+    return render_template('post.html', form = postForm)

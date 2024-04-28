@@ -31,11 +31,12 @@ def new_user():
     return user
 
 @pytest.fixture(scope='module')
-def new_post(new_user):
+def new_jobPost(new_user):
     post = Posts(
             author = new_user,
             user_id = new_user.get_id(),
-            name = "test_post",
+            post_type = 0,
+            name = "test_job",
             pay = 50,
             location = "Perth",
             start_from_date = datetime.date.today(),
@@ -45,3 +46,15 @@ def new_post(new_user):
         )
     return post
 
+@pytest.fixture(scope='module')
+def new_skillsPost(new_user):
+    post = Posts(
+            author = new_user,
+            user_id = new_user.get_id(),
+            post_type = 1,
+            name = "test_skills",
+            location = "Perth",
+            description = "These are my skills",
+            job_type = "One Time",
+        )
+    return post

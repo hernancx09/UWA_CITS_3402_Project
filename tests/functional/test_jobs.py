@@ -1,3 +1,4 @@
+from flask_login import login_user
 from app.db_helpers import db
 import sqlalchemy as sa
 
@@ -13,6 +14,9 @@ def test_main_search(client, app_functional, new_jobPost, new_user):
         2. make post request to main with search data
         3. check that db is queried and returns correct result
         '''
+        with app_functional.test_request_context():
+            login_user(new_user)
+        
         db.session.add(new_jobPost)
         db.session.commit
         

@@ -13,7 +13,7 @@ class Users(db.Model, UserMixin):
     password_hash: so.Mapped[Optional[str]] = so.mapped_column(sa.String(256))
     posts: so.WriteOnlyMapped['Posts'] = so.relationship(back_populates='author')
     def __repr__(self):
-        return '<User {}>'.format(self.username)
+        return '<User {}>'.format(self.name)
     def set_email(self, email):
         self.email = email
     def set_password(self, password):
@@ -31,12 +31,13 @@ class Posts(db.Model):
     author: so.Mapped[Users] = so.relationship(back_populates='posts')
     user_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(Users.id), index=True)
     id: so.Mapped[int] = so.mapped_column(sa.Integer(), primary_key= True)
+    post_type: so.Mapped[int] = so.mapped_column(sa.Integer)
     name: so.Mapped[str] = so.mapped_column(sa.String(32), index = True)
-    pay: so.Mapped[int] = so.mapped_column(sa.Integer)
+    pay: so.Mapped[int] = so.mapped_column(sa.Integer, nullable=True)
     location: so.Mapped[str] = so.mapped_column(sa.String(16))
     job_type: so.Mapped[str] = so.mapped_column(sa.String(16))
-    start_from_date: so.Mapped[date] = so.mapped_column(sa.Date())
-    status: so.Mapped[str] = so.mapped_column(sa.String(32))
+    start_from_date: so.Mapped[date] = so.mapped_column(sa.Date(), nullable=True)
+    status: so.Mapped[str] = so.mapped_column(sa.String(32), nullable=True)
     description: so.Mapped[str] = so.mapped_column(sa.String(256))
     
     def __repr__(self):

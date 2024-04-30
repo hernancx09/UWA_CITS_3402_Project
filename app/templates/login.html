@@ -7,25 +7,26 @@
 {% block content %}
   <div class="centered-container">
     <div id="header">Login Page</div>
-    <div id="formwrapper">
-      <form action="" method="post">
-        {{ form.hidden_tag() }}
+      <div id="formwrapper">
+        <form action="" method="post">
+          {{ form.hidden_tag() }}
 
-        <p>
-          {{form.email.label}} <br>
-          {{form.email(size=30)}}
-        </p>
-        
-        <p>
-          {{form.password.label}} <br>
-          {{form.password(size=30)}}
-        </p>
-        
-        <p>
-          {{form.submit()}}
-        </p>
+          <p>
+            {{form.email.label}} <br>
+            {{form.email(size=30)}}
+          </p>
 
-      </form>
+          <p>
+            {{form.password.label}} <br>
+            {{form.password(size=30)}}
+          </p>
+
+          <p>
+            {{form.submit()}}
+          </p>
+        </form>
+        <div>Don't have an account? <a href="/registration">Sign up here</a></div>
+      </div>
     </div>
   </div>
 {% endblock %}

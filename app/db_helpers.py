@@ -56,6 +56,17 @@ def create_job(form):
 def fetch_user_Posts():
         data = db.session.query(Posts.name, sa.text('STRFTIME("%d/%m/%Y",Posts.start_from_date)'), Posts.job_type, Posts.status).filter(Posts.user_id == current_user.get_id())
         return data
+
+def fetch_post(id):
+        data = db.session.query(Posts.name, 
+                                Users.name, 
+                                Posts.pay,
+                                Posts.location,
+                                sa.text('STRFTIME("%d/%m/%Y",Posts.start_from_date)'),
+                                Posts.status,
+                                Posts.job_type,
+                                Posts.description).filter(Posts.id == id).first()
+        return data
 def fetch_all_jobPosts(keyword, job_type):
         if(job_type == "Any"):
                 #Query on keyword alone
@@ -65,7 +76,8 @@ def fetch_all_jobPosts(keyword, job_type):
                                 Posts.location,
                                 sa.text('STRFTIME("%d/%m/%Y",Posts.start_from_date)'),
                                 Posts.status,
-                                Posts.job_type).filter(current_user.get_id() != Posts.user_id) \
+                                Posts.job_type,
+                                Posts.id).filter(current_user.get_id() != Posts.user_id) \
                                         .filter(Users.id == Posts.user_id) \
                                                 .filter(Posts.post_type == 0) \
                                                         .filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword)), 
@@ -78,7 +90,8 @@ def fetch_all_jobPosts(keyword, job_type):
                                 Posts.location,
                                 sa.text('STRFTIME("%d/%m/%Y",Posts.start_from_date)'),
                                 Posts.status,
-                                Posts.job_type).filter(current_user.get_id() != Posts.user_id) \
+                                Posts.job_type,
+                                Posts.id).filter(current_user.get_id() != Posts.user_id) \
                                         .filter(Users.id == Posts.user_id) \
                                                 .filter(Posts.post_type == 0) \
                                                         .filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword)),
@@ -91,7 +104,8 @@ def fetch_all_skillsPosts(keyword, job_type):
                 data = db.session.query(Posts.name, 
                                 Users.name, 
                                 Posts.location,
-                                Posts.job_type).filter(current_user.get_id() != Posts.user_id) \
+                                Posts.job_type,
+                                Posts.id).filter(current_user.get_id() != Posts.user_id) \
                                         .filter(Users.id == Posts.user_id) \
                                                 .filter(Posts.post_type == 1) \
                                                         .filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword))).all()
@@ -100,7 +114,8 @@ def fetch_all_skillsPosts(keyword, job_type):
                 data = db.session.query(Posts.name,
                                 Users.name, 
                                 Posts.location,
-                                Posts.job_type).filter(current_user.get_id() != Posts.user_id) \
+                                Posts.job_type,
+                                Posts.id).filter(current_user.get_id() != Posts.user_id) \
                                         .filter(Users.id == Posts.user_id) \
                                                 .filter(Posts.post_type == 1) \
                                                         .filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword)),

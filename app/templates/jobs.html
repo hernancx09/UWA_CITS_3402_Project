@@ -60,7 +60,11 @@
                     <td>{{row[4]}}</td>
                     <td>{{row[5]}}</td>
                     <td>{{row[6]}}</td>
+                    <td>{{row[7]}}</td>
                     <td><button class="btn btn-primary view-btn">View</button></td>
+                    <td><form action="{{ url_for('view', job_id=row[7]) }}" method="post" class="btn btn-primary view-btn">
+                      <input type="submit" value="View">
+                    </form></td>
                     </tr>
                 {% endfor %}
             </tbody>

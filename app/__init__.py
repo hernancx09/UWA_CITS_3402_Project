@@ -7,7 +7,6 @@ from flask_login import LoginManager
 db = SQLAlchemy()
 migrate = Migrate()
 login = LoginManager()
-
 def create_app(config_class):
     app = Flask(__name__, 
                 static_url_path='',

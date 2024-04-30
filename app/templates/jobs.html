@@ -38,7 +38,7 @@
 
     <!-- Results Section -->
     <section class="job-section my-4">
-        <table class="table table-striped table-bordered">
+        <table class="table table-striped table-bordered" id="jobsTable">
             <thead>
                 <tr>
                 <th scope="col">Job Name</th>
@@ -61,15 +61,17 @@
                     <td>{{row[5]}}</td>
                     <td>{{row[6]}}</td>
                     <td>{{row[7]}}</td>
-                    <td><button class="btn btn-primary view-btn">View</button></td>
-                    <td><form action="{{ url_for('view', job_id=row[7]) }}" method="post" class="btn btn-primary view-btn">
-                      <input type="submit" value="View">
+                    <td><button class="btn btn-primary apply-btn">Quick Apply</button></td>
+                    <td><form class="btn btn-primary view-btn" action="{{ url_for('view', job_id=row[7]) }}" method="post" class="btn btn-primary view-btn">
+                      <input style="color: white; background: transparent; border: transparent;" type="submit" value="View">
                     </form></td>
                     </tr>
                 {% endfor %}
             </tbody>
             </table>
-        <button class="btn btn2 my-3">Make a Post</button>
+        <form class="btn btn2 my-3" action="{{ url_for('post')}}">
+          <input style="background: transparent; border: transparent;" type="submit" value="Make a Post" />
+      </form>
     </section>
     </div>
 
@@ -79,38 +81,13 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="viewJobModalLabel">View Job Entry</h5>
+          <h5 class="modal-title" id="viewJobModalLabel">Apply for Job</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form id="viewJobForm">
             <div class="mb-3">
-              <label for="viewRequest" class="form-label">Request</label>
-              <input type="text" class="form-control" id="viewRequest" name="request"readonly>
-            </div>
-            <div class="mb-3">
-              <label for="viewUser" class="form-label">User</label>
-              <input type="text" class="form-control" id="viewUser" name="user"readonly>
-            </div>
-            <div class="mb-3">
-              <label for="viewPay" class="form-label">Pay</label>
-              <input type="text" class="form-control" id="viewPay" name="pay"readonly>
-            </div>
-            <div class="mb-3">
-              <label for="viewLocation" class="form-label">Location</label>
-              <input type="text" class="form-control" id="viewLocation" name="location"readonly>
-            </div>
-            <div class="mb-3">
-              <label for="viewTimeFrame" class="form-label">Time Frame</label>
-              <input type="text" class="form-control" id="viewTimeFrame" name="timeFrame"readonly>
-            </div>
-            <div class="mb-3">
-              <label for="viewStatus" class="form-label">Status</label>
-              <input type="text" class="form-control" id="viewStatus" name="status"readonly>
-            </div>
-            <div class="mb-3">
-                <label for="viewDesc" class="form-label">Description</label>
-                <textarea class="form-control" id="viewDesc" name="Description"readonly></textarea>
+                <label for="viewDesc" class="form-label">Message</label>
+                <textarea class="form-control" id="viewDesc" name="Description"></textarea>
               </div>
           </form>
         </div>

@@ -24,7 +24,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbar">
       <div class="navbar-nav">
-        <a class="nav-item nav-link" id="home" href="/main">Home</a>
+        <a class="nav-item nav-link" id="home" href="/jobs">Home</a>
         <a class="nav-item nav-link" id="about" href="/about">About Us</a>
         <a class="nav-item nav-link" id="login" href="/login">Login</a>
         <a class="nav-item nav-link" id="signUp" href="/registration">Sign Up</a>
@@ -32,6 +32,13 @@
     </div>
   </div>
 
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-warning">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+  {% endwith %}
   {% block content %}
       <!--- Page specific content block-->
   {% endblock %}

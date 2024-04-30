@@ -86,6 +86,7 @@
 }
 
 
+
 /* Popup Within Main*/
 
 .popup {
@@ -208,11 +209,21 @@
     border-width: 5px;
     border-style: solid;
     border-color: #555 transparent transparent transparent;
-  }
-  
+}
 
-  .popup .show {
+
+.popup .show {
     visibility: visible;
     -webkit-animation: fadeIn 1s;
     animation: fadeIn 1s;
   } */
+
+/* added modal stuff here since profile follows same css as main.*/
+.modal-content {
+    background-color: #042d44;
+    color: #e2ece2;
+}
+.modal-header {
+    background-color: #5aba1e; /* Change to your desired header background color */
+    color: #e2ece2;
+}

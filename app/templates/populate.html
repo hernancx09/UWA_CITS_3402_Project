@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{%block extraheaders%}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style_forms.css') }}">
+{% endblock %}
+
+{% block content %}
+  <div class="centered-container">
+    <div id="header">Create Data</div>
+    <div id="formwrapper">
+      <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{form.user_count.label}} <br>
+            {{form.user_count(size=30)}}
+          </p>
+        <p>
+          {{form.job_count.label}} <br>
+          {{form.job_count(size=30)}}
+        </p>
+        <p>
+          {{form.submit()}}
+        </p>
+
+      </form>
+    </div>
+  </div>
+{% endblock %}
+

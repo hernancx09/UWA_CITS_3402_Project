@@ -61,7 +61,7 @@
                     <td>{{row[5]}}</td>
                     <td>{{row[6]}}</td>
                     <td>{{row[7]}}</td>
-                    <td><button class="btn btn-primary apply-btn">Quick Apply</button></td>
+                    <td><button class="btn btn-primary apply-btn" onclick="clicked('{{row[8]}}');">Quick Apply</button></td>
                     <td><form class="btn btn-primary view-btn" action="{{ url_for('view', job_id=row[7]) }}" method="post" class="btn btn-primary view-btn">
                       <input style="color: white; background: transparent; border: transparent;" type="submit" value="View">
                     </form></td>
@@ -84,17 +84,22 @@
           <h5 class="modal-title" id="viewJobModalLabel">Apply for Job</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <form action="" method="post">
         <div class="modal-body">
+            {{ quickApplyForm.hidden_tag() }}
             <div class="mb-3">
-                <label for="viewDesc" class="form-label">Message</label>
-                <textarea class="form-control" id="viewDesc" name="Description"></textarea>
-              </div>
-          </form>
+                {{ quickApplyForm.message.label }} <br>
+                {{ quickApplyForm.message(class="modal-textArea", cols="58", rows="4") }}
+            </div>
+        </div>
+        <div style="display: none;">
+            {{ quickApplyForm.employer_id(id="applyForm") }}
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" form="applyJobForm">Apply for Job</button>
+            {{ quickApplyForm.submitApplication(class="btn btn-primary") }}
         </div>
+        </form>
       </div>
     </div>
   </div>

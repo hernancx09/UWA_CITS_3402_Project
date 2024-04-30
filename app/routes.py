@@ -3,7 +3,7 @@ from flask import flash, render_template, request, redirect, url_for, flash
 
 from flask import current_app
 from app.db_helpers import create_job, create_user, fetch_all_jobPosts, fetch_all_skillsPosts, fetch_post, get_email, populate_db
-from app.forms import DataForm, LoginForm, PostJobForm, RegisterForm, SearchForm
+from app.forms import DataForm, LoginForm, PostJobForm, RegisterForm, SearchForm, quickApplyForm
 from flask_login import current_user, login_required, login_user, logout_user
 
 ##Usage
@@ -36,15 +36,21 @@ def populate():
 @current_app.route('/jobs', methods=['GET', 'POST'])
 def jobs():
     searchForm = SearchForm()
-    
-    if(searchForm.validate_on_submit()):
+    applyForm = quickApplyForm()
+    applyForm.applicant_id.data = current_user.get_id()
+    if(searchForm.submit.data and searchForm.validate()):
         result = fetch_all_jobPosts(searchForm.keyword.data, searchForm.job_type.data)  
         if (result == []): # if result empty
             result = [('-', '-', '-', '-', '-', '-', '-')]
-        return render_template('jobs.html', form = searchForm, data = result)
-    
+        return render_template('jobs.html', form = searchForm, quickApplyForm = applyForm, data = result)
+    if(request.method == "POST"):
+        print(applyForm.applicant_id.data)
+        print(applyForm.employer_id.data)
+        print(applyForm.message.data)
+        result = fetch_all_jobPosts("", "Any")
+        return render_template('jobs.html', form = searchForm, quickApplyForm = applyForm, data = result)
     result = fetch_all_jobPosts("", "Any")
-    return render_template('jobs.html', form = searchForm, data = result)
+    return render_template('jobs.html', form = searchForm, quickApplyForm=applyForm, data = result)
 
 @current_app.route('/candidates', methods=['GET', 'POST'])
 def candidates():

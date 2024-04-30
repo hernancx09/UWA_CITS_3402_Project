@@ -1,3 +1,14 @@
+let clickedBtn = null;
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+async function clicked(int) {
+  await sleep(1000)
+  document.getElementById("applyForm").value = int
+  console.log(document.getElementById("applyForm").value)
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     // Edit button click event for the ongoing jobs table
     var editJobButtons = document.querySelectorAll("#jobsTable .edit-btn");

@@ -54,6 +54,6 @@ class PostJobForm(FlaskForm):
 TESTING PURPOSES ONLY
 '''
 class DataForm(FlaskForm):
-    job_count = IntegerField('Number of Job entries', validators=[DataRequired()])
-    user_count = IntegerField('Number of users', validators=[DataRequired(), NumberRange(5, 20)])
+    job_count = IntegerField('Number of Job entries', validators=[Optional()])
+    user_count = IntegerField('Number of users', validators=[DataRequired(), NumberRange(1, 20)])
     submit   = SubmitField('Create Data')

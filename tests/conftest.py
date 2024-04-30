@@ -20,7 +20,7 @@ def app_unit():
 
 
 @pytest.fixture(scope="function")
-def client(app_functional):
+def client(app_functional, new_user):
     return app_functional.test_client()
 
 @pytest.fixture(scope='module')

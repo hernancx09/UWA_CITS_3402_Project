@@ -56,6 +56,8 @@
                     <td>{{row[1]}}</td>
                     <td>{{row[2]}}</td>
                     <td>{{row[3]}}</td>
+                    <td><button class="btn btn-primary view-btn">View</button></td>
+                    
                     </tr>
                 {% endfor %}
             </tbody>
@@ -64,4 +66,64 @@
     </section>
     </section>
     </div>
-    {% endblock %}
+
+
+<!-- Modal for Viewing Application Entry -->
+<div class="modal fade" id="viewApplicationModal" tabindex="-1" aria-labelledby="viewApplicationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="viewApplicationModalLabel">View Application Entry</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          
+
+
+
+<form id="viewApplicationForm">
+            <div class="mb-3">
+              <label for="viewService" class="form-label">Service</label>
+              <input type="text" class="form-control" id="viewService" name="service" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewProvider" class="form-label">Provider</label>
+              <input type="text" class="form-control" id="viewProvider" name="provider" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewDetails" class="form-label">Details</label>
+              <input type="text" class="form-control" id="viewDetails" name="details" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewExperience" class="form-label">Experience</label>
+              <input type="text" class="form-control" id="viewExperience" name="experience" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewAvailability" class="form-label">Availability</label>
+              <input type="text" class="form-control" id="viewAvailability" name="availability" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewContactInfo" class="form-label">Contact Info</label>
+              <input type="text" class="form-control" id="viewContactInfo" name="contactInfo" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewDesc" class="form-label">Description</label>
+              <textarea class="form-control" id="viewDesc" name="Description" readonly></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" form="applyJobForm">Contact Applicant</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<!-- Bootstrap, Popper.js, and Main JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+<!-- Reference to external JavaScript file -->
+<script src="{{ url_for('static', filename='tempmodal.js') }}"></script> <!-- note that this is only here as a basic script so we can view the design of the modal. -->
+{% endblock %}

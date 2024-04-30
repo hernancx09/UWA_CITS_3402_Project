@@ -109,3 +109,7 @@ def post():
         create_job(postForm)
         return render_template('post.html', form = PostJobForm())
     return render_template('post.html', form = postForm)
+
+@current_app.route('/profile')
+def profile():
+    return render_template('profile.html')

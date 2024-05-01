@@ -112,7 +112,7 @@ def post():
         return render_template('post.html', form = PostJobForm())
     return render_template('post.html', form = postForm)
 
-@current_app.route('/profile', methods=['GET', 'POST'])
+@current_app.route('/profile', methods=['GET'])
 def profile():
     myPosts = fetch_user_posts()
     msg = fetch_received_messages()

@@ -1,6 +1,5 @@
 from flask_login import login_user
 from app.db_helpers import db
-import sqlalchemy as sa
 
 def test_main_search(client, app_functional, new_jobPost, new_user):
     """

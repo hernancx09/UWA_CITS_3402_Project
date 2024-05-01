@@ -26,23 +26,20 @@ def test_main_search(client, app_functional, new_jobPost, new_user):
         with app_functional.test_request_context():
             login_user(new_user)
             
-            msg = Messages(
-                message = "new application",
-                job_id = 1,
-                employer_id = 3,
-                applicant_id = 2
-            )
+        msg = Messages(
+            message = "new application",
+            job_id = 1,
+            employer_id = 3,
+            applicant_id = 2
+        )
+    
+        db.session.add(msg)
+        db.session.commit
         
-            db.session.add(msg)
-            db.session.commit
-            
-            response = client.get('/profile')
-
-            print(response.data)
-            
-            assert response.status_code == 200
-            assert b"Messages" in response.data
-            assert b"My Applications" in response.data
-            assert b"My Ongoing Jobs" in response.data
-            assert user.name.encode('ASCII') in response.data
-            assert user.email.encode('ASCII') in response.data
+        response = client.get('/profile')
+        assert response.status_code == 200
+        assert b"Messages" in response.data
+        assert b"My Applications" in response.data
+        assert b"My Ongoing Jobs" in response.data
+        assert user.name.encode('ASCII') in response.data
+        assert user.email.encode('ASCII') in response.data

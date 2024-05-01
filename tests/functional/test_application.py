@@ -23,9 +23,9 @@ def test_main_search(client, app_functional, new_jobPost, new_user):
         db.session.add(new_jobPost)
         db.session.commit
 
-        with app_functional.test_request_context():
-            login_user(new_user)
-            
+        print(Users.query.all()[0].id)
+        print(Users.query.all()[1].id)
+        print(Users.query.all()[2].id)
         msg = Messages(
             message = "new application",
             job_id = 1,
@@ -35,7 +35,9 @@ def test_main_search(client, app_functional, new_jobPost, new_user):
     
         db.session.add(msg)
         db.session.commit
-        
+        with app_functional.test_request_context():
+            login_user(new_user)
+            
         response = client.get('/profile')
         assert response.status_code == 200
         assert b"Messages" in response.data

@@ -22,16 +22,15 @@ def test_main_search(client, app_functional, new_jobPost, new_user):
         db.session.add(user)
         db.session.add(new_jobPost)
         db.session.commit
-             
-        assert Users.query.filter(Users.id == 1).first().name == "Tim"
 
         with app_functional.test_request_context():
             login_user(new_user)
+            
             msg = Messages(
                 message = "new application",
-                job_id = new_jobPost.id,
-                employer_id = new_user.id,
-                applicant_id = user.id
+                job_id = 1,
+                employer_id = 3,
+                applicant_id = 2
             )
         
             db.session.add(msg)

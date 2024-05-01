@@ -1,38 +1,38 @@
 {% extends "base.html" %}
 {% block title %}Jobs{% endblock %}
 {% block extraheaders %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style_main.css') }}"!important>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style_main.css') }}" !important>
 {% endblock %}
 {% block content %}
 
-    <div class="container mt-5">
+<div class="container mt-5">
     <section class="title-section text-center">
         <h1>Jobs Available</h1>
     </section>
     <section class="search-section">
         <div class="container">
-        <form action="{{ url_for('jobs') }}" method="post" class="row justify-content-center align-items-center">
-            {{ form.hidden_tag() }}
-            <div class="col-sm-3 my-1">
-                {{ form.keyword(size=16) }}
-                {% for error in form.keyword.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </div>
-            <div class="col-sm-3 my-1">
-                {{ form.job_type.label }}
-                {{ form.job_type }}
-                {% for error in form.job_type.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </div>
-            <div class="col-sm-3 my-1">
-                {{ form.submit() }}
-                {% for error in form.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </div>
-        </form>
+            <form action="{{ url_for('jobs') }}" method="post" class="row justify-content-center align-items-center">
+                {{ form.hidden_tag() }}
+                <div class="col-sm-3 my-1">
+                    {{ form.keyword(size=16) }}
+                    {% for error in form.keyword.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <div class="col-sm-3 my-1">
+                    {{ form.job_type.label }}
+                    {{ form.job_type }}
+                    {% for error in form.job_type.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <div class="col-sm-3 my-1">
+                    {{ form.submit() }}
+                    {% for error in form.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+            </form>
         </div>
     </section>
 
@@ -41,18 +41,18 @@
         <table class="table table-striped table-bordered" id="jobsTable">
             <thead>
                 <tr>
-                <th scope="col">Job Name</th>
-                <th scope="col">User</th>
-                <th scope="col">Pay</th>
-                <th scope="col">Location</th>
-                <th scope="col">Start From</th>
-                <th scope="col">Status</th>
-                <th scope="col">Job Type</th>
+                    <th scope="col">Job Name</th>
+                    <th scope="col">User</th>
+                    <th scope="col">Pay</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Start From</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Job Type</th>
                 </tr>
             </thead>
             <tbody>
                 {% for row in data %}
-                    <tr>
+                <tr>
                     <td>{{row[0]}}</td>
                     <td>{{row[1]}}</td>
                     <td>{{row[2]}}</td>
@@ -60,54 +60,59 @@
                     <td>{{row[4]}}</td>
                     <td>{{row[5]}}</td>
                     <td>{{row[6]}}</td>
-                    <td>{{row[7]}}</td>
-                    <td><button class="btn btn-primary apply-btn" onclick="clicked('{{row[8]}}');">Quick Apply</button></td>
-                    <td><form class="btn btn-primary view-btn" action="{{ url_for('view', job_id=row[7]) }}" method="post" class="btn btn-primary view-btn">
-                      <input style="color: white; background: transparent; border: transparent;" type="submit" value="View">
-                    </form></td>
-                    </tr>
+                    <td><button class="btn btn-primary apply-btn" onclick="clicked('{{row[7]}}', '{{row[8]}}');">Quick Apply</button>
+                    </td>
+                    <td>
+                        <form class="btn btn-primary view-btn" action="{{ url_for('view', job_id=row[7]) }}"
+                            method="post" class="btn btn-primary view-btn">
+                            <input style="color: white; background: transparent; border: transparent;" type="submit"
+                                value="View">
+                        </form>
+                    </td>
+                </tr>
                 {% endfor %}
             </tbody>
-            </table>
+        </table>
         <form class="btn btn2 my-3" action="{{ url_for('post')}}">
-          <input style="background: transparent; border: transparent;" type="submit" value="Make a Post" />
-      </form>
+            <input style="background: transparent; border: transparent;" type="submit" value="Make a Post" />
+        </form>
     </section>
-    </div>
+</div>
 
 <!-- Modals HTML -->
 <!-- Modal for Viewing Job Entry -->
 <div class="modal fade" id="viewJobModal" tabindex="-1" aria-labelledby="viewJobModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="viewJobModalLabel">Apply for Job</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <form action="" method="post">
-        <div class="modal-body">
-            {{ quickApplyForm.hidden_tag() }}
-            <div class="mb-3">
-                {{ quickApplyForm.message.label }} <br>
-                {{ quickApplyForm.message(class="modal-textArea", cols="58", rows="4") }}
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewJobModalLabel">Apply for Job</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <form action="" method="post">
+                <div class="modal-body">
+                    {{ quickApplyForm.hidden_tag() }}
+                    <div class="mb-3">
+                        {{ quickApplyForm.message.label }} <br>
+                        {{ quickApplyForm.message(class="modal-textArea", cols="58", rows="4") }}
+                    </div>
+                </div>
+                <div style="display: none;">
+                    {{ quickApplyForm.job_id(id="job_id") }}
+                    {{ quickApplyForm.employer_id(id="employer_id") }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    {{ quickApplyForm.submitApplication(class="btn btn-primary") }}
+                </div>
+            </form>
         </div>
-        <div style="display: none;">
-            {{ quickApplyForm.employer_id(id="applyForm") }}
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            {{ quickApplyForm.submitApplication(class="btn btn-primary") }}
-        </div>
-        </form>
-      </div>
     </div>
-  </div>
+</div>
 
 <!-- Bootstrap, Popper.js, and Main JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
 <!-- Reference to external JavaScript file -->
-<script src="{{ url_for('static', filename='tempmodal.js') }}"></script> <!-- note that this is only here as a basic script so we can view the design of the modal. -->
+<script src="{{ url_for('static', filename='tempmodal.js') }}"></script>
+<!-- note that this is only here as a basic script so we can view the design of the modal. -->
 {% endblock %}
-

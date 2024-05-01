@@ -2,7 +2,7 @@
 from flask import flash, render_template, request, redirect, url_for, flash
 
 from flask import current_app
-from app.db_helpers import create_job, create_user, fetch_all_jobPosts, fetch_all_skillsPosts, fetch_post, get_email, populate_db
+from app.db_helpers import apply_for_job, create_job, create_user, fetch_all_jobPosts, fetch_all_skillsPosts, fetch_post, fetch_received_messages, fetch_sent_messages, fetch_user_posts, get_email, populate_db
 from app.forms import DataForm, LoginForm, PostJobForm, RegisterForm, SearchForm, quickApplyForm
 from flask_login import current_user, login_required, login_user, logout_user
 
@@ -43,10 +43,8 @@ def jobs():
         if (result == []): # if result empty
             result = [('-', '-', '-', '-', '-', '-', '-')]
         return render_template('jobs.html', form = searchForm, quickApplyForm = applyForm, data = result)
-    if(request.method == "POST"):
-        print(applyForm.applicant_id.data)
-        print(applyForm.employer_id.data)
-        print(applyForm.message.data)
+    if(applyForm.submitApplication.data and applyForm.validate()):
+        apply_for_job(applyForm)
         result = fetch_all_jobPosts("", "Any")
         return render_template('jobs.html', form = searchForm, quickApplyForm = applyForm, data = result)
     result = fetch_all_jobPosts("", "Any")
@@ -114,9 +112,12 @@ def post():
         return render_template('post.html', form = PostJobForm())
     return render_template('post.html', form = postForm)
 
-@current_app.route('/profile')
+@current_app.route('/profile', methods=['GET', 'POST'])
 def profile():
-    return render_template('profile.html')
+    myPosts = fetch_user_posts()
+    msg = fetch_received_messages()
+    applied_for = fetch_sent_messages()
+    return render_template('profile.html', posted=myPosts, messages = msg, applications = applied_for)
 
 @current_app.route('/view/<job_id>', methods=['GET', 'POST'])
 def view(job_id):

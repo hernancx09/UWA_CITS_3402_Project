@@ -1,12 +1,11 @@
-let clickedBtn = null;
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
-async function clicked(int) {
-  await sleep(1000)
-  document.getElementById("applyForm").value = int
-  console.log(document.getElementById("applyForm").value)
+async function clicked(job_id, employer_id) {
+  await sleep(1000);
+  document.getElementById("job_id").value = job_id;
+  document.getElementById("employer_id").value = employer_id;
 }
 
 document.addEventListener("DOMContentLoaded", function () {

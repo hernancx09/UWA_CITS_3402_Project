@@ -40,6 +40,7 @@ def test_main_search(client, app_functional, new_jobPost, new_user):
             login_user(new_user)
             
         response = client.get('/profile')
+        
         assert response.status_code == 200
         assert b"Messages" in response.data
         assert b"My Applications" in response.data

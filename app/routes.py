@@ -113,3 +113,7 @@ def post():
 @current_app.route('/profile')
 def profile():
     return render_template('profile.html')
+
+@current_app.route('/view')
+def view():
+    return render_template('job-detail.html')

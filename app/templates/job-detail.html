@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Jobs{% endblock %}
+{% block extraheaders %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style_main.css') }}"!important>
+{% endblock %}
+
+{% block content %}
+
+    <h1 class="offer-title">Job Offer</h1>
+
+  <!-- Name Section -->
+  <div class="job-details-section">
+    <div class="job-details-label">Job Title:</div>
+    <div class="job-details-value">Software Engineer</div>
+  </div>
+
+  <!-- Pay Section -->
+  <div class="job-details-section">
+    <div class="job-details-label">Pay:</div>
+    <div class="job-details-value">$100,000 per year</div>
+  </div>
+
+  <!-- Location Section -->
+  <div class="job-details-section">
+    <div class="job-details-label">Location:</div>
+    <div class="job-details-value">Perth, WA</div>
+  </div>
+
+  <!-- Time Frame Section -->
+  <div class="job-details-section">
+    <div class="job-details-label">Time Frame:</div>
+    <div class="job-details-value">Full-time</div>
+  </div>
+
+  <!-- Status Section -->
+  <div class="job-details-section">
+    <div class="job-details-label">Status:</div>
+    <div class="job-details-value">Open</div>
+  </div>
+
+  
+  <!-- Job Description Section -->
+  <div class="job-details-section job-description">
+    <div class="job-details-label">Job Description:</div>
+    <p>
+      We are seeking a talented Software Engineer to join our team. In this role, you will be responsible for developing and maintaining software applications, implementing new features, and improving existing systems.
+    </p>
+  </div>
+
+
+  <!-- Button Container -->
+  <div class="button-container">
+    <button class="btn btn-accept">Accept Job Offer</button>
+    <button class="btn btn-cancel">Decline Offer</button>
+  </div>
+
+
+  </div>
+
+
+<!-- Bootstrap, Popper.js, and Main JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+<!-- Reference to external JavaScript file -->
+<script src="{{ url_for('static', filename='tempmodal.js') }}"></script> <!-- note that this is only here as a basic script so we can view the design of the modal. -->
+
+{% endblock %}

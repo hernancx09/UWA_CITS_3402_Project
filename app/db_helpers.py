@@ -3,7 +3,7 @@ import random
 from flask_login import current_user
 from app import db
 from app.forms import PostJobForm, RegisterForm
-from app.models import Users, Posts
+from app.models import Messages, Users, Posts
 import sqlalchemy as sa
 
 POST_JOB = "Job request"
@@ -53,8 +53,26 @@ def create_job(form):
         db.session.commit()
 # edit job post
 # Fetches user Posts and returns name, start_date, status and job type
-def fetch_user_Posts():
-        data = db.session.query(Posts.name, sa.text('STRFTIME("%d/%m/%Y",Posts.start_from_date)'), Posts.job_type, Posts.status).filter(Posts.user_id == current_user.get_id())
+def fetch_user_posts():
+        data = db.session.query(Posts.name, 
+                                Posts.pay,
+                                Posts.location,
+                                sa.text('STRFTIME("%d/%m/%Y",Posts.start_from_date)'),
+                                Posts.status,
+                                Posts.job_type,
+                                Posts.id).filter(Posts.user_id == current_user.get_id())
+        return data
+
+def fetch_post(id):
+        data = db.session.query(Posts.name, 
+                                Users.name, 
+                                Posts.pay,
+                                Posts.location,
+                                sa.text('STRFTIME("%d/%m/%Y",Posts.start_from_date)'),
+                                Posts.status,
+                                Posts.job_type,
+                                Posts.description).filter(Posts.id == id) \
+                                        .filter(Posts.user_id == Users.id).first()
         return data
 def fetch_all_jobPosts(keyword, job_type):
         if(job_type == "Any"):
@@ -65,7 +83,9 @@ def fetch_all_jobPosts(keyword, job_type):
                                 Posts.location,
                                 sa.text('STRFTIME("%d/%m/%Y",Posts.start_from_date)'),
                                 Posts.status,
-                                Posts.job_type).filter(current_user.get_id() != Posts.user_id) \
+                                Posts.job_type,
+                                Posts.id,
+                                Users.id).filter(current_user.get_id() != Posts.user_id) \
                                         .filter(Users.id == Posts.user_id) \
                                                 .filter(Posts.post_type == 0) \
                                                         .filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword)), 
@@ -78,7 +98,9 @@ def fetch_all_jobPosts(keyword, job_type):
                                 Posts.location,
                                 sa.text('STRFTIME("%d/%m/%Y",Posts.start_from_date)'),
                                 Posts.status,
-                                Posts.job_type).filter(current_user.get_id() != Posts.user_id) \
+                                Posts.job_type,
+                                Posts.id,
+                                Users.id).filter(current_user.get_id() != Posts.user_id) \
                                         .filter(Users.id == Posts.user_id) \
                                                 .filter(Posts.post_type == 0) \
                                                         .filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword)),
@@ -91,7 +113,8 @@ def fetch_all_skillsPosts(keyword, job_type):
                 data = db.session.query(Posts.name, 
                                 Users.name, 
                                 Posts.location,
-                                Posts.job_type).filter(current_user.get_id() != Posts.user_id) \
+                                Posts.job_type,
+                                Posts.id).filter(current_user.get_id() != Posts.user_id) \
                                         .filter(Users.id == Posts.user_id) \
                                                 .filter(Posts.post_type == 1) \
                                                         .filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword))).all()
@@ -100,12 +123,51 @@ def fetch_all_skillsPosts(keyword, job_type):
                 data = db.session.query(Posts.name,
                                 Users.name, 
                                 Posts.location,
-                                Posts.job_type).filter(current_user.get_id() != Posts.user_id) \
+                                Posts.job_type,
+                                Posts.id).filter(current_user.get_id() != Posts.user_id) \
                                         .filter(Users.id == Posts.user_id) \
                                                 .filter(Posts.post_type == 1) \
                                                         .filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword)),
                                                      Posts.job_type == job_type).all()
         return data
+
+def apply_for_job(form):
+        msg = Messages(
+                applicant_id = current_user.get_id(),
+                job_id = form.job_id.data,
+                employer_id = form.employer_id.data,
+                message = form.message.data
+        )
+        db.session.add(msg)
+        db.session.commit()
+
+def fetch_received_messages():
+        data = db.session.query(Posts.name,
+                                Users.name, 
+                                Users.email,
+                                Messages.id).filter(current_user.get_id() == Messages.employer_id) \
+                                        .filter(Messages.applicant_id == Users.id) \
+                                                .filter(Posts.id == Messages.job_id).all()
+        return data
+
+def fetch_sent_messages():
+        data = db.session.query(Posts.name,
+                                Users.name,
+                                Posts.status,
+                                Posts.id).filter(current_user.get_id() == Messages.applicant_id) \
+                                        .filter(Messages.employer_id == Users.id) \
+                                                .filter(Posts.id == Messages.job_id).all()
+        return data
+
+def fetch_message(id):
+        data = db.session.query(Users.name,
+                                Users.email,
+                                Messages.message).filter(Messages.employer_id== current_user.get_id()) \
+                                        .filter(Users.id == Messages.applicant_id) \
+                                                .filter(Messages.id == id).first()
+        return data
+
+'''DB populate helpers for testing'''
 def get_random_user(int):
         user_id = db.session.query(Users.id).filter(Users.id == int).first().id
         return user_id

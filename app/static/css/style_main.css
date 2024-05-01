@@ -94,3 +94,6 @@
     background-color: #5aba1e; /* Change to your desired header background color */
     color: #e2ece2; 
   }
+  .modal-textArea {
+    resize: none;
+  }

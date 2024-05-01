@@ -23,9 +23,10 @@ def test_main_search(client, app_functional, new_jobPost, new_user):
         db.session.add(new_jobPost)
         db.session.commit
 
-        print(Users.query.all()[0].id)
-        print(Users.query.all()[1].id)
-        print(Users.query.all()[2].id)
+        print("\n username:" + str(Users.query.all()[0].name) + ", id:" + str(Users.query.all()[0].id))
+        print("\n username:" + str(Users.query.all()[1].name) + ", id:" + str(Users.query.all()[1].id))
+        print("\n username:" + str(Users.query.all()[2].name) + ", id:" + str(Users.query.all()[2].id))
+        
         msg = Messages(
             message = "new application",
             job_id = 1,

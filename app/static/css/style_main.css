@@ -94,6 +94,18 @@
     background-color: #5aba1e; /* Change to your desired header background color */
     color: #e2ece2; 
   }
-  .modal-textArea {
-    resize: none;
-  }
+
+.modal-textArea {
+    width: 100%; /* Extend the width to 100% */
+    height: 200px; /* Set a fixed height or adjust as needed */
+}
+
+.modal-dialog-centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} 
+/* Centering modal content */
+.modal-dialog#viewJobModal {
+    max-width: 1200px; /* Adjust the max-width as needed */
+}

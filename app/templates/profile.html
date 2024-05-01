@@ -30,7 +30,7 @@
           <td>{{row[4]}}</td>
           <td>{{row[5]}}</td>
           <td>
-            <form class="btn btn-primary view-btn" action="{{ url_for('view', job_id=row[6]) }}" method="post"
+            <form class="btn btn-primary view-btn" action="{{ url_for('view_job', job_id=row[6]) }}" method="post"
               class="btn btn-primary view-btn">
               <input style="color: white; background: transparent; border: transparent;" type="submit" value="Edit">
             </form>
@@ -63,7 +63,7 @@
           <td>{{row[1]}}</td>
           <td>{{row[2]}}</td>
           <td>
-            <form class="btn btn-primary view-btn" action="{{ url_for('view', job_id=row[3]) }}" method="post"
+            <form class="btn btn-primary view-btn" action="{{ url_for('view_job', job_id=row[3]) }}" method="post"
               class="btn btn-primary view-btn">
               <input style="color: white; background: transparent; border: transparent;" type="submit" value="View">
             </form>
@@ -93,7 +93,7 @@
           <td>{{row[1]}}</td>
           <td>{{row[2]}}</td>
           <td>
-            <form class="btn btn-primary view-btn" action="{{ url_for('view', job_id=row[6]) }}" method="post"
+            <form class="btn btn-primary view-btn" action="{{ url_for('view_message', message_id=row[3]) }}" method="post"
               class="btn btn-primary view-btn">
               <input style="color: white; background: transparent; border: transparent;" type="submit" value="View">
             </form>

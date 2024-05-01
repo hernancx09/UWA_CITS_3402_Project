@@ -63,7 +63,7 @@
                     <td><button class="btn btn-primary apply-btn" onclick="clicked('{{row[7]}}', '{{row[8]}}');">Quick Apply</button>
                     </td>
                     <td>
-                        <form class="btn btn-primary view-btn" action="{{ url_for('view', job_id=row[7]) }}"
+                        <form class="btn btn-primary view-btn" action="{{ url_for('view_job', job_id=row[7]) }}"
                             method="post" class="btn btn-primary view-btn">
                             <input style="color: white; background: transparent; border: transparent;" type="submit"
                                 value="View">

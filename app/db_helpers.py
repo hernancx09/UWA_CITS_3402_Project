@@ -71,7 +71,8 @@ def fetch_post(id):
                                 sa.text('STRFTIME("%d/%m/%Y",Posts.start_from_date)'),
                                 Posts.status,
                                 Posts.job_type,
-                                Posts.description).filter(Posts.id == id).first()
+                                Posts.description).filter(Posts.id == id) \
+                                        .filter(Posts.user_id == Users.id).first()
         return data
 def fetch_all_jobPosts(keyword, job_type):
         if(job_type == "Any"):
@@ -144,7 +145,7 @@ def fetch_received_messages():
         data = db.session.query(Posts.name,
                                 Users.name, 
                                 Users.email,
-                                Messages.message).filter(current_user.get_id() == Messages.employer_id) \
+                                Messages.id).filter(current_user.get_id() == Messages.employer_id) \
                                         .filter(Messages.applicant_id == Users.id) \
                                                 .filter(Posts.id == Messages.job_id).all()
         return data
@@ -157,6 +158,15 @@ def fetch_sent_messages():
                                         .filter(Messages.employer_id == Users.id) \
                                                 .filter(Posts.id == Messages.job_id).all()
         return data
+
+def fetch_message(id):
+        data = db.session.query(Users.name,
+                                Users.email,
+                                Messages.message).filter(Messages.employer_id== current_user.get_id()) \
+                                        .filter(Users.id == Messages.applicant_id) \
+                                                .filter(Messages.id == id).first()
+        return data
+
 '''DB populate helpers for testing'''
 def get_random_user(int):
         user_id = db.session.query(Users.id).filter(Users.id == int).first().id

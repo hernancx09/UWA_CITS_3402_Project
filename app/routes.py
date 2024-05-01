@@ -2,7 +2,7 @@
 from flask import flash, render_template, request, redirect, url_for, flash
 
 from flask import current_app
-from app.db_helpers import apply_for_job, create_job, create_user, fetch_all_jobPosts, fetch_all_skillsPosts, fetch_post, fetch_received_messages, fetch_sent_messages, fetch_user_posts, get_email, populate_db
+from app.db_helpers import apply_for_job, create_job, create_user, fetch_all_jobPosts, fetch_all_skillsPosts, fetch_message, fetch_post, fetch_received_messages, fetch_sent_messages, fetch_user_posts, get_email, populate_db
 from app.forms import DataForm, LoginForm, PostJobForm, RegisterForm, SearchForm, quickApplyForm
 from flask_login import current_user, login_required, login_user, logout_user
 
@@ -45,6 +45,7 @@ def jobs():
         return render_template('jobs.html', form = searchForm, quickApplyForm = applyForm, data = result)
     if(applyForm.submitApplication.data and applyForm.validate()):
         apply_for_job(applyForm)
+        flash("Application sent!")
         result = fetch_all_jobPosts("", "Any")
         return render_template('jobs.html', form = searchForm, quickApplyForm = applyForm, data = result)
     result = fetch_all_jobPosts("", "Any")
@@ -119,7 +120,12 @@ def profile():
     applied_for = fetch_sent_messages()
     return render_template('profile.html', posted=myPosts, messages = msg, applications = applied_for)
 
-@current_app.route('/view/<job_id>', methods=['GET', 'POST'])
-def view(job_id):
+@current_app.route('/job-listing/<job_id>', methods=['GET', 'POST'])
+def view_job(job_id):
     data = fetch_post(job_id)
-    return render_template('view.html', data = data)
+    return render_template('view_job.html', data = data)
+
+@current_app.route('/message/<message_id>', methods=['GET', 'POST'])
+def view_message(message_id):
+    data = fetch_message(message_id)
+    return render_template('view_message.html', data = data)

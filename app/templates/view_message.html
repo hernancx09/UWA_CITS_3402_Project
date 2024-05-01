@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Jobs{% endblock %}
+{% block extraheaders %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style_about.css') }}"!important>
+{% endblock %}
+{% block content %}
+
+    <div class="container mt-5">
+    <section class="job-section my-4" style="color: white;">
+        <div class="section">
+            <h1>
+                Applicant Name
+            </h1>
+            <p>
+                {{data[0]}}
+            </p>
+        </div>
+        <div class="section">
+            <h1>
+                Contact
+            </h1>
+            <p>
+                {{data[1]}}
+            </p>
+        </div>
+        <div class="section">
+            <h1>
+                Message
+            </h1>
+            <p>
+                {{data[2]}}
+            </p>
+        </div>
+
+    </section>
+    </div>
+{% endblock %}
+

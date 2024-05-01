@@ -1,13 +1,13 @@
-from flask_login import login_user
+from flask_login import login_user, logout_user
 from app.db_helpers import db
-from app.models import Messages, Users
+from app.models import Messages, Posts, Users
 
 
 def test_main_search(client, app_functional, new_jobPost, new_user):
     """
     GIVEN a test client, app
     WHEN user applies for a job
-    THEN check that the employer is inboxed with user details
+    THEN check that the employer is inboxed with user details, also check applicants profile shows application
     """
     with app_functional.app_context():
         '''
@@ -47,3 +47,21 @@ def test_main_search(client, app_functional, new_jobPost, new_user):
         assert b"My Ongoing Jobs" in response.data
         assert user.name.encode('ASCII') in response.data
         assert user.email.encode('ASCII') in response.data
+
+        '''
+        1. switch to user 2
+        2. check user 2 profile shows they have applied
+        '''
+        with app_functional.test_request_context():
+            logout_user()
+            login_user(user)
+        
+        response = client.get('/profile')
+        job_name = Posts.query.filter(Posts.id == 1).first().name
+        
+        assert response.status_code == 200
+        assert b"Messages" in response.data
+        assert b"My Applications" in response.data
+        assert b"My Ongoing Jobs" in response.data
+        assert new_user.name.encode('ASCII') in response.data
+        assert job_name.encode('ASCII') in response.data

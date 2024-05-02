@@ -1,0 +1,106 @@
+
+/* CSS Styles for Job Details */
+
+.offer-title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: #00ff1e;
+}
+
+.job-details-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #fcfcfc;
+    border: 1px solid #4dff00;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.job-details-section {
+    width: calc(50% - 10px); /* Adjusted width for each section */
+    padding: 15px;
+    border: 1px solid #b7ff02;
+    border-radius: 5px;
+    background-color: #ffffff;
+    margin-bottom: 15px;
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.job-details-label {
+    font-weight: bold;
+    color: #333;
+}
+
+.job-details-value {
+    margin-top: 5px;
+    color: #333;
+}
+
+.job-description {
+    width: 100%; /* Take full width of the row */
+    padding: 15px;
+    border: 1px solid #b7ff02;
+    border-radius: 5px;
+    background-color: #ffffff;
+    height: 200px; /* Increase height of job description */
+    overflow-y: auto; /* Add scroll if content exceeds height */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+
+/*Styling For Both Buttons*/
+.button-container {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+/* Apply the specified button style to the 'Accept Job Offer' button */
+.btn-accept {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px 15px;
+    width: auto;
+    background-color: #096080; /* deep sea blue */
+    color: #e2ece2; /* light greenish-grey */
+    border: 2px solid #00ff26; /* bright green */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-accept:hover {
+    background-color: #5aba1e; /* bright green */
+    border-color: #0b3a19; /* dark green */
+}
+
+/* Apply the specified button style to the 'Decline Offer' button */
+.btn-cancel {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px 15px;
+    width: auto;
+    background-color: #096080; /* deep sea blue */
+    color: #e2ece2; /* light greenish-grey */
+    border: 2px solid #ff0000; /* dark red */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-cancel:hover {
+    background-color: #ff0000; /* bright red */
+    border-color: #8f0808; /* dark red */
+}

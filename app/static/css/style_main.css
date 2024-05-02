@@ -344,6 +344,7 @@
   */
 
 
+
 /* CSS Styles for Job Details */
 .offer-title {
     text-align: center;
@@ -356,23 +357,27 @@
 
 .job-details-container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    flex-direction: column; /* Stack sections vertically */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    min-height: 100vh; /* Ensure container takes full viewport height */
     background-color: #fcfcfc;
     border: 1px solid #4dff00;
     border-radius: 8px;
     padding: 20px;
+    box-sizing: border-box;
     margin-bottom: 20px;
 }
 
 .job-details-section {
-    width: calc(50% - 10px); /* Adjusted width for each section */
-    padding: 15px;
+    width: 100%; /* Take full width of the container */
+    max-width: 600px; /* Limit maximum width of each section */
+    padding: 30px; /* Increased padding for larger sections */
     border: 1px solid #b7ff02;
-    border-radius: 5px;
+    border-radius: 8px;
     background-color: #ffffff;
-    margin-bottom: 15px;
-    box-sizing: border-box; /* Include padding in width calculation */
+    margin-bottom: 30px;
+    box-sizing: border-box;
 }
 
 .job-details-label {
@@ -381,49 +386,49 @@
 }
 
 .job-details-value {
-    margin-top: 5px;
+    margin-top: 10px;
     color: #333;
 }
 
 .job-description {
-    width: 100%; /* Take full width of the row */
-    padding: 15px;
+    width: 100%; /* Take full width of the container */
+    max-width: 800px; /* Set maximum width for job description */
+    height: 400px; /* Set fixed height for job description */
+    overflow-y: auto; /* Add vertical scroll if content exceeds height */
+    padding: 20px; /* Padding for job description */
     border: 1px solid #b7ff02;
-    border-radius: 5px;
+    border-radius: 8px;
     background-color: #ffffff;
-    height: 200px; /* Increase height of job description */
-    overflow-y: auto; /* Add scroll if content exceeds height */
-    box-sizing: border-box; /* Include padding in width calculation */
+    box-sizing: border-box;
+    font-family: Arial, sans-serif; /* Set font family to Arial */
 }
 
+.job-description p {
+    margin-top: 10px; /* Add margin below paragraphs */
+    color: #333;
+}
 
-/*Styling For Both Buttons*/
+/* Styling For Both Buttons */
 .button-container {
     width: 100%;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .btn {
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 15px 30px;
+    font-size: 18px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    margin-right: 10px;
+    margin-right: 15px;
 }
 
 /* Apply the specified button style to the 'Accept Job Offer' button */
 .btn-accept {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 10px 15px;
-    width: auto;
     background-color: #096080; /* deep sea blue */
     color: #e2ece2; /* light greenish-grey */
     border: 2px solid #00ff26; /* bright green */
-    border-radius: 5px;
-    cursor: pointer;
 }
 
 .btn-accept:hover {
@@ -433,15 +438,9 @@
 
 /* Apply the specified button style to the 'Decline Offer' button */
 .btn-cancel {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 10px 15px;
-    width: auto;
     background-color: #096080; /* deep sea blue */
     color: #e2ece2; /* light greenish-grey */
     border: 2px solid #ff0000; /* dark red */
-    border-radius: 5px;
-    cursor: pointer;
 }
 
 .btn-cancel:hover {

@@ -114,6 +114,21 @@ def post():
 def profile():
     return render_template('profile.html')
 
+
+#Main Job
+@current_app.route('/jd')
+def jd():
+    return render_template('job-detail.html')
+
+
+
+
 @current_app.route('/view')
 def view():
-    return render_template('job-detail.html')
+    return render_template('view.html')
+
+
+
+@current_app.route('/detail')
+def detail():
+    return render_template('details.html')

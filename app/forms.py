@@ -50,6 +50,12 @@ class PostJobForm(FlaskForm):
     description = TextAreaField('Additional details', validators=[Optional()])
     submit   = SubmitField('Post Job')
 
+class quickApplyForm(FlaskForm):
+    applicant_id = IntegerField('', validators=[DataRequired()])
+    job_id = IntegerField('')
+    employer_id = IntegerField('')
+    message = TextAreaField('Message', validators=[DataRequired()])
+    submitApplication = SubmitField('Apply')
 '''
 TESTING PURPOSES ONLY
 '''

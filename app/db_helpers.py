@@ -63,6 +63,9 @@ def fetch_user_posts():
                                 Posts.id).filter(Posts.user_id == current_user.get_id())
         return data
 
+def fetch_post_object(id):
+        post = db.session.query(Posts).filter(Posts.id == id).first()
+        return post
 def fetch_post(id):
         data = db.session.query(Posts.name, 
                                 Users.name, 
@@ -115,9 +118,8 @@ def fetch_all_skillsPosts(keyword, job_type):
                                 Posts.location,
                                 Posts.job_type,
                                 Posts.id).filter(current_user.get_id() != Posts.user_id) \
-                                        .filter(Users.id == Posts.user_id) \
-                                                .filter(Posts.post_type == 1) \
-                                                        .filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword))).all()
+                                        .filter(Posts.post_type == 1) \
+                                                .filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword))).all()
         else:
                 #query on keyword and job_type
                 data = db.session.query(Posts.name,
@@ -125,10 +127,10 @@ def fetch_all_skillsPosts(keyword, job_type):
                                 Posts.location,
                                 Posts.job_type,
                                 Posts.id).filter(current_user.get_id() != Posts.user_id) \
-                                        .filter(Users.id == Posts.user_id) \
-                                                .filter(Posts.post_type == 1) \
-                                                        .filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword)),
-                                                     Posts.job_type == job_type).all()
+                                        .filter(Posts.post_type == 1) \
+                                                .filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword)),
+                                             Posts.job_type == job_type).all()
+        print(data)
         return data
 
 def apply_for_job(form):

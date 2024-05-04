@@ -14,7 +14,7 @@
     <!-- Results Section -->
     <section class="search-section">
         <div class="container">
-        <form action="{{ url_for('jobs') }}" method="post" class="row justify-content-center align-items-center">
+        <form action="{{ url_for('candidates') }}" method="post" class="row justify-content-center align-items-center">
             {{ form.hidden_tag() }}
             <div class="col-sm-3 my-1">
                 {{ form.keyword(size=16) }}

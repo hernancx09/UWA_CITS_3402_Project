@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{%block extraheaders%}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style_forms.css') }}">
+{% endblock %}
+
+{% block content %}
+  <div class="centered-container">
+    <div id="header">Edit Job</div>
+    <div id="formwrapper">
+      <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+          {{form.post_type.label}} <br>
+          {{form.post_type}}
+        </p>
+        <p id="job_name_wrapper">
+          {{form.job_name.label}} <br>
+          {{form.job_name(size=30)}}
+        </p>
+        <p id="looking_for_wrapper">
+          {{form.looking_for.label}} <br>
+          {{form.looking_for(size=30)}}
+        </p>
+        <p id="pay_wrapper">
+          {{form.pay.label}} <br>
+          {{form.pay(size=30)}}
+        </p>
+        <p>
+            {{form.location.label}} <br>
+            {{form.location(size=30)}}
+        </p>
+          <p>
+            {{form.job_type.label}} <br>
+            {{form.job_type}}
+          </p>
+          <p id="start_from_date_wrapper">
+            {{form.start_from_date.label}} <br>
+            {{form.start_from_date}}
+          </p>
+          <p id="status_wrapper">
+            {{form.status.label}} <br>
+            {{form.status}}
+          </p>
+          <p>
+            {{form.description.label}} <br>
+            {{form.description(size=30, cols='40', rows='4')}}
+          </p>
+        <p>
+          {{form.submit()}}
+        </p>
+      </form>
+    </div>
+  </div>
+  <script src="/js/js_functions.js"></script>
+{% endblock %}
+

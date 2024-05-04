@@ -1,8 +1,8 @@
-
+import sqlalchemy as sa
 from flask import flash, render_template, request, redirect, url_for, flash
 
 from flask import current_app
-from app.db_helpers import apply_for_job, create_job, create_user, fetch_all_jobPosts, fetch_all_skillsPosts, fetch_message, fetch_post, fetch_received_messages, fetch_sent_messages, fetch_user_posts, get_email, populate_db
+from app.db_helpers import apply_for_job, create_job, create_user, fetch_all_jobPosts, fetch_all_skillsPosts, fetch_message, fetch_post, fetch_post_object, fetch_received_messages, fetch_sent_messages, fetch_user_posts, get_email, populate_db
 from app.forms import DataForm, LoginForm, PostJobForm, RegisterForm, SearchForm, quickApplyForm
 from flask_login import current_user, login_required, login_user, logout_user
 
@@ -67,6 +67,7 @@ def candidates():
         return render_template('candidates.html', form = searchForm, data = result)
     
     result = fetch_all_skillsPosts("", "Any")
+    print(result)
     return render_template('candidates.html', form = searchForm, data = result)
 
 @current_app.route('/login', methods=['GET', 'POST'])
@@ -134,3 +135,28 @@ def view_job(job_id):
 def view_message(message_id):
     data = fetch_message(message_id)
     return render_template('view_message.html', data = data)
+
+@current_app.route('/edit-listing/<job_id>', methods = ['GET', 'POST'])
+def edit_job(job_id):
+    post = fetch_post_object(job_id)
+    form = PostJobForm()
+    if(post.post_type == 0):
+        form = PostJobForm(
+            post_type = post.post_type,
+            job_name = post.name,
+            pay= str(post.pay),
+            location = post.location,
+            job_type = post.job_type,
+            start_from_date= post.start_from_date,
+            status = post.status,
+            description = post.description
+        )
+    else:
+        form = PostJobForm(
+            post_type = post.post_type,
+            looking_for = post.name,
+            location = post.location,
+            job_type = post.job_type,
+            description = post.description
+        )
+    return render_template('edit_job.html', form = form)

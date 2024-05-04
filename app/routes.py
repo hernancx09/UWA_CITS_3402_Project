@@ -44,8 +44,13 @@ def jobs():
             result = [('-', '-', '-', '-', '-', '-', '-')]
         return render_template('jobs.html', form = searchForm, quickApplyForm = applyForm, data = result)
     if(applyForm.submitApplication.data and applyForm.validate()):
-        apply_for_job(applyForm)
-        flash("Application sent!")
+        if(current_user.is_authenticated):
+            apply_for_job(applyForm)
+            flash("Application sent!")
+        else:
+            loginForm = LoginForm()
+            flash("You must login or create an account to apply!")
+            return render_template('login.html', form = loginForm)
         result = fetch_all_jobPosts("", "Any")
         return render_template('jobs.html', form = searchForm, quickApplyForm = applyForm, data = result)
     result = fetch_all_jobPosts("", "Any")

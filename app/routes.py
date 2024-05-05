@@ -67,7 +67,6 @@ def candidates():
         return render_template('candidates.html', form = searchForm, data = result)
     
     result = fetch_all_skillsPosts("", "Any")
-    print(result)
     return render_template('candidates.html', form = searchForm, data = result)
 
 @current_app.route('/login', methods=['GET', 'POST'])

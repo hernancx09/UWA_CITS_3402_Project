@@ -30,7 +30,7 @@ def create_user(form):
 def create_job(form):
         if(form.post_type.data == POST_JOB):
                 post = Posts(
-                        user_id = 1,
+                        user_id = current_user.get_id(),
                         post_type = 0,
                         name = form.job_name.data,
                         pay = form.pay.data,
@@ -42,7 +42,7 @@ def create_job(form):
                 )
         else:
                 post = Posts(
-                        user_id = 1,
+                        user_id = current_user.get_id(),
                         post_type = 1,
                         name = form.looking_for.data,
                         location = form.location.data,
@@ -118,6 +118,7 @@ def fetch_all_skillsPosts(keyword, job_type):
                                 Posts.location,
                                 Posts.job_type,
                                 Posts.id).filter(current_user.get_id() != Posts.user_id) \
+                                        .filter(Posts.user_id == Users.id) \
                                         .filter(Posts.post_type == 1) \
                                                 .filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword))).all()
         else:
@@ -128,6 +129,7 @@ def fetch_all_skillsPosts(keyword, job_type):
                                 Posts.job_type,
                                 Posts.id).filter(current_user.get_id() != Posts.user_id) \
                                         .filter(Posts.post_type == 1) \
+                                                .filter(Posts.user_id == Users.id) \
                                                 .filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword)),
                                              Posts.job_type == job_type).all()
         print(data)

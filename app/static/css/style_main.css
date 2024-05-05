@@ -1,176 +1,182 @@
 /* Specific styles for the search section */
 .search-section {
-    background-color: #e2ece2; /* light greenish-grey */
+  background-color: #e2ece2; /* light greenish-grey */
 }
 .search-section .form-control::placeholder {
-    color: #042d44; /* dark blue */
-    width: 100%; 
-    height: 38px;
+  color: #042d44; /* dark blue */
+  width: 100%;
+  height: 38px;
 }
 
 .search-section .form-select {
-    width: 100%; 
-    height: 38px;
+  width: 100%;
+  height: 38px;
 }
 
 /* Spacing and styles for the table */
 .table {
-    margin-top: 0;
-    width: 100%;
-    border-collapse: collapse;
+  margin-top: 0;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 /* Table stripes and hover highlights */
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color: #e2ece2; /* light greenish-grey for odd rows */
+  background-color: #e2ece2; /* light greenish-grey for odd rows */
 }
 .table-striped tbody tr:nth-of-type(even) {
-    background-color: #f9f9f9; /* kept as light grey for even rows */
+  background-color: #f9f9f9; /* kept as light grey for even rows */
 }
 .table-striped tbody tr:hover {
-    background-color: #aaf145; /* bright lime green on hover */
+  background-color: #aaf145; /* bright lime green on hover */
 }
 
 /* Borders for table, rows, and cells */
 .table-bordered th,
 .table-bordered td {
-    border: 1px solid #465968; /* greyish blue for border */
+  border: 1px solid #465968; /* greyish blue for border */
 }
 
 /* Table header custom style */
 .table thead th {
-    background-color: #042d44; /* dark blue */
-    color: #e2ece2; /* light greenish-grey text color */
+  background-color: #042d44; /* dark blue */
+  color: #e2ece2; /* light greenish-grey text color */
 }
 
 /* Borders around the table */
 .table-bordered {
-    border: 1px solid #042d44; /* dark blue for outer border */
+  border: 1px solid #042d44; /* dark blue for outer border */
 }
 
 /* Title Section with translucent white background */
 .title-section h1 {
-    background-color: #27cdea; /* cyan */
-    padding: 10px;
-    display: inline-block;
-    margin-top: 20px;
-    border-radius: 8px;
+  background-color: #27cdea; /* cyan */
+  padding: 10px;
+  display: inline-block;
+  margin-top: 20px;
+  border-radius: 8px;
 }
 
 /* Custom styles for the "Make a Post" button */
 .btn2 {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 10px 15px;
-    width: auto;
-    background-color: #096080; /* deep sea blue */
-    border-color: #042d44; /* dark blue */
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  width: auto;
+  background-color: #096080; /* deep sea blue */
+  border-color: #042d44; /* dark blue */
 }
 .btn2:hover {
-    background-color: #5aba1e; /* bright green */
-    color: #e2ece2; /* light greenish-grey */
-    border-color: #0b3a19; /* dark green */
+  background-color: #5aba1e; /* bright green */
+  color: #e2ece2; /* light greenish-grey */
+  border-color: #0b3a19; /* dark green */
 }
 .btn-primary:hover {
-    background-color: #5aba1e; /* bright green */
-    color: #e2ece2; /* light greenish-grey */
-    border-color: #0b3a19; /* dark green */
+  background-color: #5aba1e; /* bright green */
+  color: #e2ece2; /* light greenish-grey */
+  border-color: #0b3a19; /* dark green */
 }
 .btn-primary {
-    background-color: #096080; /* deep sea blue */
-    color: #e2ece2; /* light greenish-grey */
-    border-color: #042d44; /* dark blue */
+  background-color: #096080; /* deep sea blue */
+  color: #e2ece2; /* light greenish-grey */
+  border-color: #042d44; /* dark blue */
 }
 .results-section {
-    padding-bottom: 65px;
+  padding-bottom: 65px;
 }
-
-
 
 /* Popup Within Main*/
 
 .popup {
-    opacity: 0;
-    width: 70%;
-    height: 70%;
-  }
+  opacity: 0;
+  width: 70%;
+  height: 70%;
+}
 
 #popup {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgb(39, 43, 248);
-    padding: 20px;
-    border: 3px solid #000000;
-    color: rgb(255, 255, 255);
-  }
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(39, 43, 248);
+  padding: 20px;
+  border: 3px solid #000000;
+  color: rgb(255, 255, 255);
+}
 
-  .popup .show {
-    visibility: visible;
-    -webkit-animation: fadeIn 1s;
-    animation: fadeIn 1s;
-  }
-  
-  /* Add animation (fade in the popup) */
-  @-webkit-keyframes fadeIn {
-    from {opacity: 0;} 
-    to {opacity: 1;}
-  }
-  
-  @keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity:1 ;}
-  }
-  
-    /* Style for close button */
-    #closeButton {
-        position: absolute;
-        top: 10px;
-        right: 15px;
-        font-size: 20px;
-        cursor: pointer;
-    }
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
 
-    /* Boxes within the Popup*/
-        /* Style for box container */
-        .box-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
-        /* Style for individual box */
-        .boxL {
-            position: absolute;
-            left: 10px; /* Adjust left position as needed */
-            top: 50%; /* Align vertically */
-            transform: translate(0, -50%);
-            border: 2px solid white;
-            padding: 10px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 5px;
-            height: 50%;
-            width: 40%; /* Adjust box width as needed */
-            box-sizing: border-box; /* Include padding in width calculation */
-        }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
-        /* Style for right box */
-        .boxR {
-            position: absolute;
-            right: 10px; /* Adjust right position as needed */
-            top: 50%; /* Align vertically */
-            transform: translate(0, -50%);
-            border: 2px solid white;
-            padding: 10px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 5px;
-            height: 50%;
-            width: 40%; /* Adjust box width as needed */
-            box-sizing: border-box; /* Include padding in width calculation */
-        }
+/* Style for close button */
+#closeButton {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Boxes within the Popup*/
+/* Style for box container */
+.box-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Style for individual box */
+.boxL {
+  position: absolute;
+  left: 10px; /* Adjust left position as needed */
+  top: 50%; /* Align vertically */
+  transform: translate(0, -50%);
+  border: 2px solid white;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  height: 50%;
+  width: 40%; /* Adjust box width as needed */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* Style for right box */
+.boxR {
+  position: absolute;
+  right: 10px; /* Adjust right position as needed */
+  top: 50%; /* Align vertically */
+  transform: translate(0, -50%);
+  border: 2px solid white;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  height: 50%;
+  width: 40%; /* Adjust box width as needed */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
 
 /*
 .popup {
@@ -220,61 +226,58 @@
 
 /* added modal stuff here since profile follows same css as main.*/
 .modal-content {
-    background-color: #042d44;
-    color: #e2ece2;
+  background-color: #042d44;
+  color: #e2ece2;
 }
 .modal-header {
-    background-color: #5aba1e; /* Change to your desired header background color */
-    color: #e2ece2;
+  background-color: #5aba1e; /* Change to your desired header background color */
+  color: #e2ece2;
 }
-
 
 /* Style for Viewing Page */
 /* Styles for Job Listing */
 .job-container {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .job-name {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .job-details {
-    margin-bottom: 10px;
-  }
-  
-  .job-details label {
-    font-weight: bold;
-  }
-  
-  .job-description {
-    margin-top: 20px;
-  }
-  
-  .job-status {
-    font-weight: bold;
-    padding: 5px 10px;
-    border-radius: 4px;
-    text-transform: uppercase;
-  }
-  
-  .job-status.open {
-    background-color: #4CAF50;
-    color: #fff;
-  }
-  
-  .job-status.closed {
-    background-color: #F44336;
-    color: #fff;
-  }
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
 
+.job-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
 
+.job-details {
+  margin-bottom: 10px;
+}
+
+.job-details label {
+  font-weight: bold;
+}
+
+.job-description {
+  margin-top: 20px;
+}
+
+.job-status {
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.job-status.open {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.job-status.closed {
+  background-color: #f44336;
+  color: #fff;
+}
 
 /* CSS Styles for Job Details */
 /* OLD STYLE
@@ -343,10 +346,6 @@
   }
   */
 
-
-
-
-
 /* CSS Styles for Job Details */
 .offer-title {
   text-align: center;
@@ -367,7 +366,7 @@
 
 .job-details-section {
   width: 100%;
-  max-width: 600px; /* Limit maximum width of each section */
+
   padding: 20px;
   border: 1px solid #b7ff02;
   border-radius: 8px;
@@ -390,10 +389,10 @@
 .job-description {
   width: 100%; /* Ensure job description fills available width */
 
-  max-width: 1000px;
-  
+  /* max-width: 1000px; */
+
   padding: 20px;
-  border: 1px solid #b7ff02;
+  border: 1px solid #000000;
   border-radius: 8px;
   background-color: #ffffff;
   box-sizing: border-box;
@@ -430,6 +429,12 @@
   background-color: #5aba1e;
   border-color: #0b3a19;
 }
+
+.btn .btn-accept:hover {
+  background-color: #5aba1e;
+  border-color: #0b3a19;
+}
+
 
 /* Apply the specified button style to the 'Decline Offer' button */
 .btn-cancel {

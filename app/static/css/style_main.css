@@ -345,122 +345,111 @@
 
 
 
+
+
 /* CSS Styles for Job Details */
 .offer-title {
-    text-align: center;
-    font-size: 36px;
-    font-weight: bold;
-    margin-top: 30px;
-    margin-bottom: 20px;
-    color: #00ff1e;
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  color: #00ff1e;
 }
 
-.job-details-container {
-    display: flex;
-    flex-direction: column; /* Stack sections vertically */
-    justify-content: center; /* Center vertically */
-    align-items: center; /* Center horizontally */
-    min-height: 100vh; /* Ensure container takes full viewport height */
-    background-color: #fcfcfc;
-    border: 1px solid #4dff00;
-    border-radius: 8px;
-    padding: 20px;
-    box-sizing: border-box;
-    margin-bottom: 20px;
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  min-height: 100vh; /* Ensure container takes full viewport height */
 }
 
 .job-details-section {
-    width: 100%; /* Take full width of the container */
-    max-width: 600px; /* Limit maximum width of each section */
-    padding: 30px; /* Increased padding for larger sections */
-    border: 1px solid #b7ff02;
-    border-radius: 8px;
-    background-color: #ffffff;
-    margin-bottom: 30px;
-    box-sizing: border-box;
+  width: 100%;
+  max-width: 600px; /* Limit maximum width of each section */
+  padding: 20px;
+  border: 1px solid #b7ff02;
+  border-radius: 8px;
+  background-color: #ffffff;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  text-align: center; /* Center-align text within the section */
 }
 
 .job-details-label {
-    font-weight: bold;
-    color: #333;
+  font-weight: bold;
+  color: #333;
 }
 
 .job-details-value {
-    margin-top: 10px;
-    color: #333;
+  margin-top: 10px;
+  color: #333;
 }
 
 .job-description {
-    width: 100%; /* Take full width of the container */
-    max-width: 800px; /* Set maximum width for job description */
-    height: 400px; /* Set fixed height for job description */
-    overflow-y: auto; /* Add vertical scroll if content exceeds height */
-    padding: 20px; /* Padding for job description */
-    border: 1px solid #b7ff02;
-    border-radius: 8px;
-    background-color: #ffffff;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif; /* Set font family to Arial */
-}
+  width: 100%; /* Ensure job description fills available width */
 
-.job-description p {
-    margin-top: 10px; /* Add margin below paragraphs */
-    color: #333;
+  max-width: 1000px;
+  
+  padding: 20px;
+  border: 1px solid #b7ff02;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  margin-top: 20px;
+  color: #333;
+  text-align: center; /* Center-align text within the job description */
 }
 
 /* Styling For Both Buttons */
 .button-container {
-    width: 100%;
-    text-align: center;
-    margin-top: 30px;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
 }
 
 .btn {
-    padding: 15px 30px;
-    font-size: 18px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-right: 15px;
+  padding: 15px 30px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 15px;
 }
 
 /* Apply the specified button style to the 'Accept Job Offer' button */
 .btn-accept {
-    background-color: #096080; /* deep sea blue */
-    color: #e2ece2; /* light greenish-grey */
-    border: 2px solid #00ff26; /* bright green */
+  background-color: #096080;
+  color: #e2ece2;
+  border: 2px solid #00ff26;
 }
 
 .btn-accept:hover {
-    background-color: #5aba1e; /* bright green */
-    border-color: #0b3a19; /* dark green */
+  background-color: #5aba1e;
+  border-color: #0b3a19;
 }
 
 /* Apply the specified button style to the 'Decline Offer' button */
 .btn-cancel {
-    background-color: #096080; /* deep sea blue */
-    color: #e2ece2; /* light greenish-grey */
-    border: 2px solid #ff0000; /* dark red */
+  background-color: #096080;
+  color: #e2ece2;
+  border: 2px solid #ff0000;
 }
 
 .btn-cancel:hover {
-    background-color: #ff0000; /* bright red */
-    border-color: #8f0808; /* dark red */
+  background-color: #ff0000;
+  border-color: #8f0808;
 }
 
-
 .modal-textArea {
-    width: 100%; /* Extend the width to 100% */
-    height: 200px; /* Set a fixed height or adjust as needed */
+  width: 100%; /* Extend the width to 100% */
+  height: 200px; /* Set a fixed height or adjust as needed */
 }
 
 .modal-dialog-centered {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-} 
-/* Centering modal content */
-.modal-dialog#viewJobModal {
-    max-width: 1200px; /* Adjust the max-width as needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-

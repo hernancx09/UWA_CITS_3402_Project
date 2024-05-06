@@ -14,13 +14,9 @@
           {{form.post_type.label}} <br>
           {{form.post_type}}
         </p>
-        <p id="job_name_wrapper">
-          {{form.job_name.label}} <br>
-          {{form.job_name(size=30)}}
-        </p>
-        <p id="looking_for_wrapper">
-          {{form.looking_for.label}} <br>
-          {{form.looking_for(size=30)}}
+        <p id="name_wrapper">
+          {{form.name.label(id="name-label")}} <br>
+          {{form.name(size=30)}}
         </p>
         <p id="pay_wrapper">
           {{form.pay.label}} <br>

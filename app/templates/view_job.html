@@ -5,61 +5,61 @@
       href="{{ url_for('static', filename='css/style_main.css') }}"
     />
     {% endblock %} {% block content %}
-    <div class="container mt-5">
-      <h1 class="offer-title text-center">Detail Of the Job</h1>
+    <div class="containerV mt-5">
+      <h1 class="offer-titleV text-center">Detail Of the Job</h1>
     
       <div
-        class="container col-md-12 row justify-content-center"
+        class="containerV col-md-12 row justify-content-center"
         style="width: 100%"
       >
         <div class="col-md-6">
           <!-- Job Name Section -->
-          <div class="job-details-section">
-            <div class="job-details-label">Job Name:</div>
-            <div class="job-details-value">{{ data[0] }}</div>
+          <div class="job-details-sectionV">
+            <div class="job-details-labelV">Job Name:</div>
+            <div class="job-details-valueV">{{ data[0] }}</div>
           </div>
     
           <!-- Posted By Section -->
-          <div class="job-details-section">
-            <div class="job-details-label">Posted By:</div>
-            <div class="job-details-value">{{ data[1] }}</div>
+          <div class="job-details-sectionV">
+            <div class="job-details-labelV">Posted By:</div>
+            <div class="job-details-valueV">{{ data[1] }}</div>
           </div>
     
           <!-- Pay Section -->
-          <div class="job-details-section">
-            <div class="job-details-label">Pay (P/Hr):</div>
-            <div class="job-details-value">{{ data[2] }}</div>
+          <div class="job-details-sectionV">
+            <div class="job-details-labelV">Pay (P/Hr):</div>
+            <div class="job-details-valueV">{{ data[2] }}</div>
           </div>
     
           <!-- Location Section -->
-          <div class="job-details-section">
-            <div class="job-details-label">Location:</div>
-            <div class="job-details-value">{{ data[3] }}</div>
+          <div class="job-details-sectionV">
+            <div class="job-details-labelV">Location:</div>
+            <div class="job-details-valueV">{{ data[3] }}</div>
           </div>
     
           <!-- Start From Section -->
-          <div class="job-details-section">
-            <div class="job-details-label">Start From:</div>
-            <div class="job-details-value">{{ data[4] }}</div>
+          <div class="job-details-sectionV">
+            <div class="job-details-labelV">Start From:</div>
+            <div class="job-details-valueV">{{ data[4] }}</div>
           </div>
     
           <!-- Status Section -->
-          <div class="job-details-section">
-            <div class="job-details-label">Status:</div>
-            <div class="job-details-value">{{ data[5] }}</div>
+          <div class="job-details-sectionV">
+            <div class="job-details-labelV">Status:</div>
+            <div class="job-details-valueV">{{ data[5] }}</div>
           </div>
     
           <!-- Job Type Section -->
-          <div class="job-details-section">
-            <div class="job-details-label">Job Type:</div>
-            <div class="job-details-value">{{ data[6] }}</div>
+          <div class="job-details-sectionV">
+            <div class="job-details-labelV">Job Type:</div>
+            <div class="job-details-valueV">{{ data[6] }}</div>
           </div>
         </div>
         <div class="col-md-12">
           <!-- Job Description Section -->
-          <div class="job-details-section">
-            <div class="job-details-label"><h2>Job Description:</h2></div>
-            <div class="job-description">
+          <div class="job-description-sectionV">
+            <div class="job-description-labelV"><h2>Job Description:</h2></div>
+            <div class="job-descriptionV">
                 {{ data[7] }}
             </div>
           </div>
@@ -67,10 +67,10 @@
       </div>
     
       <!-- Button Container -->
-      <div class="row justify-content-center">
+      <div class="row justify-content-centerV">
         <div class="col-md-12 text-center">
-          <button class="btn btn-accept">Apply</button>
-          <button class="btn btn-cancel">Cancel</button>
+          <button class="btnV btn-acceptV">Apply</button>
+          <button class="btnV btn-cancelV">Cancel</button>
         </div>
       </div>
     </div>

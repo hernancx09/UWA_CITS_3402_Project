@@ -279,75 +279,13 @@
   color: #fff;
 }
 
-/* CSS Styles for Job Details */
-/* OLD STYLE
-  .offer-title {
-    text-align: center;
-    font-size: 36px;
-    font-weight: bold;
-    margin-top: 30px;
-    margin-bottom: 20px;
-    color: #00ff1e;
-  }
 
-.job-details-container {
-    background-color: #fcfcfc;
-    border: 1px solid #4dff00;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .job-details-section {
-    margin-bottom: 15px;
-    padding: 15px;
-    border: 1px solid #b7ff02;
-    border-radius: 5px;
-    background-color: #ffffff; 
-  }
-  
-  .job-details-label {
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .job-details-value {
-    margin-top: 5px;
-    color: #333;
-  }
-  
-  .job-description {
-    margin-top: 15px;
-    color: #333;
-  }
-  
-  .button-container {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  .btn {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 10px;
-  }
-  
-  .btn-accept {
-    background-color: #4CAF50;
-    color: #fff;
-  }
-  
-  .btn-cancel {
-    background-color: #F44336;
-    color: #fff;
-  }
-  */
+
+
+
 
 /* CSS Styles for Job Details */
-.offer-title {
+.offer-titleV {
   text-align: center;
   font-size: 36px;
   font-weight: bold;
@@ -356,7 +294,7 @@
   color: #00ff1e;
 }
 
-.container {
+.containerV {
   display: flex;
   flex-direction: column;
   align-items: center; /* Center horizontally */
@@ -364,7 +302,7 @@
   min-height: 100vh; /* Ensure container takes full viewport height */
 }
 
-.job-details-section {
+.job-details-sectionV {
   width: 100%;
 
   padding: 20px;
@@ -376,21 +314,20 @@
   text-align: center; /* Center-align text within the section */
 }
 
-.job-details-label {
+.job-details-labelV {
   font-weight: bold;
   color: #333;
 }
 
-.job-details-value {
+.job-details-valueV {
   margin-top: 10px;
   color: #333;
 }
 
-.job-description {
+.job-descriptionV {
   width: 100%; /* Ensure job description fills available width */
 
   /* max-width: 1000px; */
-
   padding: 20px;
   border: 1px solid #000000;
   border-radius: 8px;
@@ -402,14 +339,30 @@
   text-align: center; /* Center-align text within the job description */
 }
 
+.job-description-sectionV {
+  width: 50%;
+  padding: 20px;
+  border: 1px solid #b7ff02;
+  border-radius: 8px;
+  background-color: #ffffff;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  text-align: center; /* Center-align text within the section */
+}
+
+.job-description-labelV {
+  font-weight: bold;
+  color: #333;
+}
+
 /* Styling For Both Buttons */
-.button-container {
+.button-containerV {
   width: 100%;
   text-align: center;
   margin-top: 30px;
 }
 
-.btn {
+.btnV {
   padding: 15px 30px;
   font-size: 18px;
   border: none;
@@ -419,41 +372,41 @@
 }
 
 /* Apply the specified button style to the 'Accept Job Offer' button */
-.btn-accept {
+.btn-acceptV {
   background-color: #096080;
   color: #e2ece2;
   border: 2px solid #00ff26;
 }
 
-.btn-accept:hover {
+.btn-acceptV:hover {
   background-color: #5aba1e;
   border-color: #0b3a19;
 }
 
-.btn .btn-accept:hover {
+.btnV .btn-acceptV:hover {
   background-color: #5aba1e;
   border-color: #0b3a19;
 }
 
 
 /* Apply the specified button style to the 'Decline Offer' button */
-.btn-cancel {
+.btn-cancelV {
   background-color: #096080;
   color: #e2ece2;
   border: 2px solid #ff0000;
 }
 
-.btn-cancel:hover {
+.btn-cancelV:hover {
   background-color: #ff0000;
   border-color: #8f0808;
 }
 
-.modal-textArea {
+.modal-textAreaV {
   width: 100%; /* Extend the width to 100% */
   height: 200px; /* Set a fixed height or adjust as needed */
 }
 
-.modal-dialog-centered {
+.modal-dialog-centeredV {
   display: flex;
   align-items: center;
   justify-content: center;

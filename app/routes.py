@@ -2,7 +2,7 @@ import sqlalchemy as sa
 from flask import flash, render_template, request, redirect, url_for, flash
 
 from flask import current_app
-from app.db_helpers import apply_for_job, create_post, create_user, fetch_all_jobPosts, fetch_all_skillsPosts, fetch_message, fetch_post, fetch_post_object, fetch_received_messages, fetch_sent_messages, fetch_user_posts, get_email, populate_db, pre_fill_post_form, update_job
+from app.db_helpers import *
 from app.forms import DataForm, LoginForm, PostJobForm, RegisterForm, SearchForm, quickApplyForm
 from flask_login import current_user, login_required, login_user, logout_user
 
@@ -117,12 +117,15 @@ def post():
         return redirect(url_for('post'))
     return render_template('post.html', form = postForm)
 
-@current_app.route('/profile', methods=['GET'])
+@current_app.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
     myPosts = fetch_user_posts()
     msg = fetch_received_messages()
     applied_for = fetch_sent_messages()
+    if(request.method == 'POST'):
+        delete_post(request.form['post_id'])
+        flash('Post deleted!')
     return render_template('profile.html', posted=myPosts, messages = msg, applications = applied_for)
 
 @current_app.route('/job-listing/<job_id>', methods=['GET', 'POST'])

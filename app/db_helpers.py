@@ -42,6 +42,10 @@ def create_post(form):
         )
         db.session.add(post)
         db.session.commit()
+def delete_post(job_id):
+        post = fetch_post_object(job_id)
+        db.session.delete(post)
+        db.session.commit()
 #pre fill post form with job_id details
 def pre_fill_post_form(job_id):
         post = fetch_post_object(job_id)

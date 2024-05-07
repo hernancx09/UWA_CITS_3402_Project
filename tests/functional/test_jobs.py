@@ -30,3 +30,9 @@ def test_main_search(client, app_functional, new_jobPost, new_user):
         assert new_jobPost.start_from_date.strftime("%d/%m/%Y").encode('ASCII') in response.data
         assert new_jobPost.status.encode('ASCII') in response.data
         assert new_jobPost.job_type.encode('ASCII') in response.data
+        
+        response = client.post('/job-listing/{}'.format(new_jobPost.id))
+        
+        assert response.status_code == 200
+        assert b"Posted By" in response.data
+        assert new_jobPost.name.encode('ASCII') in response.data

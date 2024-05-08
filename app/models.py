@@ -31,7 +31,7 @@ class Posts(db.Model):
     author: so.Mapped[Users] = so.relationship(back_populates='posts')
     user_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(Users.id), index=True)
     id: so.Mapped[int] = so.mapped_column(sa.Integer(), primary_key= True)
-    post_type: so.Mapped[int] = so.mapped_column(sa.Integer())
+    post_type: so.Mapped[str] = so.mapped_column(sa.String(16))
     name: so.Mapped[str] = so.mapped_column(sa.String(32), index = True)
     pay: so.Mapped[int] = so.mapped_column(sa.Integer(), nullable=True)
     location: so.Mapped[str] = so.mapped_column(sa.String(16))

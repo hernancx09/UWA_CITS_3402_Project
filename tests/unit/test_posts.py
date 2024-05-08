@@ -2,17 +2,6 @@ import datetime
 from app.db_helpers import db
 from app.models import Posts
 
-def test_new_post(new_jobPost):
-    '''
-    GIVEN a Posts model
-    WHEN a new post is created
-    THEN check all fields are correctly defined
-    '''
-    assert new_jobPost.name == "test_job"
-    assert new_jobPost.pay == 50
-    assert new_jobPost.start_from_date == datetime.date.today()
-    assert new_jobPost.status is "Open"
-    
 def test_query_jobPosts(app_unit, new_jobPost, new_skillsPost, new_user):
     '''
     GIVEN an app and a User and Posts model

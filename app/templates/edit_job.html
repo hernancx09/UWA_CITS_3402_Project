@@ -6,16 +6,12 @@
 
 {% block content %}
   <div class="centered-container">
-    <div id="header">Create Job</div>
+    <div id="header">Edit Job</div>
     <div id="formwrapper">
       <form action="" method="post">
         {{ form.hidden_tag() }}
-        <p>
-          {{form.post_type.label}} <br>
-          {{form.post_type}}
-        </p>
         <p id="name_wrapper">
-          {{form.name.label(id="name-label")}} <br>
+          {{form.name.label}} <br>
           {{form.name(size=30)}}
         </p>
         <p id="pay_wrapper">
@@ -43,7 +39,7 @@
             {{form.description(size=30, cols='40', rows='4')}}
           </p>
         <p>
-          {{form.submit()}}
+          {{form.submit(value="Update")}}
         </p>
       </form>
     </div>

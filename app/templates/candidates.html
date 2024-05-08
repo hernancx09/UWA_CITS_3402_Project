@@ -14,7 +14,7 @@
     <!-- Results Section -->
     <section class="search-section">
         <div class="container">
-        <form action="{{ url_for('jobs') }}" method="post" class="row justify-content-center align-items-center">
+        <form action="{{ url_for('candidates') }}" method="post" class="row justify-content-center align-items-center">
             {{ form.hidden_tag() }}
             <div class="col-sm-3 my-1">
                 {{ form.keyword(size=16) }}
@@ -56,13 +56,19 @@
                     <td>{{row[1]}}</td>
                     <td>{{row[2]}}</td>
                     <td>{{row[3]}}</td>
-                    <td><button class="btn btn-primary view-btn">View</button></td>
+                    <td><form class="btn btn-primary view-btn" action="{{ url_for('view_job', job_id=row[4]) }}"
+                      method="post" class="btn btn-primary view-btn">
+                      <input style="color: white; background: transparent; border: transparent;" type="submit"
+                          value="View">
+                  </form></td>
                     
                     </tr>
                 {% endfor %}
             </tbody>
             </table>
-        <button class="btn btn2 my-3">Make a Post</button>
+            <form class="btn btn2 my-3" action="{{ url_for('post')}}">
+              <input style="background: transparent; border: transparent;" type="submit" value="Make a Post" />
+          </form>
     </section>
     </section>
     </div>

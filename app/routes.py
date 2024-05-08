@@ -1,10 +1,12 @@
-
+import sqlalchemy as sa
 from flask import flash, render_template, request, redirect, url_for, flash
 
 from flask import current_app
-from app.db_helpers import apply_for_job, create_job, create_user, fetch_all_jobPosts, fetch_all_skillsPosts, fetch_message, fetch_post, fetch_received_messages, fetch_sent_messages, fetch_user_posts, get_email, populate_db
+from app.db_helpers import *
 from app.forms import DataForm, LoginForm, PostJobForm, RegisterForm, SearchForm, quickApplyForm
 from flask_login import current_user, login_required, login_user, logout_user
+
+from app.models import Posts
 
 ##Usage
 # URLs need to be mapped to a function that will decide what happens on that page
@@ -43,11 +45,13 @@ def jobs():
         if (result == []): # if result empty
             result = [('-', '-', '-', '-', '-', '-', '-')]
         return render_template('jobs.html', form = searchForm, quickApplyForm = applyForm, data = result)
-    if(applyForm.submitApplication.data and applyForm.validate()):
-        apply_for_job(applyForm)
-        flash("Application sent!")
-        result = fetch_all_jobPosts("", "Any")
-        return render_template('jobs.html', form = searchForm, quickApplyForm = applyForm, data = result)
+    if(applyForm.submitApplication.data):
+        if (applyForm.validate()):
+            apply_for_job(applyForm)
+            flash("Application sent!")
+        elif not current_user.is_authenticated:
+            flash("You must login or create an account to continue!")
+            return redirect(url_for('login'))
     result = fetch_all_jobPosts("", "Any")
     return render_template('jobs.html', form = searchForm, quickApplyForm=applyForm, data = result)
 
@@ -109,15 +113,19 @@ def post():
     postForm = PostJobForm()
     
     if(postForm.validate_on_submit()):
-        create_job(postForm)
-        return render_template('post.html', form = PostJobForm())
+        create_post(postForm)
+        return redirect(url_for('post'))
     return render_template('post.html', form = postForm)
 
-@current_app.route('/profile', methods=['GET'])
+@current_app.route('/profile', methods=['GET', 'POST'])
+@login_required
 def profile():
     myPosts = fetch_user_posts()
     msg = fetch_received_messages()
     applied_for = fetch_sent_messages()
+    if(request.method == 'POST'):
+        delete_post(request.form['post_id'])
+        flash('Post deleted!')
     return render_template('profile.html', posted=myPosts, messages = msg, applications = applied_for)
 
 @current_app.route('/job-listing/<job_id>', methods=['GET', 'POST'])
@@ -126,6 +134,17 @@ def view_job(job_id):
     return render_template('view_job.html', data = data)
 
 @current_app.route('/message/<message_id>', methods=['GET', 'POST'])
+@login_required
 def view_message(message_id):
     data = fetch_message(message_id)
     return render_template('view_message.html', data = data)
+
+@current_app.route('/edit-listing/<post_id>', methods = ['GET', 'POST'])
+@login_required
+def edit_post(post_id):
+    #form = pre_fill_post_form(post_id)
+    post = Posts.query.filter(Posts.id == post_id).first()
+    form = PostJobForm(obj=post)
+    if(form.validate_on_submit()):
+        update_job(form, post_id)
+    return render_template('edit_job.html', form = form)

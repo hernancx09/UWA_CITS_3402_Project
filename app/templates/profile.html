@@ -31,9 +31,16 @@
           <td>{{row[4]}}</td>
           <td>{{row[5]}}</td>
           <td>
-            <form class="btn btn-primary view-btn" action="{{ url_for('view_job', job_id=row[6]) }}" method="post"
+            <form class="btn btn-primary view-btn" action="{{ url_for('edit_post', post_id=row[6]) }}" method="post"
               class="btn btn-primary view-btn">
               <input style="color: white; background: transparent; border: transparent;" type="submit" value="Edit">
+            </form>
+          </td>
+          <td>
+            <form class="btn btn-primary view-btn" action="{{ url_for('profile')}}" method="post"
+              class="btn btn-primary view-btn">
+              <input name="post_id" style="display: none;" type="number" value="{{ row[6] }}">
+              <input style="color: white; background: transparent; border: transparent;" type="submit" value="Delete">
             </form>
           </td>
         </tr>

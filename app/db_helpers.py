@@ -37,7 +37,6 @@ def create_post(form):
                 location = form.location.data,
                 job_type = form.job_type.data,
                 start_from_date = form.start_from_date.data,
-                status = form.status.data,
                 description = form.description.data
         )
         db.session.add(post)
@@ -57,7 +56,6 @@ def pre_fill_post_form(job_id):
             location = post.location,
             job_type = post.job_type,
             start_from_date = post.start_from_date,
-            status = post.status,
             description = post.description
         )
         return form
@@ -68,13 +66,12 @@ def update_job(form, post_id):
 
         db.session.add(post)
         db.session.commit()
-# Fetches user Posts and returns name, start_date, status and job type
+# Fetches user Posts and returns name, start_date and job type
 def fetch_user_posts():
         data = db.session.query(Posts.name, 
                                 Posts.pay,
                                 Posts.location,
                                 sa.text('STRFTIME("%d/%m/%Y",Posts.start_from_date)'),
-                                Posts.status,
                                 Posts.job_type,
                                 Posts.id).filter(Posts.user_id == current_user.get_id())
         return data
@@ -88,7 +85,6 @@ def fetch_post(id):
                                 Posts.pay,
                                 Posts.location,
                                 sa.text('STRFTIME("%d/%m/%Y",Posts.start_from_date)'),
-                                Posts.status,
                                 Posts.job_type,
                                 Posts.description).filter(Posts.id == id) \
                                         .filter(Posts.user_id == Users.id).first()
@@ -101,14 +97,12 @@ def fetch_all_jobPosts(keyword, job_type):
                                 Posts.pay,
                                 Posts.location,
                                 sa.text('STRFTIME("%d/%m/%Y",Posts.start_from_date)'),
-                                Posts.status,
                                 Posts.job_type,
                                 Posts.id,
                                 Users.id).filter(current_user.get_id() != Posts.user_id) \
                                         .filter(Users.id == Posts.user_id) \
                                                 .filter(Posts.post_type == REQUEST) \
-                                                        .filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword)), 
-                                                     Posts.status != 'Filled').all()
+                                                        .filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword))).all()
         else:
                 #query on keyword and job_type
                 data = db.session.query(Posts.name,
@@ -116,15 +110,13 @@ def fetch_all_jobPosts(keyword, job_type):
                                 Posts.pay,
                                 Posts.location,
                                 sa.text('STRFTIME("%d/%m/%Y",Posts.start_from_date)'),
-                                Posts.status,
                                 Posts.job_type,
                                 Posts.id,
                                 Users.id).filter(current_user.get_id() != Posts.user_id) \
                                         .filter(Users.id == Posts.user_id) \
                                                 .filter(Posts.post_type == REQUEST) \
                                                         .filter(Posts.name.op('regexp')('^.*{}.*$'.format(keyword)),
-                                                     Posts.job_type == job_type, 
-                                                     Posts.status != 'Filled').all()
+                                                     Posts.job_type == job_type).all()
         return data
 def fetch_all_skillsPosts(keyword, job_type):
         if(job_type == "Any"):
@@ -173,7 +165,6 @@ def fetch_received_messages():
 def fetch_sent_messages():
         data = db.session.query(Posts.name,
                                 Users.name,
-                                Posts.status,
                                 Posts.id).filter(current_user.get_id() == Messages.applicant_id) \
                                         .filter(Messages.employer_id == Users.id) \
                                                 .filter(Posts.id == Messages.job_id).all()
@@ -266,8 +257,7 @@ def populate_db(job_count, user_count):
                     location = "{}".format(random.choice(locations)),
                     start_from_date = random.choice(date_set),
                     description = "This is a new Job",
-                    job_type = random.choice(job_type),
-                    status = "Open"
+                    job_type = random.choice(job_type)
             )
             id = get_random_user(random.randint(1, user_count))
             post = Posts(
@@ -278,12 +268,32 @@ def populate_db(job_count, user_count):
                             location = postForm.location.data,
                             job_type = postForm.job_type.data,
                             start_from_date = postForm.start_from_date.data,
-                            status = postForm.status.data,
                             description = postForm.description.data
                     )
             db.session.add(post)
             db.session.commit()
             i+=1
+        i=0
+        while(i < job_count/2):
+                postForm = PostJobForm(
+                    post_type = LOOKING,
+                    name = "Post {}".format(str(i)),
+                    location = "{}".format(random.choice(locations)),
+                    description = "Looking for some work",
+                    job_type = random.choice(job_type)
+                )
+                id = get_random_user(random.randint(1, user_count))
+                post = Posts(
+                                user_id = id,
+                                post_type = LOOKING,
+                                name = postForm.name.data,
+                                location = postForm.location.data,
+                                job_type = postForm.job_type.data,
+                                description = postForm.description.data
+                        )
+                db.session.add(post)
+                db.session.commit()
+                i+=1
         
         
    

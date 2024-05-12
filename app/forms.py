@@ -45,7 +45,6 @@ class PostJobForm(FlaskForm):
     location = StringField('Location')
     job_type = SelectField(u'Job Type', choices=[('One Time'), ('Short Term'), ('Long Term')])
     start_from_date = DateField('Start Date', validators=[Optional()])
-    status = SelectField(u'Status', choices=[('Open'), ('Partially Filled'), ('Filled')], validators=[Optional()])
     description = TextAreaField('Additional details', validators=[Optional()])
     submit   = SubmitField('Post Job')
 

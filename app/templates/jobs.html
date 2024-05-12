@@ -46,7 +46,6 @@
                     <th scope="col">Pay</th>
                     <th scope="col">Location</th>
                     <th scope="col">Start From</th>
-                    <th scope="col">Status</th>
                     <th scope="col">Job Type</th>
                     <th scope="col" colspan="2">Actions</th>
                 </tr>
@@ -60,11 +59,10 @@
                     <td>{{row[3]}}</td>
                     <td>{{row[4]}}</td>
                     <td>{{row[5]}}</td>
-                    <td>{{row[6]}}</td>
-                    <td><button class="btn btn-primary apply-btn" onclick="clicked('{{row[7]}}', '{{row[8]}}');">Quick Apply</button>
+                    <td><button class="btn btn-primary apply-btn" onclick="clicked('{{row[6]}}', '{{row[7]}}');">Quick Apply</button>
                     </td>
                     <td>
-                        <form class="btn btn-primary view-btn" action="{{ url_for('view_job', job_id=row[7]) }}"
+                        <form class="btn btn-primary view-btn" action="{{ url_for('view_job', job_id=row[6]) }}"
                             method="post" class="btn btn-primary view-btn">
                             <input style="color: white; background: transparent; border: transparent;" type="submit"
                                 value="View">

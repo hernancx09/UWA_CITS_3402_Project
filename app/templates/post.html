@@ -6,48 +6,48 @@
 
 {% block content %}
   <div class="centered-container">
-    <div id="header">Create Job</div>
+    <div id="header">Create Job</div> <!--Display the title header for job creation-->
     <div id="formwrapper">
       <form action="" method="post">
-        {{ form.hidden_tag() }}
+        {{ form.hidden_tag() }} <!--CSRF token for form security-->
         <p>
-          {{form.post_type.label}} <br>
-          {{form.post_type}}
+          {{form.post_type.label}} <br> <!--Display label for post type selection-->
+          {{form.post_type}} <!--Display dropdown/select field for post type-->
         </p>
         <p id="name_wrapper">
-          {{form.name.label(id="name-label")}} <br>
-          {{form.name(size=30)}}
+          {{form.name.label(id="name-label")}} <br> <!--Display label for job name input-->
+          {{form.name(size=30)}} <!-- Display job name input field-->
         </p>
         <p id="pay_wrapper">
-          {{form.pay.label}} <br>
-          {{form.pay(size=30)}}
+          {{form.pay.label}} <br> <!--Display label for pay-->
+          {{form.pay(size=30)}} <!--Display pay input-->
         </p>
         <p>
-            {{form.location.label}} <br>
-            {{form.location(size=30)}}
+            {{form.location.label}} <br> <!--Display label for location-->
+            {{form.location(size=30)}} <!--Display location input-->
         </p>
           <p>
-            {{form.job_type.label}} <br>
-            {{form.job_type}}
+            {{form.job_type.label}} <br> <!--Display label for job type selection-->
+            {{form.job_type}} <!--Display job input, Dropdown selection-->
           </p>
           <p id="start_from_date_wrapper">
-            {{form.start_from_date.label}} <br>
-            {{form.start_from_date}}
+            {{form.start_from_date.label}} <br> <!--Display label for date-->
+            {{form.start_from_date}} <!--Display date input-->
           </p>
           <p id="status_wrapper">
-            {{form.status.label}} <br>
-            {{form.status}}
+            {{form.status.label}} <br> <!--Display label for status-->
+            {{form.status}} <!--Display status input-->
           </p>
           <p>
-            {{form.description.label}} <br>
-            {{form.description(size=30, cols='40', rows='4')}}
+            {{form.description.label}} <br> <!--Display label for description-->
+            {{form.description(size=30, cols='40', rows='4')}} <!--Display description input field-->
           </p>
         <p>
-          {{form.submit()}}
+          {{form.submit()}} <!--Submit button-->
         </p>
       </form>
     </div>
   </div>
-  <script src="/js/js_functions.js"></script>
+  <script src="/js/js_functions.js"></script> <!-- external javascript file for form validation -->
 {% endblock %}
 

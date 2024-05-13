@@ -1,31 +1,31 @@
 {% extends "base.html" %}
 
 {%block extraheaders%}
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style_forms.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style_forms.css') }}"> <!--Custom CSS form styling-->
 {% endblock %}
 
 {% block content %}
   <div class="centered-container">
-    <div id="header">Login Page</div>
+    <div id="header">Login Page</div> <!--Displays the header title for the login page-->
       <div id="formwrapper">
         <form action="" method="post">
-          {{ form.hidden_tag() }}
+          {{ form.hidden_tag() }} <!--Includes the CSRF token in the form-->
 
           <p>
-            {{form.email.label}} <br>
-            {{form.email(size=30)}}
+            {{form.email.label}} <br> <!--Display label for email input-->
+            {{form.email(size=30)}} <!-- Display email input field-->
           </p>
 
           <p>
-            {{form.password.label}} <br>
-            {{form.password(size=30)}}
+            {{form.password.label}} <br> <!--Display the label for password-->
+            {{form.password(size=30)}} <!--Display password field-->
           </p>
 
           <p>
-            {{form.submit()}}
+            {{form.submit()}} <!--Display Submit Button-->
           </p>
         </form>
-        <div>Don't have an account? <a href="/registration">Sign up here</a></div>
+        <div>Don't have an account? <a href="/registration">Sign up here</a></div> <!--Link registration for new users-->
       </div>
     </div>
   </div>

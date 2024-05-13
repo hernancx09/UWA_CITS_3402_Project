@@ -1,3 +1,4 @@
+/*Styling for the About page*/
 body {
     color: #e2ece2; /* light greenish-grey for text */
     font-family: Arial, sans-serif; /* Ensures a modern-looking sans-serif font is used */
@@ -37,8 +38,9 @@ body {
 }
 
 
-/*Stying for View Message*/
 
+
+/*Stying for View Message*/
 h1 {
     color: #042d44; /* Dark blue text */
     background-color: #27cdea; /* Cyan background */

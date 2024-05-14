@@ -185,116 +185,138 @@ def get_random_user(int):
         return user_id
 
 def populate_db(job_count, user_count):
-    locations = [
-        'Bassendean',
-        'Joondalup',
-        'Wembley',
-        'Nedlands',
-        'Cockburn',
-        'Malaga',
-        'Stirling',
-        'Mt Lawley',
-        'Mt Hawthorn',
-        'Subiaco',
-        'Maylands',
-        'Bedford',
-        'Dianella',
-        'Inglewood',
-        'Scarborough'
-    ]
-    job_type = [
-        'One Time',
-        'Short Term',
-        'Long Term'
-    ]
-    user_names = [
-            'Admin',
-            'Chad',
-            'Jack',
-            'Tim',
-            'Kelly',
-            'Rachel',
-            'Abi',
-            'Louise',
-            'Steve',
-            'Hannah',
-            'Daniel',
-            'John',
-            'Leon',
-            'Carmel',
-            'Ryan',
-            'Matthew',
-            'Justine',
-            'Carol',
-            'Shane',
-            'Jasmine'
-    ]
-    date_start = datetime.date.today()
-    date_end = datetime.date(2025, 12, 31)
-    
-    date_set = [datetime.date.today]
-    
-    while date_start != date_end:
-        date_start += datetime.timedelta(days=1)
-        date_set.append(date_start)
-    j = 0
-    while(j < user_count):     
-        name = user_names[j]
-        userForm = RegisterForm(
-                name = "{}".format(name),
-                email = "{}@gmail.com".format(name.lower()),
-                password = "{}_user1".format(name),
-                passwordCheck = "{}_user1".format(name),
-        )
-        create_user(userForm)
-        j+=1
-    if(job_count is not None):
-        i = 0
-        while (i < job_count):
-            postForm = PostJobForm(
-                    post_type = REQUEST,
-                    name = "Post {}".format(str(i)),
-                    pay = random.randint(20, 100),
-                    location = "{}".format(random.choice(locations)),
-                    start_from_date = random.choice(date_set),
-                    description = "This is a new Job",
-                    job_type = random.choice(job_type)
+        jobs = [
+                'Mow my lawn',
+                'Elderly Shopping Delivery',
+                'Flower Delivery Driver',
+                'Help me move house',
+                'Change my car tyre',
+                'Maths Tutor',
+                'Teacher',
+                'Lab Assistant',
+                'Bricklayer',
+                'Electrician',
+                'Mechanic',
+                'Painter',
+                'Builder',
+                'Junior Web Developer',
+                'CAD Technician',
+                'Full Stack Developer',
+                'IT Technician',
+                'Software Developer',
+                'Network Administrator',
+                'System Administrator'
+        ]
+        locations = [
+                'Bassendean',
+                'Joondalup',
+                'Wembley',
+                'Nedlands',
+                'Cockburn',
+                'Malaga',
+                'Stirling',
+                'Mt Lawley',
+                'Mt Hawthorn',
+                'Subiaco',
+                'Maylands',
+                'Bedford',
+                'Dianella',
+                'Inglewood',
+                'Scarborough'
+        ]
+        job_type = [
+                'One Time',
+                'Short Term',
+                'Long Term'
+        ]
+        user_names = [
+                'Admin',
+                'Chad',
+                'Jack',
+                'Tim',
+                'Kelly',
+                'Rachel',
+                'Abi',
+                'Louise',
+                'Steve',
+                'Hannah',
+                'Daniel',
+                'John',
+                'Leon',
+                'Carmel',
+                'Ryan',
+                'Matthew',
+                'Justine',
+                'Carol',
+                'Shane',
+                'Jasmine'
+        ]
+        date_start = datetime.date.today()
+        date_end = datetime.date(2025, 12, 31)
+        
+        date_set = [datetime.date.today]
+        
+        while date_start != date_end:
+            date_start += datetime.timedelta(days=1)
+            date_set.append(date_start)
+        j = 0
+        while(j < user_count):     
+            name = user_names[j]
+            userForm = RegisterForm(
+                    name = "{}".format(name),
+                    email = "{}@gmail.com".format(name.lower()),
+                    password = "{}_user1".format(name),
+                    passwordCheck = "{}_user1".format(name),
             )
-            id = get_random_user(random.randint(1, user_count))
-            post = Posts(
-                            user_id = id,
-                            post_type = REQUEST,
-                            name = postForm.name.data,
-                            pay = postForm.pay.data,
-                            location = postForm.location.data,
-                            job_type = postForm.job_type.data,
-                            start_from_date = postForm.start_from_date.data,
-                            description = postForm.description.data
-                    )
-            db.session.add(post)
-            db.session.commit()
-            i+=1
-        i=0
-        while(i < job_count/2):
+            create_user(userForm)
+            j+=1
+        if(job_count is not None):
+            i = 0
+            while (i < job_count):
                 postForm = PostJobForm(
-                    post_type = LOOKING,
-                    name = "Post {}".format(str(i)),
-                    location = "{}".format(random.choice(locations)),
-                    description = "Looking for some work",
-                    job_type = random.choice(job_type)
+                        post_type = REQUEST,
+                        name = random.choice(jobs),
+                        pay = random.randint(20, 100),
+                        location = "{}".format(random.choice(locations)),
+                        start_from_date = random.choice(date_set),
+                        description = "This is a job description...",
+                        job_type = random.choice(job_type)
                 )
                 id = get_random_user(random.randint(1, user_count))
                 post = Posts(
                                 user_id = id,
-                                post_type = LOOKING,
+                                post_type = REQUEST,
                                 name = postForm.name.data,
+                                pay = postForm.pay.data,
                                 location = postForm.location.data,
                                 job_type = postForm.job_type.data,
+                                start_from_date = postForm.start_from_date.data,
                                 description = postForm.description.data
                         )
                 db.session.add(post)
                 db.session.commit()
                 i+=1
+            i=0
+            while(i < job_count/2):
+                    postForm = PostJobForm(
+                        post_type = LOOKING,
+                        name = "Post {}".format(str(i)),
+                        location = "{}".format(random.choice(locations)),
+                        description = "Looking for some work",
+                        job_type = random.choice(job_type)
+                    )
+                    id = get_random_user(random.randint(1, user_count))
+                    post = Posts(
+                                    user_id = id,
+                                    post_type = LOOKING,
+                                    name = postForm.name.data,
+                                    location = postForm.location.data,
+                                    job_type = postForm.job_type.data,
+                                    description = postForm.description.data
+                            )
+                    db.session.add(post)
+                    db.session.commit()
+                    i+=1
         
         
    

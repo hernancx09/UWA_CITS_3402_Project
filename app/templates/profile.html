@@ -16,7 +16,6 @@
           <th scope="col">Pay</th>
           <th scope="col">Location</th>
           <th scope="col">Start From</th>
-          <th scope="col">Status</th>
           <th scope="col">Job Type</th>
           <th scope="col">Actions</th>
         </tr>
@@ -29,11 +28,17 @@
           <td>{{row[2]}}</td>
           <td>{{row[3]}}</td>
           <td>{{row[4]}}</td>
-          <td>{{row[5]}}</td>
           <td>
-            <form class="btn btn-primary view-btn" action="{{ url_for('view_job', job_id=row[6]) }}" method="post"
+            <form class="btn btn-primary view-btn" action="{{ url_for('edit_post', post_id=row[5]) }}" method="post"
               class="btn btn-primary view-btn">
               <input style="color: white; background: transparent; border: transparent;" type="submit" value="Edit">
+            </form>
+          </td>
+          <td>
+            <form class="btn btn-primary view-btn" action="{{ url_for('profile')}}" method="post"
+              class="btn btn-primary view-btn">
+              <input name="post_id" style="display: none;" type="number" value="{{ row[5] }}">
+              <input style="color: white; background: transparent; border: transparent;" type="submit" value="Delete">
             </form>
           </td>
         </tr>
@@ -54,7 +59,6 @@
           <tr>
             <th scope="col">Job Name</th>
             <th scope="col">Employer</th>
-            <th scope="col">Status</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
@@ -63,7 +67,6 @@
         <tr>
           <td>{{row[0]}}</td>
           <td>{{row[1]}}</td>
-          <td>{{row[2]}}</td>
           <td>
             <form class="btn btn-primary view-btn" action="{{ url_for('view_job', job_id=row[3]) }}" method="post"
               class="btn btn-primary view-btn">
@@ -108,108 +111,6 @@
     </div>
   </section>
 </div>
-
-<!-- Modals HTML -->
-<!-- Modal for Editing Job Entry -->
-<div class="modal fade" id="editJobModal" tabindex="-1" aria-labelledby="editJobModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="editJobModalLabel">Edit Job Entry</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="editJobForm">
-          <div class="mb-3">
-            <label for="editRequest" class="form-label">Request</label>
-            <input type="text" class="form-control" id="editRequest" name="request">
-          </div>
-          <div class="mb-3">
-            <label for="editUser" class="form-label">User</label>
-            <input type="text" class="form-control" id="editUser" name="user">
-          </div>
-          <div class="mb-3">
-            <label for="editPay" class="form-label">Pay</label>
-            <input type="text" class="form-control" id="editPay" name="pay">
-          </div>
-          <div class="mb-3">
-            <label for="editLocation" class="form-label">Location</label>
-            <input type="text" class="form-control" id="editLocation" name="location">
-          </div>
-          <div class="mb-3">
-            <label for="editTimeFrame" class="form-label">Time Frame</label>
-            <input type="text" class="form-control" id="editTimeFrame" name="timeFrame">
-          </div>
-          <div class="mb-3">
-            <label for="editStatus" class="form-label">Status</label>
-            <input type="text" class="form-control" id="editStatus" name="status">
-          </div>
-          <div class="mb-3">
-            <label for="editDesc" class="form-label">Description</label>
-            <textarea class="form-control" id="editDesc" name="Description"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" id="deleteJobButton">Delete Entry</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" form="editJobForm">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal for Editing Application Entry -->
-<div class="modal fade" id="editApplicationModal" tabindex="-1" aria-labelledby="editApplicationModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="editApplicationModalLabel">Edit Application Entry</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="editApplicationForm">
-          <div class="mb-3">
-            <label for="editService" class="form-label">Service</label>
-            <input type="text" class="form-control" id="editService" name="service">
-          </div>
-          <div class="mb-3">
-            <label for="editProvider" class="form-label">Provider</label>
-            <input type="text" class="form-control" id="editProvider" name="provider">
-          </div>
-          <div class="mb-3">
-            <label for="editDetails" class="form-label">Details</label>
-            <input type="text" class="form-control" id="editDetails" name="details">
-          </div>
-          <div class="mb-3">
-            <label for="editExperience" class="form-label">Experience</label>
-            <input type="text" class="form-control" id="editExperience" name="experience">
-          </div>
-          <div class="mb-3">
-            <label for="editAvailability" class="form-label">Availability</label>
-            <input type="text" class="form-control" id="editAvailability" name="availability">
-          </div>
-          <div class="mb-3">
-            <label for="editContactInfo" class="form-label">Contact Info</label>
-            <input type="text" class="form-control" id="editContactInfo" name="contactInfo">
-          </div>
-          <div class="mb-3">
-            <label for="editDesc" class="form-label">Description</label>
-            <textarea class="form-control" id="editDesc" name="Description"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" id="deleteJobButton">Delete Entry</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" form="editApplicationForm">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
 
 <!-- Bootstrap, Popper.js, and Main JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>

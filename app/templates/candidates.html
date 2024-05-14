@@ -10,11 +10,11 @@
     <section class="title-section text-center">
         <h1>Hire Me!</h1>
     </section>
-   
-    <!-- Results Section -->
+  
+    <!-- Available Results Section -->
     <section class="search-section">
         <div class="container">
-        <form action="{{ url_for('jobs') }}" method="post" class="row justify-content-center align-items-center">
+        <form action="{{ url_for('candidates') }}" method="post" class="row justify-content-center align-items-center">
             {{ form.hidden_tag() }}
             <div class="col-sm-3 my-1">
                 {{ form.keyword(size=16) }}
@@ -38,7 +38,7 @@
         </form>
         </div>
     </section>
-    <!-- Results Section -->
+    <!-- Job Search Section -->
     <section class="job-section my-4">
         <table class="table table-striped table-bordered">
             <thead>
@@ -56,70 +56,22 @@
                     <td>{{row[1]}}</td>
                     <td>{{row[2]}}</td>
                     <td>{{row[3]}}</td>
-                    <td><button class="btn btn-primary view-btn">View</button></td>
+                    <td><form class="btn btn-primary view-btn" action="{{ url_for('view_job', job_id=row[4]) }}"
+                      method="post" class="btn btn-primary view-btn">
+                      <input style="color: white; background: transparent; border: transparent;" type="submit"
+                          value="View">
+                  </form></td>
                     
                     </tr>
                 {% endfor %}
             </tbody>
             </table>
-        <button class="btn btn2 my-3">Make a Post</button>
-    </section>
-    </section>
-    </div>
-
-
-<!-- Modal for Viewing Application Entry -->
-<div class="modal fade" id="viewApplicationModal" tabindex="-1" aria-labelledby="viewApplicationModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="viewApplicationModalLabel">View Application Entry</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          
-
-
-
-<form id="viewApplicationForm">
-            <div class="mb-3">
-              <label for="viewService" class="form-label">Service</label>
-              <input type="text" class="form-control" id="viewService" name="service" readonly>
-            </div>
-            <div class="mb-3">
-              <label for="viewProvider" class="form-label">Provider</label>
-              <input type="text" class="form-control" id="viewProvider" name="provider" readonly>
-            </div>
-            <div class="mb-3">
-              <label for="viewDetails" class="form-label">Details</label>
-              <input type="text" class="form-control" id="viewDetails" name="details" readonly>
-            </div>
-            <div class="mb-3">
-              <label for="viewExperience" class="form-label">Experience</label>
-              <input type="text" class="form-control" id="viewExperience" name="experience" readonly>
-            </div>
-            <div class="mb-3">
-              <label for="viewAvailability" class="form-label">Availability</label>
-              <input type="text" class="form-control" id="viewAvailability" name="availability" readonly>
-            </div>
-            <div class="mb-3">
-              <label for="viewContactInfo" class="form-label">Contact Info</label>
-              <input type="text" class="form-control" id="viewContactInfo" name="contactInfo" readonly>
-            </div>
-            <div class="mb-3">
-              <label for="viewDesc" class="form-label">Description</label>
-              <textarea class="form-control" id="viewDesc" name="Description" readonly></textarea>
-            </div>
+            <form class="btn btn2 my-3" action="{{ url_for('post')}}">
+              <input style="background: transparent; border: transparent;" type="submit" value="Make a Post" />
           </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary" form="applyJobForm">Contact Applicant</button>
-        </div>
-      </div>
+    </section>
+    </section>
     </div>
-</div>
-
 
 <!-- Bootstrap, Popper.js, and Main JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>

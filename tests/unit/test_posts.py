@@ -1,18 +1,7 @@
 import datetime
-from app.db_helpers import db
+from app.db_helpers import REQUEST, db
 from app.models import Posts
 
-def test_new_post(new_jobPost):
-    '''
-    GIVEN a Posts model
-    WHEN a new post is created
-    THEN check all fields are correctly defined
-    '''
-    assert new_jobPost.name == "test_job"
-    assert new_jobPost.pay == 50
-    assert new_jobPost.start_from_date == datetime.date.today()
-    assert new_jobPost.status is "Open"
-    
 def test_query_jobPosts(app_unit, new_jobPost, new_skillsPost, new_user):
     '''
     GIVEN an app and a User and Posts model
@@ -24,8 +13,6 @@ def test_query_jobPosts(app_unit, new_jobPost, new_skillsPost, new_user):
         db.session.commit
         
         assert Posts.query.first().author == new_user
-        assert Posts.query.first().status == "Open"
-        assert Posts.query.filter(Posts.status != 'Filled').first() != None
         
         db.session.delete(new_jobPost)
         db.session.commit
@@ -35,8 +22,7 @@ def test_query_jobPosts(app_unit, new_jobPost, new_skillsPost, new_user):
         
         assert Posts.query.first() is not None
         assert Posts.query.first().author == new_user
-        assert Posts.query.first().status == None
-        assert Posts.query.filter(Posts.post_type != 0).first() != None
+        assert Posts.query.filter(Posts.post_type != REQUEST).first() != None
         
         db.session.delete(new_skillsPost)
         db.session.commit

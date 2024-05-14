@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Jobs{% endblock %}
+{% block title %}Jobs{% endblock %} <!--Sets page title to Jobs-->
 {% block extraheaders %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style_main.css') }}" !important>
 {% endblock %}
@@ -7,29 +7,29 @@
 
 <div class="container mt-5">
     <section class="title-section text-center">
-        <h1>Jobs Available</h1>
+        <h1>Jobs Available</h1> <!--Title Header-->
     </section>
     <section class="search-section">
         <div class="container">
             <form action="{{ url_for('jobs') }}" method="post" class="row justify-content-center align-items-center">
-                {{ form.hidden_tag() }}
+                {{ form.hidden_tag() }} <!--This would include the CSRF token in the form-->
                 <div class="col-sm-3 my-1">
-                    {{ form.keyword(size=16) }}
+                    {{ form.keyword(size=16) }} <!--This would diplay the keyword input field-->
                     {% for error in form.keyword.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
+                    <span style="color: red;">[{{ error }}]</span> <!-- Display errors for keyword input -->
                     {% endfor %}
                 </div>
                 <div class="col-sm-3 my-1">
                     {{ form.job_type.label }}
                     {{ form.job_type }}
                     {% for error in form.job_type.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
+                    <span style="color: red;">[{{ error }}]</span> <!-- Display errors for job type input -->
                     {% endfor %}
                 </div>
                 <div class="col-sm-3 my-1">
                     {{ form.submit() }}
                     {% for error in form.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
+                    <span style="color: red;">[{{ error }}]</span> <!-- Display errors for form submission -->
                     {% endfor %}
                 </div>
             </form>
@@ -46,7 +46,6 @@
                     <th scope="col">Pay</th>
                     <th scope="col">Location</th>
                     <th scope="col">Start From</th>
-                    <th scope="col">Status</th>
                     <th scope="col">Job Type</th>
                     <th scope="col" colspan="2">Actions</th>
                 </tr>
@@ -60,11 +59,10 @@
                     <td>{{row[3]}}</td>
                     <td>{{row[4]}}</td>
                     <td>{{row[5]}}</td>
-                    <td>{{row[6]}}</td>
-                    <td><button class="btn btn-primary apply-btn" onclick="clicked('{{row[7]}}', '{{row[8]}}');">Quick Apply</button>
+                    <td><button class="btn btn-primary apply-btn" onclick="clicked('{{row[6]}}', '{{row[7]}}');">Quick Apply</button>
                     </td>
                     <td>
-                        <form class="btn btn-primary view-btn" action="{{ url_for('view_job', job_id=row[7]) }}"
+                        <form class="btn btn-primary view-btn" action="{{ url_for('view_job', job_id=row[6]) }}"
                             method="post" class="btn btn-primary view-btn">
                             <input style="color: white; background: transparent; border: transparent;" type="submit"
                                 value="View">
@@ -91,19 +89,19 @@
             </div>
             <form action="" method="post">
                 <div class="modal-body">
-                    {{ quickApplyForm.hidden_tag() }}
+                    {{ quickApplyForm.hidden_tag() }} <!--Include hidden CSRF tokem for modal form-->
                     <div class="mb-3">
                         {{ quickApplyForm.message.label }} <br>
-                        {{ quickApplyForm.message(class="modal-textArea", cols="58", rows="4") }}
+                        {{ quickApplyForm.message(class="modal-textArea", cols="58", rows="4") }} <!--Display the input field in modal-->
                     </div>
                 </div>
                 <div style="display: none;">
-                    {{ quickApplyForm.job_id(id="job_id") }}
-                    {{ quickApplyForm.employer_id(id="employer_id") }}
+                    {{ quickApplyForm.job_id(id="job_id") }} <!--Include hidden job_id input for modal form-->
+                    {{ quickApplyForm.employer_id(id="employer_id") }} <!-- hidden employer id for input modal form-->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    {{ quickApplyForm.submitApplication(class="btn btn-primary") }}
+                    {{ quickApplyForm.submitApplication(class="btn btn-primary") }} <!--Display te submit button for the modal form-->
                 </div>
             </form>
         </div>
@@ -111,8 +109,8 @@
 </div>
 
 <!-- Bootstrap, Popper.js, and Main JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script> <!--includes Popper.js for Bootstrap-->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script> <!-- Include Bootstrap JavaScript-->
 <!-- Reference to external JavaScript file -->
 <script src="{{ url_for('static', filename='tempmodal.js') }}"></script>
 <!-- note that this is only here as a basic script so we can view the design of the modal. -->

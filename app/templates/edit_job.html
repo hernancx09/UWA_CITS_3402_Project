@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{%block extraheaders%}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style_forms.css') }}">
+{% endblock %}
+
+{% block content %}
+<!--Section used to Edit Specific Jobs made by Employers-->
+  <div class="centered-container">
+    <div id="header">Edit Job</div>
+    <div id="formwrapper">
+      <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p id="name_wrapper"> <!--Name-->
+          {{form.name.label}} <br>
+          {{form.name(size=30)}}
+        </p>
+        <p id="pay_wrapper"> <!--Wage-->
+          {{form.pay.label}} <br>
+          {{form.pay(size=30)}}
+        </p>
+        <p>
+            {{form.location.label}} <br> <!--Location-->
+            {{form.location(size=30)}}
+        </p>
+          <p>
+            {{form.job_type.label}} <br> <!--Type of Job-->
+            {{form.job_type}}
+          </p>
+          <p id="start_from_date_wrapper"> <!--Start Date-->
+            {{form.start_from_date.label}} <br>
+            {{form.start_from_date}}
+          </p>
+          <p>
+            {{form.description.label}} <br>
+            {{form.description(size=30, cols='40', rows='4')}}
+          </p>
+        <p>
+          {{form.submit(value="Update")}} <!--To Submit, form will be updated once it has been confirmed for submission-->
+        </p>
+      </form>
+    </div>
+  </div>
+  <script src="/js/js_functions.js"></script>
+{% endblock %}
+

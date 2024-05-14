@@ -35,14 +35,13 @@ def new_jobPost(new_user):
     post = Posts(
             author = new_user,
             user_id = new_user.get_id(),
-            post_type = 0,
+            post_type = "Job request",
             name = "test_job",
             pay = 50,
             location = "Perth",
             start_from_date = datetime.date.today(),
             description = "This is a new Job",
             job_type = "One Time",
-            status = "Open"
         )
     return post
 

@@ -17,7 +17,7 @@ class RegisterForm(FlaskForm):
 
     name = StringField('Name', validators=[
         DataRequired(message='Name is required.'),
-        Length(min=4, max=25, message='Name must be between 4 and 25 characters long.'),
+        Length(min=3, max=25, message='Name must be between 4 and 25 characters long.'),
         Regexp('^[A-Za-z ]+$', message='Name must contain only letters')
     ])
     email = StringField('Email', validators=[DataRequired(), Email()])
@@ -40,13 +40,11 @@ class SearchForm(FlaskForm):
 
 class PostJobForm(FlaskForm):
     post_type = SelectField(u'Post Type', choices=[('Job request'), ('Looking for work')])
-    job_name = StringField('Job Name', validators=[Optional()])
-    looking_for = StringField('Looking For', validators=[Optional()])
+    name = StringField('Job Name', validators=[Optional()])
     pay = IntegerField('Pay Rate p/hr', validators=[Optional()])
     location = StringField('Location')
     job_type = SelectField(u'Job Type', choices=[('One Time'), ('Short Term'), ('Long Term')])
     start_from_date = DateField('Start Date', validators=[Optional()])
-    status = SelectField(u'Status', choices=[('Open'), ('Partially Filled'), ('Filled')], validators=[Optional()])
     description = TextAreaField('Additional details', validators=[Optional()])
     submit   = SubmitField('Post Job')
 

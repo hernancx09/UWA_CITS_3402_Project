@@ -85,7 +85,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="viewJobModalLabel">Apply for Job</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <a href="/jobs" class="btn-close" aria-label="Close"></a>
             </div>
             <form action="" method="post">
                 <div class="modal-body">
@@ -100,8 +100,8 @@
                     {{ quickApplyForm.employer_id(id="employer_id") }} <!-- hidden employer id for input modal form-->
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    {{ quickApplyForm.submitApplication(class="btn btn-primary") }} <!--Display te submit button for the modal form-->
+                    <a href="/jobs" class="btn btn-secondary">Close</a>
+                    {{ quickApplyForm.submitApplication(class="btn btn-primary") }}
                 </div>
             </form>
         </div>

@@ -7,23 +7,27 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style_about.css') }}">
 {% endblock %}
 
-{% block title %} About Us {% endblock %}
+{% block title %} About Us {% endblock %} <!--Page Title-->
 
-{% block content%}
+{% block content%} <!--Contains all the sections for the page-->
 <body>
+    <!--Header Page-->
     <div class="header">
         <h1>About Us</h1>
         <p>Learn more about our mission and the people behind our company.</p>
     </div>
+    <!--Content Description-->
     <div class="content container">
         <div class="section">
             <h2>Who We Are</h2>
             <p>We are a leading job recruitment agency dedicated to connecting top talent with prestigious companies. Our expertise lies in understanding the needs of both job seekers and employers to create perfect matches that lead to successful employment.</p>
         </div>
+        <!--Extra Content Description-->
         <div class="section">
             <h2>Our Mission</h2>
             <p>Our mission is to empower employment. We strive to help people find jobs and further their careers while enabling employers to find the best talent for their teams.</p>
         </div>
+        <!--Core Values-->
         <div class="section">
             <h2>Our Values</h2>
             <ul>
@@ -33,6 +37,7 @@
                 <li>Respect and Inclusion</li>
             </ul>
         </div>
+        <!--Team Members Section-->
         <div class="section">
             <h2>Meet Our Team</h2>
             <div class="row">

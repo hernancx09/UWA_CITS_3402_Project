@@ -1,38 +1,30 @@
 {% extends "base.html" %}
+
 {% block title %}Jobs{% endblock %}
+
 {% block extraheaders %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style_about.css') }}"!important>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style_about.css') }}">
 {% endblock %}
+
 {% block content %}
-
-    <div class="container mt-5">
-    <section class="job-section my-4" style="color: white;">
-        <div class="section">
-            <h1>
-                Applicant Name
-            </h1>
-            <p>
-                {{data[0]}}
-            </p>
+<div class="containerM mt-5">
+    <section class="job-sectionM my-4" style="color: white;">
+        <div class="sectionT">
+                <h1>Messages from Applicants</h1> <!--Header title for the page-->
+            </div>
         </div>
-        <div class="section">
-            <h1>
-                Contact
-            </h1>
-            <p>
-                {{data[1]}}
-            </p>
+        <div class="sectionM">
+            <h2>Applicant Name:</h2>
+            <p>{{ data[0] }}</p> <!--Displays name of the applicant-->
         </div>
-        <div class="section">
-            <h1>
-                Message
-            </h1>
-            <p>
-                {{data[2]}}
-            </p>
+        <div class="sectionM">
+            <h2>Contact:</h2>
+            <p>{{ data[1] }}</p> <!--Displays contact detail of the applicant-->
         </div>
-
+        <div class="sectionM">
+            <h2>Message:</h2>
+            <p>{{ data[2] }}</p> <!--Displays message of the applicant-->
+        </div>
     </section>
-    </div>
+</div>
 {% endblock %}
-

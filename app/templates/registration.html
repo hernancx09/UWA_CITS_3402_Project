@@ -7,45 +7,45 @@
 {% block content %}
 
   <div class="centered-container">
-    <div id="header">Registration Page</div>
+    <div id="header">Registration Page</div> <!--Title header for registration page-->
     <div id="formwrapper">
       <form action="" method="post">
-        {{ form.hidden_tag() }}
+        {{ form.hidden_tag() }} <!--Include hidden CSRF for security-->
 
         <p>
-          {{form.name.label}} <br>
+          {{form.name.label}} <br> <!--label for name input-->
           {{form.name(size=30)}}
           {% for error in form.name.errors %}
-          <span style="color: red;">[{{ error }}]</span>
+          <span style="color: red;">[{{ error }}]</span> <!-- Display errors for input which does not meet criteria -->
           {% endfor %}
         </p>
         
         <p>
-          {{form.email.label}} <br>
+          {{form.email.label}} <br> <!--label for email input-->
           {{form.email(size=30)}}
           {% for error in form.email.errors %}
-          <span style="color: red;">[{{ error }}]</span>
+          <span style="color: red;">[{{ error }}]</span> <!-- Display errors for input which does not meet criteria -->
           {% endfor %}
         </p>
         
         <p>
-          {{form.password.label}} <br>
+          {{form.password.label}} <br>  <!--label for password input-->
           {{form.password(size=30)}}
           {% for error in form.password.errors %}
-          <span style="color: red;">[{{ error }}]</span>
+          <span style="color: red;">[{{ error }}]</span> <!-- Display errors for input which does not meet criteria -->
           {% endfor %}
         </p>
 
         <p>
-          {{form.passwordCheck.label}} <br>
+          {{form.passwordCheck.label}} <br>  <!--label for password confirmation input-->
           {{form.passwordCheck(size=30)}}
           {% for error in form.passwordCheck.errors %}
-          <span style="color: red;">[{{ error }}]</span>
+          <span style="color: red;">[{{ error }}]</span> <!-- Display errors for input which does not meet criteria -->
           {% endfor %}
         </p>
 
         <p>
-          {{form.submit()}}
+          {{form.submit()}} <!--Display submit button-->
         </p>
 
       </form>

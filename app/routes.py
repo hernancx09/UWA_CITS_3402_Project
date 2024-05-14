@@ -103,7 +103,7 @@ def registration():
         else:
             #return the registration form with error message perhaps?
             flash('Error Registering', 'Failure')
-            return redirect(url_for('registration'))  
+            return redirect(url_for('registration')) 
 
     return render_template('registration.html', form = regform)
 

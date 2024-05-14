@@ -1,5 +1,5 @@
 import datetime
-from app.db_helpers import db
+from app.db_helpers import REQUEST, db
 from app.models import Posts
 
 def test_query_jobPosts(app_unit, new_jobPost, new_skillsPost, new_user):
@@ -13,8 +13,6 @@ def test_query_jobPosts(app_unit, new_jobPost, new_skillsPost, new_user):
         db.session.commit
         
         assert Posts.query.first().author == new_user
-        assert Posts.query.first().status == "Open"
-        assert Posts.query.filter(Posts.status != 'Filled').first() != None
         
         db.session.delete(new_jobPost)
         db.session.commit
@@ -24,8 +22,7 @@ def test_query_jobPosts(app_unit, new_jobPost, new_skillsPost, new_user):
         
         assert Posts.query.first() is not None
         assert Posts.query.first().author == new_user
-        assert Posts.query.first().status == None
-        assert Posts.query.filter(Posts.post_type != 0).first() != None
+        assert Posts.query.filter(Posts.post_type != REQUEST).first() != None
         
         db.session.delete(new_skillsPost)
         db.session.commit

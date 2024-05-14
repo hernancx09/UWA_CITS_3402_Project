@@ -42,7 +42,6 @@ def new_jobPost(new_user):
             start_from_date = datetime.date.today(),
             description = "This is a new Job",
             job_type = "One Time",
-            status = "Open"
         )
     return post
 

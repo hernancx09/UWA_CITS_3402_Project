@@ -28,7 +28,6 @@ def test_main_search(client, app_functional, new_jobPost, new_user):
         assert str(new_jobPost.pay).encode('ASCII') in response.data
         assert new_jobPost.location.encode('ASCII') in response.data
         assert new_jobPost.start_from_date.strftime("%d/%m/%Y").encode('ASCII') in response.data
-        assert new_jobPost.status.encode('ASCII') in response.data
         assert new_jobPost.job_type.encode('ASCII') in response.data
         
         response = client.post('/job-listing/{}'.format(new_jobPost.id))

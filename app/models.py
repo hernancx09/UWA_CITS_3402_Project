@@ -37,7 +37,6 @@ class Posts(db.Model):
     location: so.Mapped[str] = so.mapped_column(sa.String(16))
     job_type: so.Mapped[str] = so.mapped_column(sa.String(16))
     start_from_date: so.Mapped[date] = so.mapped_column(sa.Date(), nullable=True)
-    status: so.Mapped[str] = so.mapped_column(sa.String(32), nullable=True)
     description: so.Mapped[str] = so.mapped_column(sa.String(256))
     
     def __repr__(self):
@@ -46,8 +45,6 @@ class Posts(db.Model):
         self.pay = pay
     def set_type(self, type):
         self.job_type = type
-    def set_status(self, status):
-        self.status = status
     def set_description(self, description):
         self.description = description
 

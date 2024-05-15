@@ -41,7 +41,7 @@ def jobs():
     applyForm = quickApplyForm()
     applyForm.applicant_id.data = current_user.get_id()
     if(searchForm.submit.data and searchForm.validate()):
-        result = fetch_all_jobPosts(searchForm.keyword.data, searchForm.job_type.data)  
+        result = fetch_all_jobPosts(searchForm.keyword.data.lower(), searchForm.job_type.data)  
         if (result == []): # if result empty
             result = [('-', '-', '-', '-', '-', '-', '-')]
         return render_template('jobs.html', form = searchForm, quickApplyForm = applyForm, data = result)
@@ -60,7 +60,7 @@ def candidates():
     searchForm = SearchForm()
     
     if(searchForm.validate_on_submit()):
-        result = fetch_all_skillsPosts(searchForm.keyword.data, searchForm.job_type.data)  
+        result = fetch_all_skillsPosts(searchForm.keyword.data.lower(), searchForm.job_type.data)  
         if (result == []): # if result empty
             result = [('-', '-', '-', '-', '-', '-', '-')]
         return render_template('candidates.html', form = searchForm, data = result)
@@ -131,7 +131,16 @@ def profile():
 @current_app.route('/job-listing/<job_id>', methods=['GET', 'POST'])
 def view_job(job_id):
     data = fetch_post(job_id)
-    return render_template('view_job.html', data = data)
+    applyForm = quickApplyForm()
+    applyForm.applicant_id.data = current_user.get_id()
+    if(applyForm.submitApplication.data):
+        if (applyForm.validate()):
+            apply_for_job(applyForm)
+            flash("Application sent!")
+        elif not current_user.is_authenticated:
+            flash("You must login or create an account to continue!")
+            return redirect(url_for('login'))
+    return render_template('view_job.html', data = data, quickApplyForm = applyForm)
 
 @current_app.route('/message/<message_id>', methods=['GET', 'POST'])
 @login_required

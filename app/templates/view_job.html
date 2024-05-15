@@ -64,7 +64,7 @@
       <!-- Button Container -->
       <div class="row justify-content-centerV">
         <div class="col-md-12 text-center">
-          <button class="btnV btn-acceptV">Apply</button>
+          <button class="btnV btn-acceptV apply-btn" onclick="clicked('{{data[7]}}', '{{data[8]}}');">Apply</button>
         </div>
       </div>
     </div>
@@ -75,7 +75,37 @@
     <!-- Reference to external JavaScript file -->
     <script src="{{ url_for('static', filename='tempmodal.js') }}"></script>
     
-    {% endblock %}
+
+    <!-- Modals HTML -->
+<!-- Modal for Viewing Job Entry -->
+<div class="modal fade" id="viewJobModal" tabindex="-1" aria-labelledby="viewJobModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewJobModalLabel">Apply for Job</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" method="post">
+                <div class="modal-body">
+                    {{ quickApplyForm.hidden_tag() }} <!--Include hidden CSRF tokem for modal form-->
+                    <div class="mb-3">
+                        {{ quickApplyForm.message.label }} <br>
+                        {{ quickApplyForm.message(class="modal-textArea", cols="58", rows="4") }} <!--Display the input field in modal-->
+                    </div>
+                </div>
+                <div style="display: none;">
+                    {{ quickApplyForm.job_id(id="job_id") }} <!--Include hidden job_id input for modal form-->
+                    {{ quickApplyForm.employer_id(id="employer_id") }} <!-- hidden employer id for input modal form-->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    {{ quickApplyForm.submitApplication(class="btn btn-primary") }} <!--Display te submit button for the modal form-->
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
 
 
     <!--Test-->

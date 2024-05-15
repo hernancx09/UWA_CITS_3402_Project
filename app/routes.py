@@ -13,19 +13,14 @@ from app.models import Posts
 # define the url using the @app.route decorator i.e '/test' = http://127.0.0.1:5000/test
 # next a function is defined beneath the route that decides what happens at that URL
 
-'''
-@current_app.route('/base')
-def base():
-    return render_template('base.html')
-'''
 @current_app.route('/')
 @current_app.route('/about')
 def about():
     return render_template('about.html')
 
-'''
-TESTING PURPOSES ONLY
-'''
+
+# -------------- TESTING PURPOSES ONLY -----------------------
+
 @current_app.route('/populate', methods=['GET', 'POST'])
 def populate():
     form = DataForm()
@@ -33,19 +28,21 @@ def populate():
         populate_db(form.job_count.data, form.user_count.data)
         return redirect(url_for('login'))
     return render_template('populate.html', form = form)
-''' END TESTS'''
-
+# ------------------- END TEST ROUTES ------------------------
+# Main page of app, job search page
 @current_app.route('/jobs', methods=['GET', 'POST'])
 def jobs():
     searchForm = SearchForm()
     applyForm = quickApplyForm()
+    #Set applicant to current user
     applyForm.applicant_id.data = current_user.get_id()
     if(searchForm.submit.data and searchForm.validate()):
         result = fetch_all_jobPosts(searchForm.keyword.data.lower(), searchForm.job_type.data)  
-        if (result == []): # if result empty
+        if (result == []): # if result empty or no search keyword provided
             result = [('-', '-', '-', '-', '-', '-', '-')]
         return render_template('jobs.html', form = searchForm, quickApplyForm = applyForm, data = result)
     if(applyForm.submitApplication.data):
+        # If application sent through applyform modal
         if (applyForm.validate()):
             apply_for_job(applyForm)
             flash("Application sent!")
@@ -58,13 +55,11 @@ def jobs():
 @current_app.route('/candidates', methods=['GET', 'POST'])
 def candidates():
     searchForm = SearchForm()
-    
     if(searchForm.validate_on_submit()):
         result = fetch_all_skillsPosts(searchForm.keyword.data.lower(), searchForm.job_type.data)  
-        if (result == []): # if result empty
+        if (result == []): # if result empty or no search keyword provided
             result = [('-', '-', '-', '-', '-', '-', '-')]
         return render_template('candidates.html', form = searchForm, data = result)
-    
     result = fetch_all_skillsPosts("", "Any")
     return render_template('candidates.html', form = searchForm, data = result)
 
@@ -74,12 +69,13 @@ def login():
         flash("You are already logged in!")
         return redirect(url_for('jobs'))
     form = LoginForm()
-
     if(form.validate_on_submit()):
-        user = get_email(form)
+        # Check if email exists in db
+        user = check_unique_email(form)
         if user is None or not user.check_password(form.password.data):
             flash("Invalid email or password", "message")
             return redirect(url_for('login'))
+        # Else log user in
         flash("Welcome {}".format(user.name))
         login_user(user)
         return redirect(url_for('jobs'))
@@ -89,31 +85,28 @@ def login():
 @current_app.route('/logout')
 def logout():
     logout_user()
+    flash("Logout Successful")
     return redirect(url_for('about'))
 
 @current_app.route('/registration', methods = ['GET','POST'])
 def registration():
     regform = RegisterForm()
-
     if(regform.validate_on_submit()):
         if(create_user(regform)):
-            #success, sending to test.html as a placeholder
-            flash('Success Registering', 'Success')
+            flash('Registration Successful! Please login to continue', 'Success')
             return redirect(url_for('login')) # should return to login page to login
         else:
-            #return the registration form with error message perhaps?
             flash('Error Registering', 'Failure')
             return redirect(url_for('registration')) 
-
     return render_template('registration.html', form = regform)
 
 @current_app.route('/post', methods = ['GET','POST'])
 @login_required
 def post():
     postForm = PostJobForm()
-    
     if(postForm.validate_on_submit()):
         create_post(postForm)
+        flash("New post: {} created Successfully!".format(postForm.name.data))
         return redirect(url_for('post'))
     return render_template('post.html', form = postForm)
 
@@ -121,12 +114,12 @@ def post():
 @login_required
 def profile():
     myPosts = fetch_user_posts()
-    msg = fetch_received_messages()
+    msgs = fetch_received_messages()
     applied_for = fetch_sent_messages()
     if(request.method == 'POST'):
         delete_post(request.form['post_id'])
         flash('Post deleted!')
-    return render_template('profile.html', posted=myPosts, messages = msg, applications = applied_for)
+    return render_template('profile.html', posted=myPosts, messages = msgs, applications = applied_for)
 
 @current_app.route('/job-listing/<job_id>', methods=['GET', 'POST'])
 def view_job(job_id):
@@ -151,9 +144,10 @@ def view_message(message_id):
 @current_app.route('/edit-listing/<post_id>', methods = ['GET', 'POST'])
 @login_required
 def edit_post(post_id):
-    #form = pre_fill_post_form(post_id)
+    # Get post object and set form data to post object data
     post = Posts.query.filter(Posts.id == post_id).first()
     form = PostJobForm(obj=post)
     if(form.validate_on_submit()):
+        # if passes validators update job
         update_job(form, post_id)
     return render_template('edit_job.html', form = form)

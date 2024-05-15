@@ -1,5 +1,4 @@
 from flask_wtf import FlaskForm
-
 from wtforms import DateField, SelectField, StringField, PasswordField, SubmitField, IntegerField, TextAreaField
 from wtforms.validators import DataRequired, Length, EqualTo, Regexp, Email, Optional, NumberRange
 
@@ -14,7 +13,6 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Log in')
 
 class RegisterForm(FlaskForm):
-
     name = StringField('Name', validators=[
         DataRequired(message='Name is required.'),
         Length(min=3, max=25, message='Name must be between 4 and 25 characters long.'),
@@ -54,10 +52,10 @@ class quickApplyForm(FlaskForm):
     employer_id = IntegerField('')
     message = TextAreaField('Message', validators=[DataRequired()])
     submitApplication = SubmitField('Apply')
-'''
-TESTING PURPOSES ONLY
-'''
+
+# ------------------ TESTING PURPOSES ONLY --------------------------
 class DataForm(FlaskForm):
     job_count = IntegerField('Number of Job entries', validators=[Optional()])
     user_count = IntegerField('Number of users', validators=[DataRequired(), NumberRange(1, 20)])
     submit   = SubmitField('Create Data')
+# ------------------ END TESTING FORMS ------------------------------

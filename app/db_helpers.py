@@ -6,18 +6,19 @@ from app.forms import PostJobForm, RegisterForm
 from app.models import Messages, Users, Posts
 import sqlalchemy as sa
 
+#CONSTANTS
 REQUEST = "Job request"
 LOOKING = "Looking for work"
 
-#get username from login form
-def get_email(form):
+#Checks if formdata containes unique email, if so returns user object tied to the email
+def check_unique_email(form):
         user = db.session.scalar(
                 sa.select(Users).where(Users.email == form.email.data))
         return user
 
-#add user to db
+#add user to db from formdata
 def create_user(form):
-        user_email = get_email(form)
+        user_email = check_unique_email(form)
         if user_email is None:
                 user = Users(name = form.name.data)
                 user.set_email(form.email.data)
@@ -27,7 +28,7 @@ def create_user(form):
                 return True
         return False
 
-#create job post
+#create job post from formdata
 def create_post(form):
         post = Posts(
                 user_id = current_user.get_id(),
@@ -41,14 +42,16 @@ def create_post(form):
         )
         db.session.add(post)
         db.session.commit()
+        
+#remove post from db given post id
 def delete_post(job_id):
         post = fetch_post_object(job_id)
         db.session.delete(post)
         db.session.commit()
-#pre fill post form with job_id details
+        
+#pre fill post form with job details given post id
 def pre_fill_post_form(job_id):
         post = fetch_post_object(job_id)
-        form = PostJobForm()
         form = PostJobForm(
             post_type = post.post_type,
             name = post.name,
@@ -59,14 +62,16 @@ def pre_fill_post_form(job_id):
             description = post.description
         )
         return form
-# edit job post
+
+# edit job post from formdata 
 def update_job(form, post_id):
         post = Posts.query.filter(Posts.id == post_id).first()
         form.populate_obj(post)
 
         db.session.add(post)
         db.session.commit()
-# Fetches user Posts and returns name, start_date and job type
+        
+# Fetches ALL user Posts data
 def fetch_user_posts():
         data = db.session.query(Posts.name, 
                                 Posts.pay,
@@ -76,9 +81,12 @@ def fetch_user_posts():
                                 Posts.id).filter(Posts.user_id == current_user.get_id())
         return data
 
+# Fetch specific post object
 def fetch_post_object(id):
         post = db.session.query(Posts).filter(Posts.id == id).first()
         return post
+
+# Fetch specific post data from db 
 def fetch_post(id):
         data = db.session.query(Posts.name, 
                                 Users.name, 
@@ -91,9 +99,11 @@ def fetch_post(id):
                                 Posts.user_id).filter(Posts.id == id) \
                                         .filter(Posts.user_id == Users.id).first()
         return data
+
+# Fetch ALL job posts from db not made by user
 def fetch_all_jobPosts(keyword, job_type):
         if(job_type == "Any"):
-                #Query on keyword alone
+                #Query on keyword alone 
                 data = db.session.query(Posts.name, 
                                 Users.name, 
                                 Posts.pay,
@@ -120,6 +130,8 @@ def fetch_all_jobPosts(keyword, job_type):
                                                         .filter(sa.func.lower(Posts.name).op('regexp')('^.*{}.*$'.format(keyword)),
                                                      Posts.job_type == job_type).all()
         return data
+
+# Fetch ALL skill posts from db not made by user
 def fetch_all_skillsPosts(keyword, job_type):
         if(job_type == "Any"):
                 #Query on keyword alone
@@ -144,6 +156,7 @@ def fetch_all_skillsPosts(keyword, job_type):
                                              Posts.job_type == job_type).all()
         return data
 
+# Add message to db from formdata
 def apply_for_job(form):
         msg = Messages(
                 applicant_id = current_user.get_id(),
@@ -154,6 +167,7 @@ def apply_for_job(form):
         db.session.add(msg)
         db.session.commit()
 
+# Fetch user received messages
 def fetch_received_messages():
         data = db.session.query(Posts.name,
                                 Users.name, 
@@ -163,6 +177,7 @@ def fetch_received_messages():
                                                 .filter(Posts.id == Messages.job_id).all()
         return data
 
+# Fetch user sent messages
 def fetch_sent_messages():
         data = db.session.query(Posts.name,
                                 Users.name,
@@ -171,6 +186,7 @@ def fetch_sent_messages():
                                                 .filter(Posts.id == Messages.job_id).all()
         return data
 
+# Fetch specific user received message
 def fetch_message(id):
         data = db.session.query(Users.name,
                                 Users.email,
@@ -179,7 +195,7 @@ def fetch_message(id):
                                                 .filter(Messages.id == id).first()
         return data
 
-'''DB populate helpers for testing'''
+# DB POPULATOR HELPER FUNCTIONS --- TESTING ONLY
 def get_random_user(int):
         user_id = db.session.query(Users.id).filter(Users.id == int).first().id
         return user_id
@@ -251,14 +267,16 @@ def populate_db(job_count, user_count):
                 'Shane',
                 'Jasmine'
         ]
+        # Build set of dates from today to 6 months from now
         date_start = datetime.date.today()
-        date_end = datetime.date(2025, 12, 31)
-        
+        date_end = datetime.date(datetime.date.today().year, datetime.date.today().month + 6, 28)
         date_set = [datetime.date.today]
         
         while date_start != date_end:
             date_start += datetime.timedelta(days=1)
             date_set.append(date_start)
+        #---------------------------------------------------
+        # Create random users
         j = 0
         while(j < user_count):     
             name = user_names[j]
@@ -270,6 +288,8 @@ def populate_db(job_count, user_count):
             )
             create_user(userForm)
             j+=1
+        #---------------------------------------------------
+        # Create random job posts
         if(job_count is not None):
             i = 0
             while (i < job_count):
@@ -296,6 +316,8 @@ def populate_db(job_count, user_count):
                 db.session.add(post)
                 db.session.commit()
                 i+=1
+        #---------------------------------------------------
+        # Create random Skill posts = half job count
             i=0
             while(i < job_count/2):
                     postForm = PostJobForm(
@@ -317,6 +339,5 @@ def populate_db(job_count, user_count):
                     db.session.add(post)
                     db.session.commit()
                     i+=1
-        
-        
-   
+        #---------------------------------------------------
+# ---------------------- END TESTING FUNCTIONS -------------------------  

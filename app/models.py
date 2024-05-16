@@ -27,6 +27,8 @@ class Users(db.Model, UserMixin):
 def load_user(id):
     return db.session.get(Users, int(id))
 
+# Posts table data will change depending on post type
+# i.e. pay and start from date will be null
 class Posts(db.Model):
     author: so.Mapped[Users] = so.relationship(back_populates='posts')
     user_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(Users.id), index=True)

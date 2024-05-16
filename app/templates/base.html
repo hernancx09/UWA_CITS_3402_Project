@@ -25,7 +25,7 @@
     <div class="collapse navbar-collapse" id="navbar">
       <div class="navbar-nav">
         <a class="nav-item nav-link" id="home" href="/jobs"> Jobs</a>
-        <a class="nav-item nav-link" id="applicants" href="/candidates">Applicants</a>
+        <a class="nav-item nav-link" id="applicants" href="/candidates">Candidates</a>
         <a class="nav-item nav-link" id="about" href="/about">About Us</a>
         <a class="nav-item nav-link" id="profile" href="/profile">My Profile</a>
 
@@ -61,7 +61,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script> <!--includes Popper.js for Bootstrap-->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script> <!-- Include Bootstrap JavaScript-->
+<!-- Reference to external JavaScript file -->
+<script src="{{ url_for('static', filename='/js/tempmodal.js') }}"></script>
 </body>
 <footer>
   <!-- Attributions-->

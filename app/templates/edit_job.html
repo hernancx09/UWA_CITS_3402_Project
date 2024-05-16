@@ -37,7 +37,7 @@
       </p>
       <p>
         {{ form.submit(value="Update") }} <!-- To Submit, form will be updated once it has been confirmed for submission -->
-        <button type="button" onclick="window.location.href='{{ url_for('profile') }}'">Cancel</button> <!-- Cancel button -->
+        <a href="/profile" class="btn btn-secondary">Cancel</a> 
       </p>
     </form>
   </div>

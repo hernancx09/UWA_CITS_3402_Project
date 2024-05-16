@@ -1,5 +1,7 @@
 Welcome to our group project for Agile Web Dev!!!
 
+Link to Wireframe Prototype Figma: https://www.figma.com/file/A00hdtf2nIDgGXJphqhQ9L/3402Prototype-ames?type=design&node-id=895170%3A448&mode=design&t=JPTUErnpHmY2oEHZ-1
+
 Figma Web App Framework: https://www.figma.com/board/jKrVV0aJy7j8q8jwQmoT2k/Job-Search-Web-App-Framework?node-id=0%3A1&t=GgdI6AOvhRUp7DnI-1
 
 Description:

@@ -7,7 +7,7 @@
 
 #header {
     color: #27cdea; /* cyan for text color for visibility */
-    font-size: 24px; /* Larger font size for header */
+    font-size: 48px; /* Larger font size for header */
     margin-bottom: 20px; /* Space between header and form */
 }
 
@@ -28,4 +28,20 @@ form p {
 label {
     font-weight: bold;
     color: #aaf145; /* bright lime green for labels to stand out */
+}
+#registration-link {
+    background-color:#aaf145; /* Light grey background color */
+    padding: 5px; /* Add some padding for spacing */
+    border-radius: 8px; /* Rounded corners */
+    margin-top: 20px; /* Add some top margin for separation */
+}
+
+#registration-link a {
+    color: #333; /* Darker text color */
+    text-decoration: none; /* Remove underline from link */
+}
+
+#registration-link a:hover {
+    color: #27cdea; /* Change text color on hover */
+    text-decoration: underline; /* Underline on hover */
 }

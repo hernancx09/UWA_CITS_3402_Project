@@ -1,15 +1,16 @@
 Welcome to our group project for Agile Web Dev!!!
 
-Group Discord: https://discord.gg/rbRMMWwj
-
-Agile Sprint Outline:
-
-Planning -> Basics -> Functionality -> Testing -> Cleaning -> Pretty-ing -> done/submit!
-
-Current Sprint: Planning
+Figma Web App Framework: https://www.figma.com/board/jKrVV0aJy7j8q8jwQmoT2k/Job-Search-Web-App-Framework?node-id=0%3A1&t=GgdI6AOvhRUp7DnI-1
 
 Description:
-Will update later
+This project is a low level online job search/application board. Its functionality allows for search of long term career options or short term daily jobs. It provides a place where users can put their skills up and work freelance or small jobs that require those skills. It also creates a space for job recruiters to post full-time job positions and recieve applications. If they dont want to create those job posts, They can also browse through the list of people that have posted their skills and message candidates via the website.
+
+Predicted Agile Sprint Outline:
+Planning -> Basics -> Functionality -> Testing -> Cleaning -> Pretty-ing -> done/submit!
+
+Actual Agile Sprint Outline:
+Planning -> Basics -> Pretty-ing -> Functionality <---> Testing -> cleaning -> Done/submit!
+
 
 Project Structure as per Flask Docs:
 * UWA_CITS_3402_Project

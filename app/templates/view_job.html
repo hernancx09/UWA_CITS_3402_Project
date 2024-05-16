@@ -90,9 +90,9 @@
                 <h5 class="modal-title" id="viewJobModalLabel">
                   {% if data[9] == "Job request" %} Apply for Job
                   {% else %} Contact Candidate
-                  {% endif %}
+                  {% endif %}         
                 </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <a href="/job-listing/{{data[7]}}" class="btn-close" aria-label="Close"></a>
             </div>
             <form action="" method="post">
                 <div class="modal-body">
@@ -107,7 +107,7 @@
                     {{ quickApplyForm.employer_id(id="employer_id") }} <!-- hidden employer id for input modal form-->
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <a href="/job-listing/{{data[7]}}" class="btn btn-secondary">Close</a>
                     {% if data[9] == "Job request" %}
                     {{ quickApplyForm.submitApplication(class="btn btn-primary") }} <!--Display te submit button for the modal form-->
                     {% else %} {{ quickApplyForm.submitApplication(class="btn btn-primary", value="Contact") }}

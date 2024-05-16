@@ -55,7 +55,8 @@ class quickApplyForm(FlaskForm):
 
 # ------------------ TESTING PURPOSES ONLY --------------------------
 class DataForm(FlaskForm):
-    job_count = IntegerField('Number of Job entries', validators=[Optional()])
+    requests_count = IntegerField('Number of Request posts', validators=[Optional()])
+    looking_for_count = IntegerField('Number of Looking For posts', validators=[Optional()])
     user_count = IntegerField('Number of users', validators=[DataRequired(), NumberRange(1, 20)])
     submit   = SubmitField('Create Data')
 # ------------------ END TESTING FORMS ------------------------------

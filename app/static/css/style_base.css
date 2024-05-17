@@ -53,9 +53,12 @@ img {
 }
 
 body {
-    background-color: #042d44;
+    background-color: #294b5e;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     height: 100vh;
+    background-image: url('../img/Path_LOGO_2.png');
+    background-attachment: fixed;
+
 }

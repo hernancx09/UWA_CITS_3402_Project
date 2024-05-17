@@ -45,3 +45,8 @@ label {
     color: #27cdea; /* Change text color on hover */
     text-decoration: underline; /* Underline on hover */
 }
+
+textarea {
+    width: 100%;
+    resize: none;
+}

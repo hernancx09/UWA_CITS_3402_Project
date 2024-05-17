@@ -50,7 +50,7 @@
 
 /* Title Section with translucent white background */
 .title-section h1 {
-  background-color: #27cdea; /* cyan */
+  background-color: #24a6bd; /* cyan */
   padding: 10px;
   display: inline-block;
   margin-top: 20px;
@@ -256,7 +256,7 @@
   font-weight: bold;
   margin-top: 30px;
   margin-bottom: 20px;
-  color: #00ff1e;
+  color: #010101;
 }
 
 .containerV {
@@ -271,9 +271,9 @@
   width: 100%;
 
   padding: 20px;
-  border: 1px solid #b7ff02;
+  border: 1px solid #a4a5a0;
   border-radius: 8px;
-  background-color: #ffffff;
+  background-color: #dfdfdfd7;
   margin-bottom: 20px;
   box-sizing: border-box;
   text-align: center; /* Center-align text within the section */
@@ -294,9 +294,9 @@
 
   /* max-width: 1000px; */
   padding: 20px;
-  border: 1px solid #000000;
+  border: 1px solid #a4a5a0;
   border-radius: 8px;
-  background-color: #ffffff;
+  background-color: #dfdfdfd7;
   box-sizing: border-box;
   font-family: Arial, sans-serif;
   margin-top: 20px;
@@ -307,9 +307,9 @@
 .job-description-sectionV {
   width: 100%;
   padding: 20px;
-  border: 1px solid #b7ff02;
+  border: 1px solid #a4a5a0;
   border-radius: 8px;
-  background-color: #ffffff;
+  background-color: #dfdfdfd7;
   margin-bottom: 20px;
   box-sizing: border-box;
   text-align: center; /* Center-align text within the section */
@@ -340,7 +340,7 @@
 .btn-acceptV {
   background-color: #096080;
   color: #e2ece2;
-  border: 2px solid #00ff26;
+  border: 2px solid #0b3a19;
 }
 
 .btn-acceptV:hover {
@@ -353,16 +353,16 @@
   border-color: #0b3a19;
 }
 
-/* Apply the specified button style to the 'Decline Offer' button */
-.btn-cancelV {
+.btn-exitV{
   background-color: #096080;
   color: #e2ece2;
-  border: 2px solid #ff0000;
+  border: 2px solid #0b3a19;
+  text-decoration: none;
 }
-
-.btn-cancelV:hover {
-  background-color: #ff0000;
-  border-color: #8f0808;
+.btn-exitV:hover {
+  background-color: #5aba1e;
+  border-color: #0b3a19;
+  text-decoration: none; /*no underline*/
 }
 
 .modal-textAreaV {
@@ -377,4 +377,11 @@
 }
 
 
+.header-box {
+  background-color: #24a6bd; /* cyan */ 
+  padding: 10px;
+  display: inline-block;
+  margin-top: 20px;
+  border-radius: 8px;
+}
 

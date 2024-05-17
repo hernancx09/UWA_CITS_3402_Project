@@ -44,8 +44,11 @@ def jobs():
     if(applyForm.submitApplication.data):
         # If application sent through applyform modal
         if (applyForm.validate()):
-            apply_for_job(applyForm)
-            flash("Application sent!")
+            if(apply_for_job(applyForm)):
+                flash("Message sent!")
+                return redirect(url_for('jobs'))
+            else:
+                flash("You have already applied for this job!")
         elif not current_user.is_authenticated:
             flash("You must login or create an account to continue!")
             return redirect(url_for('login'))
@@ -128,8 +131,11 @@ def view_job(job_id):
     applyForm.applicant_id.data = current_user.get_id()
     if(applyForm.submitApplication.data):
         if (applyForm.validate()):
-            apply_for_job(applyForm)
-            flash("Message sent!")
+            if(apply_for_job(applyForm)):
+                flash("Message sent!")
+                return redirect(url_for('jobs'))
+            else:
+                flash("You have already applied for this job!")
         elif not current_user.is_authenticated:
             flash("You must login or create an account to continue!")
             return redirect(url_for('login'))

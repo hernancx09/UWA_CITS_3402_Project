@@ -9,7 +9,8 @@ def create_db(config_class):
             print("DataBase already exists")
         else:
                 open("app.db", "x")
-    
+
+# Run all migration scripts 
 def init_db(config_class):
     upgrade(config_class.MIGRATIONS)
     

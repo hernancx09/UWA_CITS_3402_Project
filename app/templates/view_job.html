@@ -1,103 +1,115 @@
-{% extends "base.html" %} {% block title %}Jobs{% endblock %} {% block
-    extraheaders %}
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/style_main.css') }}"
-    />
-    {% endblock %} {% block content %}
-    <div class="containerV mt-5">
-      <h1 class="offer-titleV text-center">Detailed Job Info</h1>
-    
-      <div
-        class="containerV col-md-12 row justify-content-center"
-        style="width: 100%"
-      >
-        <div class="col-md-6">
-          <!-- Job Name Section -->
-          <div class="job-details-sectionV">
-            <div class="job-details-labelV">Job Name:</div>
-            <div class="job-details-valueV">{{ data[0] }}</div>
-          </div>
-    
-          <!-- Posted By Section -->
-          <div class="job-details-sectionV">
-            <div class="job-details-labelV">Posted By:</div>
-            <div class="job-details-valueV">{{ data[1] }}</div>
-          </div>
-    
-          <!-- Pay Section -->
-          <div class="job-details-sectionV">
-            <div class="job-details-labelV">Pay (P/Hr):</div>
-            <div class="job-details-valueV">{{ data[2] }}</div>
-          </div>
-    
-          <!-- Location Section -->
-          <div class="job-details-sectionV">
-            <div class="job-details-labelV">Location:</div>
-            <div class="job-details-valueV">{{ data[3] }}</div>
-          </div>
-    
-          <!-- Start From Section -->
-          <div class="job-details-sectionV">
-            <div class="job-details-labelV">Start From:</div>
-            <div class="job-details-valueV">{{ data[4] }}</div>
-          </div>
-    
-    
-          <!-- Job Type Section -->
-          <div class="job-details-sectionV">
-            <div class="job-details-labelV">Job Type:</div>
-            <div class="job-details-valueV">{{ data[5] }}</div>
-          </div>
-        </div>
-        <div class="col-md-6"> <!--To change the size -->
-          <!-- Job Description Section -->
-          <div class="job-description-sectionV">
-            <div class="job-description-labelV"><h2>Job Description:</h2></div>
-            <div class="job-descriptionV">
-                {{ data[6] }} <!--Displays the job description-->
-            </div>
-          </div>
-        </div>
+{% extends "base.html" %}
+{% block title %}Jobs{% endblock %}
+{% block extraheaders %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style_main.css') }}" />
+<!-- Include Bootstrap CSS from CDN -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+<div class="containerV mt-5">
+  <h1 class="offer-titleV text-center">Detailed Job Info</h1>
+
+  <div class="containerV col-md-12 row justify-content-center" style="width: 100%">
+    <div class="col-md-6">
+      <!-- Job Name Section -->
+      <div class="job-details-sectionV">
+        <div class="job-details-labelV">Job Name:</div>
+        <div class="job-details-valueV">{{ data[0] }}</div>
       </div>
-    
-      <!-- Button Container -->
-      <div class="row justify-content-centerV">
-        <div class="col-md-12 text-center">
-          <button class="btnV btn-acceptV apply-btn" onclick="clicked('{{data[7]}}', '{{data[8]}}');">Apply</button>
+
+      <!-- Posted By Section -->
+      <div class="job-details-sectionV">
+        <div class="job-details-labelV">Posted By:</div>
+        <div class="job-details-valueV">{{ data[1] }}</div>
+      </div>
+
+      <!-- Pay Section -->
+      <div class="job-details-sectionV">
+        <div class="job-details-labelV">Pay (P/Hr):</div>
+        <div class="job-details-valueV">{{ data[2] }}</div>
+      </div>
+
+      <!-- Location Section -->
+      <div class="job-details-sectionV">
+        <div class="job-details-labelV">Location:</div>
+        <div class="job-details-valueV">{{ data[3] }}</div>
+      </div>
+
+      <!-- Start From Section -->
+      <div class="job-details-sectionV">
+        <div class="job-details-labelV">Start From:</div>
+        <div class="job-details-valueV">{{ data[4] }}</div>
+      </div>
+
+      <!-- Job Type Section -->
+      <div class="job-details-sectionV">
+        <div class="job-details-labelV">Job Type:</div>
+        <div class="job-details-valueV">{{ data[5] }}</div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <!-- Job Description Section -->
+      <div class="job-description-sectionV">
+        <div class="job-description-labelV"><h2>Job Description:</h2></div>
+        <div class="job-descriptionV">
+          {{ data[6] }}
         </div>
       </div>
     </div>
-    <!-- Modals HTML -->
+  </div>
+
+  <!-- Button Container -->
+  <div class="row justify-content-centerV">
+    <div class="col-md-12 text-center">
+      <button class="btnV btn-acceptV apply-btn" onclick="clicked('{{data[7]}}', '{{data[8]}}');">Apply</button>
+      <a href="{{ url_for('jobs') }}" class="btnV btn-exitV">Exit</a>
+    </div>
+  </div>
+</div>
+
+<!-- Modals HTML -->
 <!-- Modal for Viewing Job Entry -->
 <div class="modal fade" id="viewJobModal" tabindex="-1" aria-labelledby="viewJobModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="viewJobModalLabel">Apply for Job</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="" method="post">
-                <div class="modal-body">
-                    {{ quickApplyForm.hidden_tag() }} <!--Include hidden CSRF tokem for modal form-->
-                    <div class="mb-3">
-                        {{ quickApplyForm.message.label }} <br>
-                        {{ quickApplyForm.message(class="modal-textArea", cols="58", rows="4") }} <!--Display the input field in modal-->
-                    </div>
-                </div>
-                <div style="display: none;">
-                    {{ quickApplyForm.job_id(id="job_id") }} <!--Include hidden job_id input for modal form-->
-                    {{ quickApplyForm.employer_id(id="employer_id") }} <!-- hidden employer id for input modal form-->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    {{ quickApplyForm.submitApplication(class="btn btn-primary") }} <!--Display te submit button for the modal form-->
-                </div>
-            </form>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="viewJobModalLabel">Apply for Job</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="reloadPage()"></button>
+      </div>
+      <form action="" method="post">
+        <div class="modal-body">
+          {{ quickApplyForm.hidden_tag() }}
+          <div class="mb-3">
+            {{ quickApplyForm.message.label }} <br>
+            {{ quickApplyForm.message(class="modal-textArea", cols="58", rows="4") }}
+          </div>
         </div>
+        <div style="display: none;">
+          {{ quickApplyForm.job_id(id="job_id") }}
+          {{ quickApplyForm.employer_id(id="employer_id") }}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="reloadPage()">Close</button>
+          {{ quickApplyForm.submitApplication(class="btn btn-primary") }}
+        </div>
+      </form>
     </div>
+  </div>
 </div>
+
+<!-- Include Bootstrap JavaScript from CDN -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+<!-- JavaScript to handle the modal behavior -->
+<script>
+  function clicked(job_id, employer_id) {
+    document.getElementById('job_id').value = job_id;
+    document.getElementById('employer_id').value = employer_id;
+    var myModal = new bootstrap.Modal(document.getElementById('viewJobModal'));
+    myModal.show();
+  }
+
+  function reloadPage() {
+    window.location.reload();
+  }
+</script>
 {% endblock %}
-
-
-    <!--Test-->

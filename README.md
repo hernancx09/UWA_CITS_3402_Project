@@ -14,9 +14,20 @@ Actual Agile Sprint Outline:
 Planning -> Basics -> Pretty-ing -> Functionality <---> Testing -> cleaning -> Done/submit!
 
 
+Dev environment Notes:
+* Clone repo
+* Update to Python 3.12
+* Install venv in repo main dir and activate
+* Run "pip install -r requirements.txt"
+* flask run to start development server and test app
+* Lauren Gees notes provide solid instruction on setting up environment, refer to them if necessary
+=======
+
 Project Structure as per Flask Docs:
 * UWA_CITS_3402_Project
-    * app 
+    * app config files, db and instance creation, requirements.txt
+    * app
+      * Helper functions, initializers, models, routes and forms
       * static
         * css
             * *contains css files*
@@ -27,21 +38,37 @@ Project Structure as per Flask Docs:
       * templates
         * *contains base and all other html templates*
     * test
-      * *contains unit tests*
+      * *contains unit and functional tests*
+    * migrations
+      * *contains db migration scripts*
 
-Environment Prep:
-* Follow Lauren Gee's notes on setting up a flask project in VSCode up to point 11 however make sure to install python 3.12.2 (latest version)
-* After that with venv active in the terminal use "flask run" command to start the development server, follow the link provided to see the webApp
+Usage  
+* Before anything make sure python and pip are installed
+* Inside your virtual env all dependancies need to be installed, to do this run:  
+``` pip install -r requirements.txt ```  
+* To run tests use:  
+``` pytest ```  
+  * The following tests are included:
+    * All routes defined in routes.py are checked for status 200
+    * User account creation and login
+    * User applying for a job, poster receiving application
+    * Jobs being returned from search
+    * User profile page displaying relevant data
+    * Multiple db queries
+* To launch app use:  
+``` flask run ```  
+  * The application has been built to automatically create a db for you and perform all migrations in the background before the app launch
+  * Once the flask development server is running follow the link provided
+  * Initially the db will be empty. In order to simulate user interactions the ``` /populate ``` page has been created. This will allow you to populate the db with dummy data. To use this feature, add ```/populate ``` to the end of your development server ip. Then follow the prompts to create dummy data.
+    * Number of users = number of user accounts
+    * Number of request posts = number of posts of type 'job request'
+    * Number of looking for posts = number of posts of type 'looking for work'  
 =======
 
 1. a description of the purpose of the application, explaining the its design and use.
 
 2. a table with with each row containing the i) UWA ID ii) name and iii) Github user name of the group members.
+
 3. a brief summary of the architecture of the application.
 
-4. instructions for how to launch the application.
 
-5.instructions for how to run the tests for the application.
-
-DB setup:
-* Install dependancies via pip install -r requirements

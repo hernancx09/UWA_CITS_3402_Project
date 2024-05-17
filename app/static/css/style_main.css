@@ -357,10 +357,12 @@
   background-color: #096080;
   color: #e2ece2;
   border: 2px solid #0b3a19;
+  text-decoration: none;
 }
 .btn-exitV:hover {
   background-color: #5aba1e;
   border-color: #0b3a19;
+  text-decoration: none; /*no underline*/
 }
 
 .modal-textAreaV {

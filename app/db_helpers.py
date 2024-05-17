@@ -157,16 +157,23 @@ def fetch_all_skillsPosts(keyword, job_type):
                                              Posts.job_type == job_type).all()
         return data
 
-# Add message to db from formdata
+# Add Initial message to db from formdata return true on success else false if already started contact
 def apply_for_job(form):
-        msg = Messages(
-                applicant_id = current_user.get_id(),
-                job_id = form.job_id.data,
-                employer_id = form.employer_id.data,
-                message = form.message.data
-        )
-        db.session.add(msg)
-        db.session.commit()
+        if(db.session.query(Messages) \
+                .filter(Messages.applicant_id == current_user.get_id()) \
+                        .filter(Messages.employer_id == form.employer_id.data) \
+                                .filter(Messages.job_id == form.job_id.data).first() == None):
+                
+                msg = Messages(
+                        applicant_id = current_user.get_id(),
+                        job_id = form.job_id.data,
+                        employer_id = form.employer_id.data,
+                        message = form.message.data
+                )
+                db.session.add(msg)
+                db.session.commit()
+                return True
+        return False
 
 # Fetch user received messages
 def fetch_received_messages():

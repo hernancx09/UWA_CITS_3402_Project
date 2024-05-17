@@ -38,9 +38,9 @@ class SearchForm(FlaskForm):
 
 class PostJobForm(FlaskForm):
     post_type = SelectField(u'Post Type', choices=[('Job request'), ('Looking for work')])
-    name = StringField('Job Name', validators=[Optional()])
+    name = StringField('Job Name', validators=[DataRequired()])
     pay = IntegerField('Pay Rate p/hr', validators=[Optional()])
-    location = StringField('Location')
+    location = StringField('Location', validators=[DataRequired()])
     job_type = SelectField(u'Job Type', choices=[('One Time'), ('Short Term'), ('Long Term')])
     start_from_date = DateField('Start Date', validators=[Optional()])
     description = TextAreaField('Additional details', validators=[Optional()])

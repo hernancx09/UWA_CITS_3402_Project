@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}View Post{% endblock %}
+{% block title %}Create Post{% endblock %}
 {%block extraheaders%}
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style_forms.css') }}">
 {% endblock %}
@@ -36,13 +36,10 @@
           </p>
           <p>
             {{form.description.label}} <br> <!--Display label for description-->
-            {{form.description(size=30, cols='40', rows='4')}} <!--Display description input field-->
+            {{form.description(size=30, rows='4')}} <!--Display description input field-->
           </p>
         <p>
           {{form.submit()}} <!--Submit button-->
-        </p>
-        <p>
-          {{ form.submit(value="Update") }} <!-- To Submit, form will be updated once it has been confirmed for submission -->
           <a href="/jobs" class="btn btn-secondary">Cancel</a> 
         </p>
       </form>

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% block title %}Edit Post{% endblock %}
 {% block extraheaders %}
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style_forms.css') }}">
 {% endblock %}
@@ -33,10 +33,10 @@
       </p>
       <p> <!-- Description -->
         {{ form.description.label }} <br>
-        {{ form.description(size=30, cols='40', rows='4') }}
+        {{ form.description(size=30, rows='4') }}
       </p>
       <p>
-        {{ form.submit(value="Update") }} <!-- To Submit, form will be updated once it has been confirmed for submission -->
+        {{ form.submit(value="Update") }} <!-- Submit changes -->
         <a href="/profile" class="btn btn-secondary">Cancel</a> 
       </p>
     </form>

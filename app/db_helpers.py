@@ -96,7 +96,8 @@ def fetch_post(id):
                                 Posts.job_type,
                                 Posts.description,
                                 Posts.id,
-                                Posts.user_id).filter(Posts.id == id) \
+                                Posts.user_id,
+                                Posts.post_type).filter(Posts.id == id) \
                                         .filter(Posts.user_id == Users.id).first()
         return data
 
@@ -200,7 +201,7 @@ def get_random_user(int):
         user_id = db.session.query(Users.id).filter(Users.id == int).first().id
         return user_id
 
-def populate_db(job_count, user_count):
+def populate_db(requests_count, looking_for_count, user_count):
         jobs = [
                 'Mow my lawn',
                 'Elderly Shopping Delivery',
@@ -222,6 +223,22 @@ def populate_db(job_count, user_count):
                 'Software Developer',
                 'Network Administrator',
                 'System Administrator'
+        ]
+        looking_for = [
+                'Qualified Painter',
+                'Qualified Electrician',
+                'Qualified Mechanic',
+                '3D Artist',
+                'C#/C++ Programmer',
+                'Computer Science Grad',
+                '3rd year Apprentice Chef',
+                'Scaffolder',
+                'Exercise Science Grad',
+                'Accountant',
+                '2nd Year Physio',
+                '2nd Year Apprentice Plumber',
+                'Qualified Plumber',
+                'Unity Engine Games Programmer'
         ]
         locations = [
                 'Bassendean',
@@ -290,9 +307,9 @@ def populate_db(job_count, user_count):
             j+=1
         #---------------------------------------------------
         # Create random job posts
-        if(job_count is not None):
+        if(requests_count is not None):
             i = 0
-            while (i < job_count):
+            while (i < requests_count):
                 postForm = PostJobForm(
                         post_type = REQUEST,
                         name = random.choice(jobs),
@@ -318,11 +335,11 @@ def populate_db(job_count, user_count):
                 i+=1
         #---------------------------------------------------
         # Create random Skill posts = half job count
-            i=0
-            while(i < job_count/2):
+            k=0
+            while(k < looking_for_count):
                     postForm = PostJobForm(
                         post_type = LOOKING,
-                        name = "Post {}".format(str(i)),
+                        name = random.choice(looking_for),
                         location = "{}".format(random.choice(locations)),
                         description = "Looking for some work",
                         job_type = random.choice(job_type)
@@ -338,6 +355,6 @@ def populate_db(job_count, user_count):
                             )
                     db.session.add(post)
                     db.session.commit()
-                    i+=1
+                    k+=1
         #---------------------------------------------------
 # ---------------------- END TESTING FUNCTIONS -------------------------  

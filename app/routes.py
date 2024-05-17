@@ -25,7 +25,7 @@ def about():
 def populate():
     form = DataForm()
     if(form.validate_on_submit()):
-        populate_db(form.job_count.data, form.user_count.data)
+        populate_db(form.requests_count.data, form.looking_for_count.data, form.user_count.data)
         return redirect(url_for('login'))
     return render_template('populate.html', form = form)
 # ------------------- END TEST ROUTES ------------------------
@@ -129,7 +129,7 @@ def view_job(job_id):
     if(applyForm.submitApplication.data):
         if (applyForm.validate()):
             apply_for_job(applyForm)
-            flash("Application sent!")
+            flash("Message sent!")
         elif not current_user.is_authenticated:
             flash("You must login or create an account to continue!")
             return redirect(url_for('login'))
@@ -150,4 +150,6 @@ def edit_post(post_id):
     if(form.validate_on_submit()):
         # if passes validators update job
         update_job(form, post_id)
+        flash("Post: {} has been updated successfully!".format(form.name.data))
+        return redirect(url_for('profile'))
     return render_template('edit_job.html', form = form)

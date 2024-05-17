@@ -47,6 +47,7 @@
                 <th scope="col">User</th>
                 <th scope="col">Location</th>
                 <th scope="col">Job Type</th>
+                <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -73,9 +74,4 @@
     </section>
     </div>
 
-<!-- Bootstrap, Popper.js, and Main JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
-<!-- Reference to external JavaScript file -->
-<script src="{{ url_for('static', filename='tempmodal.js') }}"></script> <!-- note that this is only here as a basic script so we can view the design of the modal. -->
 {% endblock %}

@@ -24,25 +24,26 @@
             <div class="job-details-labelV">Posted By:</div>
             <div class="job-details-valueV">{{ data[1] }}</div>
           </div>
-    
+          {% if data[9] == "Job request" %}
           <!-- Pay Section -->
           <div class="job-details-sectionV">
             <div class="job-details-labelV">Pay (P/Hr):</div>
             <div class="job-details-valueV">{{ data[2] }}</div>
           </div>
-    
-          <!-- Location Section -->
-          <div class="job-details-sectionV">
-            <div class="job-details-labelV">Location:</div>
-            <div class="job-details-valueV">{{ data[3] }}</div>
-          </div>
-    
+          
           <!-- Start From Section -->
           <div class="job-details-sectionV">
             <div class="job-details-labelV">Start From:</div>
             <div class="job-details-valueV">{{ data[4] }}</div>
           </div>
-    
+          
+          {% endif %}
+
+          <!-- Location Section -->
+          <div class="job-details-sectionV">
+            <div class="job-details-labelV">Location:</div>
+            <div class="job-details-valueV">{{ data[3] }}</div>
+          </div>
     
           <!-- Job Type Section -->
           <div class="job-details-sectionV">
@@ -64,7 +65,11 @@
       <!-- Button Container -->
       <div class="row justify-content-centerV">
         <div class="col-md-12 text-center">
-          <button class="btnV btn-acceptV apply-btn" onclick="clicked('{{data[7]}}', '{{data[8]}}');">Apply</button>
+          <button class="btnV btn-acceptV apply-btn" onclick="clicked('{{data[7]}}', '{{data[8]}}');">
+            {% if data[9] == "Job request" %} Apply 
+            {% else %} Contact
+            {% endif %}
+          </button>
         </div>
       </div>
     </div>
@@ -74,8 +79,12 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="viewJobModalLabel">Apply for Job</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="viewJobModalLabel">
+                  {% if data[9] == "Job request" %} Apply for Job
+                  {% else %} Contact Candidate
+                  {% endif %}         
+                </h5>
+                <a href="/job-listing/{{data[7]}}" class="btn-close" aria-label="Close"></a>
             </div>
             <form action="" method="post">
                 <div class="modal-body">
@@ -90,8 +99,11 @@
                     {{ quickApplyForm.employer_id(id="employer_id") }} <!-- hidden employer id for input modal form-->
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <a href="/job-listing/{{data[7]}}" class="btn btn-secondary">Close</a>
+                    {% if data[9] == "Job request" %}
                     {{ quickApplyForm.submitApplication(class="btn btn-primary") }} <!--Display te submit button for the modal form-->
+                    {% else %} {{ quickApplyForm.submitApplication(class="btn btn-primary", value="Contact") }}
+                    {% endif %}
                 </div>
             </form>
         </div>

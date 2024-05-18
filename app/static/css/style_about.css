@@ -1,4 +1,5 @@
 /*Styling for the About page*/
+
 body {
     color: #e2ece2; /* light greenish-grey for text */
     font-family: Arial, sans-serif; /* Ensures a modern-looking sans-serif font is used */
@@ -31,11 +32,6 @@ body {
     color: #e2ece2; /* light greenish-grey for text */
 }
 
-/* Adding a subtle hover effect to sections to improve interactivity */
-.section:hover {
-    background-color: #0b3a19; /* dark green for hover effect */
-    color: #e2ece2; /* light greenish-grey text ensures readability */
-}
 .team-members {
     display: flex;
     flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
@@ -45,8 +41,6 @@ body {
     flex: 0 0 calc(25% - 20px); /* Adjust the width of each team member box */
     margin: 10px; /* Adjust spacing between team members */
 }
-
-
 
 
 /*Stying for View Message*/

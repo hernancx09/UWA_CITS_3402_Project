@@ -63,17 +63,20 @@
         </div>
       </div>
     
-      <!-- Button Container -->
-      <div class="row justify-content-centerV">
-        <div class="col-md-12 text-center">
-          <button class="btnV btn-acceptV apply-btn" onclick="clicked('{{data[7]}}', '{{data[8]}}');">
-            {% if data[9] == "Job request" %} Apply 
-            {% else %} Contact
-            {% endif %}
-          </button>
-        </div>
-      </div>
-    </div>
+<!-- Button Container -->
+<div class="row justify-content-centerV">
+  <div class="col-md-12 text-center">
+    <button class="btnV btn-acceptV apply-btn" onclick="clicked('{{data[7]}}', '{{data[8]}}');">
+      {% if data[9] == "Job request" %}
+        Apply
+      {% else %}
+        Contact
+      {% endif %}
+    </button>
+    <button class="btnV btn-cancelV" onclick="window.history.back();">Cancel</button>
+  </div>
+</div>
+
     <!-- Modals HTML -->
 <!-- Modal for Viewing Job Entry -->
 <div class="modal fade" id="viewJobModal" tabindex="-1" aria-labelledby="viewJobModalLabel" aria-hidden="true">

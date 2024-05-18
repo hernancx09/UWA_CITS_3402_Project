@@ -343,6 +343,7 @@
   border: 2px solid #0b3a19;
 }
 
+/*Style for Accpet*/
 .btn-acceptV:hover {
   background-color: #5aba1e;
   border-color: #0b3a19;
@@ -353,6 +354,19 @@
   border-color: #0b3a19;
 }
 
+/*Style for Cancel*/
+.btn-cancelV {
+  background-color: #096080;
+  color: #e2ece2;
+  border: 2px solid #ff0000;
+}
+
+.btn-cancelV:hover {
+  background-color: #ff0000;
+  border-color: #8f0808;
+}
+
+/*Style for Exiting*/
 .btn-exitV{
   background-color: #096080;
   color: #e2ece2;

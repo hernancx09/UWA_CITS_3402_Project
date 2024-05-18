@@ -88,3 +88,32 @@ h1 {
     line-height: 1.6;
     margin: 5px 0;
 }
+
+/*Button to exits viewing messages*/
+/* Center the button container */
+.button-containerM {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Adjust as needed */
+}
+
+.btnM {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.btn-cancelM {
+    background-color: #096080;
+    color: #e2ece2;
+    border: 2px solid #0b3a19;
+}
+
+.btn-cancelM:hover {
+    background-color: #ff0000;
+    border-color: #8f0808;
+}

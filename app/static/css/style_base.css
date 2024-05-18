@@ -41,8 +41,6 @@ footer.footer {
     transition: all 0.5s ease-in-out;
 }
 
-/*above is header stuff below is body */
-
 img {
     height: 60px;
 }
@@ -52,6 +50,7 @@ img {
     font-weight: bold;
 }
 
+/*Header*/
 body {
     background-color: #294b5e;
     background-size: contain;

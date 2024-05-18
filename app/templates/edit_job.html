@@ -7,7 +7,7 @@
 {% block content %}
 <!-- Section used to Edit Specific Jobs made by Employers -->
 <div class="centered-container">
-  <div id="header">Edit Job</div>
+  <div id="header" class = "header-box">Edit Job</div>
   <div id="formwrapper">
     <form action="" method="post">
       {{ form.hidden_tag() }}
@@ -36,8 +36,9 @@
         {{ form.description(size=30, rows='4') }}
       </p>
       <p>
-        {{ form.submit(value="Update") }} <!-- Submit changes -->
-        <a href="/profile" class="btn btn-secondary">Cancel</a> 
+        {{ form.submit(value="Update", class="btn btn-secondary btn-update") }} 
+        <a href="/profile" class="btn btn-secondary btn-cancel">Cancel</a> 
+        
       </p>
     </form>
   </div>

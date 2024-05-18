@@ -6,7 +6,7 @@
 
 {% block content %}
   <div class="centered-container">
-    <div id="header">Create Job</div> <!--Display the title header for job creation-->
+    <div id="header" class = "header-box">Create Job</div> <!--Display the title header for job creation-->
     <div id="formwrapper">
       <form action="" method="post">
         {{ form.hidden_tag() }} <!--CSRF token for form security-->
@@ -39,13 +39,14 @@
             {{form.description(size=30, rows='4')}} <!--Display description input field-->
           </p>
         <p>
-          {{form.submit()}} <!--Submit button-->
-          <a href="/jobs" class="btn btn-secondary">Cancel</a> 
+          {{ form.submit(value="Submit", class="btn btn-secondary btn-update") }} <!--Submit button-->
+          <a href="#" class="btn btn-secondary btn-cancel" onclick="window.history.back()">Cancel</a>
         </p>
       </form>
     </div>
   </div>
-  <script src="{{ url_for('static', filename='/js/js_functions.js') }}"></script> <!-- external javascript file for form validation -->
+  <script src="{{ url_for('static', filename='/js/js_functions.js') }}"></script>
+   <!-- external javascript file for form validation -->
 {% endblock %}
 
 

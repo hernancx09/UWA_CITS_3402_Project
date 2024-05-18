@@ -6,13 +6,17 @@
 }
 
 #header {
-    color: #27cdea; /* cyan for text color for visibility */
+    color: #050636; /* cyan for text color for visibility */
     font-size: 48px; /* Larger font size for header */
     margin-bottom: 20px; /* Space between header and form */
 }
-
+#header.header-box {
+  background-color: #24a6bd; /* cyan */
+    padding: 5px; /* Adjust padding as needed */
+    border-radius: 10px;
+}
 #formwrapper {
-    background-color: rgba(255,255,255,0.3); /* subtle white transparency for form background */
+    background-color: rgba(255, 255, 255, 0.893); /* subtle white transparency for form background */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow for better depth */
@@ -27,7 +31,7 @@ form p {
 
 label {
     font-weight: bold;
-    color: #aaf145; /* bright lime green for labels to stand out */
+    color: #31aa21; /* bright lime green for labels to stand out */
 }
 #registration-link {
     background-color:#aaf145; /* Light grey background color */
@@ -49,4 +53,23 @@ label {
 textarea {
     width: 100%;
     resize: none;
+}
+.btn.btn-secondary {
+    background-color: #096080; /* Original background color */
+    color: #fff; /* White text */
+    border: none; /* No border */
+    padding: 8px 10px; /* Padding around text */
+    text-decoration: none; /* No underline */
+    margin-right: 10px; /* Add some right margin for spacing */
+    width: 80px; /* Fixed width */
+    height: 39px; /* Fixed height */
+}
+
+.btn.btn-update:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Cancel button */
+.btn-cancel:hover {
+    background-color: #dc3545; /* Red background */
 }

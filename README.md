@@ -37,7 +37,12 @@ Dev environment Notes:
 * Lauren Gees notes provide solid instruction on setting up environment, refer to them if necessary
 
 Usage  
-* Before anything make sure python and pip are installed
+* Before anything make sure python and pip are installed in your system/wsl
+* Clone the repo and set up your preferred virtual environment. We have used venv. Refer to https://docs.python.org/3/library/venv.html for detailed instructions. The easiest way is to locate the clone repo in your terminal/wsl, and in the main directory execute:
+``` python3 -m venv venv ```  
+This will create the target directory for your virtual env. Next you need to activate it. This is done via:  
+``` source venv/bin/activate ```  
+You'll know it is active when ``` (venv) ``` appears on the command line before your username.
 * Inside your virtual env all dependancies need to be installed, to do this run:  
 ``` pip install -r requirements.txt ```  
 * To run tests use:  

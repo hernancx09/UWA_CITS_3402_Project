@@ -45,8 +45,8 @@ body {
 
 /*Stying for View Message*/
 h1 {
-    color: #042d44; /* Dark blue text */
-    background-color: #27cdea; /* Cyan background */
+    color: #042d44; 
+    background-color: #27cdea; 
     padding: 20px;
     text-align: center;
 }

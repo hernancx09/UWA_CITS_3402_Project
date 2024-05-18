@@ -1,6 +1,6 @@
 .centered-container {
     display: flex;
-    margin-top: 11%; 
+    margin-top: 11%;
     align-items: center;
     flex-direction: column; /* Aligns children (header and formwrapper) in a column */
 }
@@ -16,7 +16,7 @@
     border-radius: 10px;
 }
 #formwrapper {
-    background-color: rgba(255, 255, 255, 0.893); /* subtle white transparency for form background */
+    background-color: rgba(208, 208, 208, 0.893); /* subtle white transparency for form background */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow for better depth */

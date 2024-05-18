@@ -29,18 +29,13 @@
         <a class="nav-item nav-link" id="about" href="/about">About Us</a>
         <a class="nav-item nav-link" id="profile" href="/profile">My Profile</a>
 
-       <!--{% if logged_in %} NOTE Update with the actual login status. -->
-      
-       <!-- {% else %}-->
-       {% if current_user.is_authenticated %}
-       <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
-       {% else %}
+      {% if current_user.is_authenticated %}
+      <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+      {% else %}
         <a class="nav-item nav-link" id="login" href="/login">Login</a>
         <a class="nav-item nav-link" id="signUp" href="/registration">Sign Up</a>
         {% endif %}
 
-
-        <!--{% endif %}-->
       </div>
     </div>
   </div>

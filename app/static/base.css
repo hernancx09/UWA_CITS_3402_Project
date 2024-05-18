@@ -34,8 +34,8 @@ header.bg-dark {
     color: #343a40;
     transition: all 0.5s ease-in-out;
 }
-/*above is header stuff below is body */
 
+/*above is header stuff below is body */
 body {
     background-color: rgb(34, 47, 125);
     background-image: url('https://studyqa.com/storage/media/upload/univers/940/66/uni_profile_94066.jpg');

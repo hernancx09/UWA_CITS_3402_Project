@@ -1,0 +1,10 @@
+The Profile Page is one of the deliverables for our website, it is important as it acts as a hub for users who have posted a job to view applicant messages coming in to it, let them view what jobs they have posted for, and also view their own applications for jobs. 
+
+The User will also be able to view/ edit their posts if neccesary. Also they will be able to remove/ moderate their jobs and remove people if needed. 
+
+Initially we constructed the CSS and HTML + temporary javascript making a full template of what the page should look like. ( Design Sprint) 
+
+This was done earlier but the profile page was not prioritied in pulls until Pull 20. Where it was completed. Here We have incoporated in the database functions and also allow us to view stuff based on what is written and its entry. Editing is not available yet. 
+
+In Main Final, the deliverable is complete. We have added in a delete pos tbutton so they can remove them and fleshed out the editting options for jobs. Messages sent to others can also be viewed, sent applications too, for both applicants and jobs. 
+In future iterations we want to incorporate some level of flood control, where users cannot flood their employers with messages and requests, we also want to add in the ability to edit and TRACK all the edits done, to all jobs and messages etc. 

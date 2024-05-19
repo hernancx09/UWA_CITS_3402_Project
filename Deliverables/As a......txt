@@ -1,0 +1,23 @@
+As a user(job poster), i would like to be able to make a job post and submit it on the website. <-done-> 
+
+As a user( job poster), i would like to get a notification when someone applies or replies to
+jobs. <-done->
+
+As a user( job poster), i would also like to check through the applicant list to see if there is anyone fit to do my job. 
+
+As a user (Job Poster), i would like to remove/ deny /accept people who are/arent appropriate for my job. <-done->
+
+As a user, i would like for my jobs to close automatically when full and i would like for the jobs to be visible even after closed. <- Future Update-> (need to incorporate status)
+---------------------------------------------------------------------------------------------
+
+As a user(applicant), i would like to be able to make a description of myself and push out my profile for others to see/ hire. 
+
+As a user(applicant), i would like to get a notification when someone requires/wants my service. 
+
+As a user(applicant), i would like to be able to check through the job list to see if there is any job that i want to take.
+
+As a user(applicant), i would like to bee able to edit my posts/ remove them incase of any mistake. 
+
+As a user(applicant), i would like to confirm/ deny any jobs that are requested of me. 
+
+------------------------------------------------------------------------------------------------

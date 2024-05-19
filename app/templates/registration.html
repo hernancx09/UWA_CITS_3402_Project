@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Registration{% endblock %}
+{% block title %}Sign Up{% endblock %}
 {% block extraheaders %}
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style_forms.css') }}">
 {% endblock %}
@@ -7,7 +7,7 @@
 {% block content %}
 
   <div class="centered-container">
-    <div id="header" class = "header-box">Registration Page</div> <!--Title header for registration page-->
+    <div id="header" class = "header-box">Sign Up</div> <!--Title header for registration page-->
     <div id="formwrapper">
       <form action="" method="post">
         {{ form.hidden_tag() }} <!--Include hidden CSRF for security-->

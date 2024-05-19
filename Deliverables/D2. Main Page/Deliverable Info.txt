@@ -1,0 +1,17 @@
+The Main Page is one of our deliverables. It will be the central page where people go to check the available Jobs or Available Hires for jobs. 
+
+The users should be able to view the Jobs and Applicants online easily. And quick accept any posts if neccesary. They should also be able to view a more descriptive view of the post ny clicking on view. 
+
+
+
+
+Initially, we designed a Html+ Css page in with both the Jobs and the Hire Candidates on the same page. 
+Around Pull 16, we have separated the mainpage into 2, Candidates and Jobs this was to allow for more entries to be visible at once on the page and to prevent the user from having to only see 5 or 6 at a time before going to the 'next page'. 
+
+By pull 20 we incoporated the backend for the planned modal system, allowing for users to ' quick apply for a job directly' or click view to see more details about the job before applying. 
+
+When applying for a job, a modal opens up allowing the user to send a message directly to the creator of the job. 
+If requesting a candidate to assist quick send should open a modal  allowing the user to receive a message from the hirer. else they can click view to see more candidate details. 
+
+
+Main Final: Status was removed as it would have caused alot of initial issues for the site. THe Final Page Design has been completed completed. View Page design was updated and users can directly apply from there with the apply button. Similar View Exists for the Candidates Screen.

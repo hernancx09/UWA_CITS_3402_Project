@@ -1,0 +1,13 @@
+Main 7 Login and Registration Temporary Css and Html done. To be improved in future. 
+
+
+Main 9 Added Database functs + restrictions to login and registration. * also added css for website header. At This point - Minor Change in Theme/ direction discussed. New logos uploaded but not yet implemented. 
+
+Main 12 Design Change. 
+
+Main 16 - Split Main page + incorporated databases. what is viewed now is no longer html 
+but instead from sql database.  ( no changes to login). currently only jobs can be populated. 
+
+Main Final- Deliverables Final Iteration. ( mostly css and design polishing)
+
+

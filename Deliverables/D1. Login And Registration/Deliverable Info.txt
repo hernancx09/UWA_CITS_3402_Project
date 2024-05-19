@@ -1,0 +1,25 @@
+Login and Registration is a neccesary part of the website. It is required as it is important for users to each have their own identity so they may post their own posts and accept requests. 
+
+
+Users Should Be Able to Create an Account With a Unique Username and Create a Password. 
+
+They Then Should be Able to Login to that account and view their profile and post jobs/ appllications. 
+
+
+How this deliverable changed as the project progressed. 
+
+In Main7, we had done up the iniital Login and Registration CSS and HTML. Our plan was to stagger the front end and back end for the website allowing for sprints to take place for design and backend separately. 
+
+A system for account recovery was also planned. (for future). 
+
+In Main9, Early Database Functions were Added. Now certain aspects had to be fufilled in order for logins/ registration. eg: password length must be more than 5. 
+
+In Main12, there was a website overhaul in design and minor change in fucntion, this changed the design of the Login Page. 
+
+In Main18, the login and registration functionality with the database was fully working. Logging in with the account after registration brought you to the main job page. 
+
+In Main20, After Logging in it brought you to the fully functional Profile Page. 
+( a button was also added that brought you from login to registration. and in the header, a logout button was added). 
+
+In Main Final, we added a button to link the login to registration page. also edited the final Css design for readability. 
+

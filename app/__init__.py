@@ -5,7 +5,8 @@ from app.db_init import init_db, create_db
 from flask_login import LoginManager
 from sqlalchemy import MetaData
 
-#naming conventions for sqlalchemy metadata
+# naming conventions for sqlalchemy metadata
+# Ensures no errors when trying to drop constraints without names
 convention = {
   "ix": "ix_%(column_0_label)s",
   "uq": "uq_%(table_name)s_%(column_0_name)s",
